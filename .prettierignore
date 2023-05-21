@@ -1,0 +1,14 @@
+# prettier 会忽略的文件
+
+.DS_Store
+node_modules
+dist
+dist-ssr
+dist-snake
+*.local
+.vscode
+.husky
+.github
+# *.d.ts
+types/auto-import.d.ts
+types/components.d.ts
