@@ -2,8 +2,8 @@
  * @Description: <vite 插件>
  * @Author: smellycat littlecandyi@163.com
  * @Date: 2023-05-21 12:01:17
- * @LastEditors: smellycat littlecandyi@163.com
- * @LastEditTime: 2023-05-21 23:01:32
+ * @LastEditors: menggt littlecandyi@163.com
+ * @LastEditTime: 2023-05-22 11:30:30
  */
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
@@ -17,6 +17,7 @@ import createLayouts from './layouts'
 import createPages from './pages'
 import createProgress from './progress'
 import createSvgIcons from './svg-icon'
+import createUnoCSS from './unocss'
 import createComponents from './vue-components'
 
 export default function createVitePlugins(viteEnv: Record<string, string>, isBuild = false) {
@@ -34,6 +35,7 @@ export default function createVitePlugins(viteEnv: Record<string, string>, isBui
 	vitePlugins.push(createPages())
 	vitePlugins.push(createProgress())
 	vitePlugins.push(createSvgIcons(isBuild))
+	vitePlugins.push(createUnoCSS())
 	vitePlugins.push(createComponents())
 
 	return vitePlugins

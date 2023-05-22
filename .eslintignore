@@ -12,7 +12,7 @@ dist
 .local
 /bin
 Dockerfile
-.vscode
+# .vscode
 .github
 .husky
 types/auto-import.d.ts

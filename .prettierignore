@@ -6,7 +6,7 @@ dist
 dist-ssr
 dist-snake
 *.local
-.vscode
+# .vscode
 .husky
 .github
 # *.d.ts

@@ -2,8 +2,8 @@
  * @Description: <>
  * @Author: smellycat littlecandyi@163.com
  * @Date: 2023-05-21 23:05:42
- * @LastEditors: smellycat littlecandyi@163.com
- * @LastEditTime: 2023-05-21 23:13:34
+ * @LastEditors: menggt littlecandyi@163.com
+ * @LastEditTime: 2023-05-22 16:23:16
 -->
 <template>
 	<div>
@@ -15,6 +15,12 @@
 		</a>
 	</div>
 	<HelloWorld msg="Vite + Vue" />
+
+	<el-button type="primary">可爱的按钮</el-button>
+
+	<ul>
+		<li>阿松大</li>
+	</ul>
 </template>
 
 <script setup lang="ts">

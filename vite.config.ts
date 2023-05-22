@@ -1,9 +1,9 @@
 /*
- * @Description: <>
+ * @Description: <vite 项目配置>
  * @Author: smellycat littlecandyi@163.com
  * @Date: 2023-05-21 00:20:17
- * @LastEditors: smellycat littlecandyi@163.com
- * @LastEditTime: 2023-05-21 23:12:43
+ * @LastEditors: menggt littlecandyi@163.com
+ * @LastEditTime: 2023-05-22 17:21:51
  */
 import { defineConfig, loadEnv } from 'vite'
 import { pathResolve } from './vite/utils'
@@ -47,13 +47,10 @@ export default ({ mode, command }) => {
 						}
 					}
 				}
-			},
-			terserOptions: {
-				compress: {
-					drop_console: command === 'build' && VITE_DROP_CONSOLE,
-					drop_debugger: command === 'build'
-				}
 			}
+		},
+		esbuild: {
+			drop: command === 'build' && VITE_DROP_CONSOLE ? ['console', 'debugger'] : []
 		},
 		plugins: createVitePlugins(env, command === 'build'),
 		server: {
@@ -74,15 +71,6 @@ export default ({ mode, command }) => {
 					target: 'http://127.0.0.1:4523',
 					changeOrigin: true,
 					rewrite: (path: string) => path.replace(/^\/m1^\/699628-0-default^\/api/, '')
-				}
-			}
-		},
-		css: {
-			preprocessorOptions: {
-				scss: {
-					modifyVars: {},
-					javascriptEnabled: true,
-					additionalData: '@import "src/assets/styles/var.scss";'
 				}
 			}
 		}

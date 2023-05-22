@@ -2,8 +2,8 @@
  * @Description: <>
  * @Author: smellycat littlecandyi@163.com
  * @Date: 2023-05-21 18:15:35
- * @LastEditors: smellycat littlecandyi@163.com
- * @LastEditTime: 2023-05-21 23:15:28
+ * @LastEditors: menggt littlecandyi@163.com
+ * @LastEditTime: 2023-05-22 16:26:33
  */
 module.exports = {
 	env: {
@@ -16,6 +16,7 @@ module.exports = {
 		'plugin:vue/vue3-essential',
 		'plugin:@typescript-eslint/recommended',
 		'./.eslintrc-auto-import.json',
+		'@unocss',
 		// 新增，必须放在最后面
 		'plugin:prettier/recommended'
 	],
