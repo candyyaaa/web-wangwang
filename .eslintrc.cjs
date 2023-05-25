@@ -3,7 +3,7 @@
  * @Author: smellycat littlecandyi@163.com
  * @Date: 2023-05-21 18:15:35
  * @LastEditors: menggt littlecandyi@163.com
- * @LastEditTime: 2023-05-22 16:26:33
+ * @LastEditTime: 2023-05-25 17:33:12
  */
 module.exports = {
 	env: {
@@ -32,13 +32,7 @@ module.exports = {
 		'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
 		'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
 		// 添加组件命名忽略规则
-		'vue/multi-word-component-names': [
-			'error',
-			{
-				//需要忽略的组件名
-				ignores: ['index', 'login']
-			}
-		],
+		'vue/multi-word-component-names': 'off',
 		// // 配置是否使用.prettierrc文件中的配置
 		// 'prettier/prettier': [
 		// 	'error',

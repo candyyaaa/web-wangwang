@@ -2,22 +2,24 @@
  * @Description: <>
  * @Author: smellycat littlecandyi@163.com
  * @Date: 2023-05-21 23:35:18
- * @LastEditors: smellycat littlecandyi@163.com
- * @LastEditTime: 2023-05-21 23:49:34
+ * @LastEditors: menggt littlecandyi@163.com
+ * @LastEditTime: 2023-05-25 17:52:34
 -->
 <template>
-	<div class="layout-wrap">
-		<header>头部</header>
+	<div class="h-full">
+		<HeaderNav>头部</HeaderNav>
 		<main>
 			<RouterView />
 		</main>
 	</div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+	import HeaderNav from './components/header-nav/index.vue'
+</script>
 
 <style scoped>
-	.layout-wrap {
+	/* .layout-wrap {
 		height: 100%;
 	}
 
@@ -39,5 +41,5 @@
 	main {
 		height: 100%;
 		padding-top: 60px;
-	}
+	} */
 </style>

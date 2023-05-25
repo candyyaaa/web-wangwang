@@ -3,7 +3,7 @@
  * @Author: menggt littlecandyi@163.com
  * @Date: 2023-05-22 11:30:47
  * @LastEditors: menggt littlecandyi@163.com
- * @LastEditTime: 2023-05-22 16:27:57
+ * @LastEditTime: 2023-05-25 18:10:02
  */
 import {
 	defineConfig,
@@ -17,7 +17,12 @@ import {
 } from 'unocss'
 
 export default defineConfig({
-	// ...UnoCSS options
+	rules: [['header-nav-height', { height: '4.375rem' }]],
+	theme: {
+		height: {
+			'header-height': '4.375rem'
+		}
+	},
 	presets: [
 		presetUno(),
 		presetAttributify(),

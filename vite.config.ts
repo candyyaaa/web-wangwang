@@ -3,7 +3,7 @@
  * @Author: smellycat littlecandyi@163.com
  * @Date: 2023-05-21 00:20:17
  * @LastEditors: menggt littlecandyi@163.com
- * @LastEditTime: 2023-05-22 17:21:51
+ * @LastEditTime: 2023-05-25 17:20:33
  */
 import { defineConfig, loadEnv } from 'vite'
 import { pathResolve } from './vite/utils'
@@ -73,6 +73,9 @@ export default ({ mode, command }) => {
 					rewrite: (path: string) => path.replace(/^\/m1^\/699628-0-default^\/api/, '')
 				}
 			}
+		},
+		css: {
+			devSourcemap: true
 		}
 	})
 }
