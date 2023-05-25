@@ -2,8 +2,8 @@
  * @Description: <>
  * @Author: menggt littlecandyi@163.com
  * @Date: 2023-05-25 17:29:39
- * @LastEditors: menggt littlecandyi@163.com
- * @LastEditTime: 2023-05-25 18:12:16
+ * @LastEditors: smellycat littlecandyi@163.com
+ * @LastEditTime: 2023-05-26 00:45:18
 -->
 <script setup lang="ts"></script>
 
@@ -16,9 +16,11 @@
 			top="0"
 			left="0"
 			right="0"
-			height="header-nav-height"
+			class="nav-default-h"
 		>
-			<span>头部11</span>
+			<div h-full flex items-center justify-center margin="my-0 mx-auto" class="nav-default-w">
+				<span>头部11</span>
+			</div>
 		</header>
 	</Transition>
 </template>
