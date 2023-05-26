@@ -2,24 +2,18 @@
  * @Description: <>
  * @Author: menggt littlecandyi@163.com
  * @Date: 2023-05-25 17:29:39
- * @LastEditors: smellycat littlecandyi@163.com
- * @LastEditTime: 2023-05-26 00:45:18
+ * @LastEditors: menggt littlecandyi@163.com
+ * @LastEditTime: 2023-05-26 18:13:51
 -->
-<script setup lang="ts"></script>
+<script setup lang="ts">
+	import Logo from '../logo/index.vue'
+</script>
 
 <template>
 	<Transition name="header-nav">
-		<header
-			display="flex"
-			items="center"
-			position="fixed"
-			top="0"
-			left="0"
-			right="0"
-			class="nav-default-h"
-		>
+		<header fixed left-0 right-0 top-0 flex items-center class="nav-default-h">
 			<div h-full flex items-center justify-center margin="my-0 mx-auto" class="nav-default-w">
-				<span>头部11</span>
+				<Logo />
 			</div>
 		</header>
 	</Transition>
