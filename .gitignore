@@ -11,8 +11,6 @@ node_modules
 dist
 dist-ssr
 *.local
-types/auto-import.d.ts
-types/components.d.ts
 
 
 # Editor directories and files
@@ -25,3 +23,5 @@ types/components.d.ts
 *.njsproj
 *.sln
 *.sw?
+types/auto-import.d.ts
+types/components.d.ts
