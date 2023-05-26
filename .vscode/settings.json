@@ -16,11 +16,11 @@
 		"pnpm",
 		"wangwang",
 		"Attributify"
-	],
+	]
 	// "editor.codeActionsOnSave": {
 	// 	"source.fixAll": false,
 	// 	"source.fixAll.eslint": true,
 	// 	"source.fixAll.stylelint": true
 	// }
-  // "unocss.root": "packages/client"
+	// "unocss.root": "packages/client"
 }

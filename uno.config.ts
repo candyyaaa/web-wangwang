@@ -2,8 +2,8 @@
  * @Description: <unocss 配置>
  * @Author: menggt littlecandyi@163.com
  * @Date: 2023-05-22 11:30:47
- * @LastEditors: smellycat littlecandyi@163.com
- * @LastEditTime: 2023-05-26 00:39:44
+ * @LastEditors: menggt littlecandyi@163.com
+ * @LastEditTime: 2023-05-26 10:04:35
  */
 import {
 	defineConfig,
@@ -17,14 +17,6 @@ import {
 } from 'unocss'
 
 export default defineConfig({
-	// rules: [
-	// 	[
-	// 		'nav-h',
-	// 		([, c], { theme }) => {
-	// 			return { height: theme.height['nav-h'] }
-	// 		}
-	// 	]
-	// ],
 	rules: [
 		[
 			/^nav-(.*)$/,
@@ -48,10 +40,15 @@ export default defineConfig({
 		}
 	},
 	presets: [
+		// uno 默认预设
 		presetUno(),
+		// 属性模式预设
 		presetAttributify(),
+		// 图标预设
 		presetIcons(),
+		// 排版预设
 		presetTypography(),
+		// 字体预设
 		presetWebFonts({})
 	],
 	transformers: [transformerDirectives(), transformerVariantGroup()]

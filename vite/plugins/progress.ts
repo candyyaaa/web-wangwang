@@ -10,7 +10,9 @@ import colors from 'picocolors'
 
 export default function createProgress() {
 	return progress({
-		format: `${colors.green(colors.bold('Building'))} ${colors.cyan('[:bar]')} :percent | Time: :elapseds`,
+		format: `${colors.green(colors.bold('Building'))} ${colors.cyan(
+			'[:bar]'
+		)} :percent | Time: :elapseds`,
 		width: 100
 	})
 }
