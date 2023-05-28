@@ -3,13 +3,13 @@
  * @Author: smellycat littlecandyi@163.com
  * @Date: 2023-05-21 12:27:00
  * @LastEditors: smellycat littlecandyi@163.com
- * @LastEditTime: 2023-05-21 23:29:02
+ * @LastEditTime: 2023-05-29 00:10:38
  */
 import autoImport from 'unplugin-auto-import/vite'
 
 export default function createAutoImport() {
 	return autoImport({
-		imports: ['vue', 'vue-router', 'pinia'],
+		imports: ['vue', 'vue-router', 'pinia', '@vueuse/core'],
 		// eslint报错解决
 		eslintrc: {
 			// Default `false` 默认false, 需要生成,修改文件的时候改为 true, 没有文件, 自动按需引入 eslint 会报错

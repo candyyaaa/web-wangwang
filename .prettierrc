@@ -13,5 +13,5 @@
 	"insertPragma": false,
 	"endOfLine": "lf",
 	"embeddedLanguageFormatting": "auto",
-	"vueIndentScriptAndStyle": true
+	"vueIndentScriptAndStyle": false
 }

@@ -2,8 +2,8 @@
  * @Description: <unocss 配置>
  * @Author: menggt littlecandyi@163.com
  * @Date: 2023-05-22 11:30:47
- * @LastEditors: menggt littlecandyi@163.com
- * @LastEditTime: 2023-05-26 10:04:35
+ * @LastEditors: smellycat littlecandyi@163.com
+ * @LastEditTime: 2023-05-29 00:24:25
  */
 import {
 	defineConfig,
@@ -28,6 +28,10 @@ export default defineConfig({
 				if (theme.height[c]) {
 					return { height: theme.height[c] }
 				}
+
+				if (theme.padding[c]) {
+					return { 'padding-top': theme.padding[c] }
+				}
 			}
 		]
 	],
@@ -37,6 +41,9 @@ export default defineConfig({
 		},
 		height: {
 			'default-h': '4.375rem'
+		},
+		padding: {
+			'pt-nav': '4.375rem'
 		}
 	},
 	presets: [

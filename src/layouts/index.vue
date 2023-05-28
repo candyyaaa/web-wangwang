@@ -2,13 +2,13 @@
  * @Description: <>
  * @Author: smellycat littlecandyi@163.com
  * @Date: 2023-05-21 23:35:18
- * @LastEditors: menggt littlecandyi@163.com
- * @LastEditTime: 2023-05-25 17:52:34
+ * @LastEditors: smellycat littlecandyi@163.com
+ * @LastEditTime: 2023-05-29 00:32:26
 -->
 <template>
-	<div class="h-full">
+	<div nav-pt-nav h-full>
 		<HeaderNav>头部</HeaderNav>
-		<main>
+		<main relative h-full w-full>
 			<RouterView />
 		</main>
 	</div>
