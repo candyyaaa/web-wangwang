@@ -4,6 +4,7 @@ overrides:
   bin-wrapper: npm:bin-wrapper-china
 
 specifiers:
+  '@iconify-json/ant-design': ^1.1.5
   '@types/node': ^20.2.1
   '@types/nprogress': ^0.2.0
   '@typescript-eslint/eslint-plugin': ^5.43.0
@@ -52,6 +53,7 @@ dependencies:
   vue-router: 4.2.1_vue@3.3.4
 
 devDependencies:
+  '@iconify-json/ant-design': 1.1.5
   '@types/node': 20.2.1
   '@types/nprogress': 0.2.0
   '@typescript-eslint/eslint-plugin': 5.59.6_qajzm5xpii3p3sw5qvmsvgyhli
@@ -682,6 +684,12 @@ packages:
 
   /@humanwhocodes/object-schema/1.2.1:
     resolution: {integrity: sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==}
+    dev: true
+
+  /@iconify-json/ant-design/1.1.5:
+    resolution: {integrity: sha512-lNEC95u9QdmS3GfMLnbAjLZCfQ9i4xURyn7P4UVHa6ejjLjs5FVyi/J+itrmnBpwb36YZo4CT0GDIn2AgvkNng==}
+    dependencies:
+      '@iconify/types': 2.0.0
     dev: true
 
   /@iconify/types/2.0.0:

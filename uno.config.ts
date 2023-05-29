@@ -3,7 +3,7 @@
  * @Author: menggt littlecandyi@163.com
  * @Date: 2023-05-22 11:30:47
  * @LastEditors: smellycat littlecandyi@163.com
- * @LastEditTime: 2023-05-29 00:24:25
+ * @LastEditTime: 2023-05-30 00:19:04
  */
 import {
 	defineConfig,
@@ -35,6 +35,9 @@ export default defineConfig({
 			}
 		]
 	],
+	shortcuts: {
+		'nav-icon': 'cursor-pointer text-lg hover:scale-125'
+	},
 	theme: {
 		width: {
 			'default-w': '100%'
