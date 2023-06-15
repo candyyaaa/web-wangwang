@@ -2,15 +2,24 @@
  * @Description: <>
  * @Author: smellycat littlecandyi@163.com
  * @Date: 2023-05-21 00:20:17
- * @LastEditors: smellycat littlecandyi@163.com
- * @LastEditTime: 2023-05-21 23:10:48
+ * @LastEditors: menggt littlecandyi@163.com
+ * @LastEditTime: 2023-06-15 15:59:20
 -->
 <script setup lang="ts">
-	// import HelloWorld from './components/HelloWorld.vue'
+import { localeConfig, sizeConfig, zIndexConfig, buttonConfig } from '@/config/element-config'
 </script>
 
 <template>
-	<RouterView />
+	<ElConfigProvider
+		:locale="localeConfig"
+		:size="sizeConfig"
+		:z-index="zIndexConfig"
+		:button="buttonConfig"
+	>
+		<RouterView #default="{ Component }">
+			<component :is="Component" />
+		</RouterView>
+	</ElConfigProvider>
 </template>
 
 <style scoped></style>
