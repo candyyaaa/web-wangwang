@@ -15,7 +15,8 @@
 		"unplugin",
 		"pnpm",
 		"wangwang",
-		"Attributify"
+		"Attributify",
+    "pako"
 	],
 	// "editor.codeActionsOnSave": {
 	// 	"source.fixAll": false,
