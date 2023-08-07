@@ -3,7 +3,7 @@
  * @Author: menggt littlecandyi@163.com
  * @Date: 2023-05-23 17:54:43
  * @LastEditors: menggt littlecandyi@163.com
- * @LastEditTime: 2023-05-23 18:10:52
+ * @LastEditTime: 2023-08-07 16:18:25
  */
 
 import { createAlova } from 'alova'
@@ -41,3 +41,5 @@ const alova = createAlova({
 		}
 	}
 })
+
+export default alova

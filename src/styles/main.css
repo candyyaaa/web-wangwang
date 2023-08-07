@@ -1,7 +1,28 @@
+/*
+ * @Description: <>
+ * @Author: menggt littlecandyi@163.com
+ * @Date: 2023-05-22 11:06:50
+ * @LastEditors: menggt littlecandyi@163.com
+ * @LastEditTime: 2023-08-07 17:11:29
+ */
+
+/* 加载 PingFang SC 字体 */
+@font-face {
+	font-display: auto;
+	font-family: 'PingFang SC';
+	src: url('/fonts/PingFangSC.ttf');
+}
+
 html,
 body,
 #app {
-  height: 100%;
-  margin: 0;
-  padding: 0;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+html {
+	font-family: 'PingFang SC', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
+		Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+		'Segoe UI Symbol', 'Noto Color Emoji';
 }

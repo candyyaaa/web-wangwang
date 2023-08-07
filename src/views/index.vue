@@ -3,7 +3,7 @@
  * @Author: smellycat littlecandyi@163.com
  * @Date: 2023-05-21 21:19:10
  * @LastEditors: menggt littlecandyi@163.com
- * @LastEditTime: 2023-05-22 17:25:49
+ * @LastEditTime: 2023-08-07 14:36:31
 -->
 <route>
 {
@@ -23,10 +23,10 @@
 </template>
 
 <script setup lang="ts">
-	const router = useRouter()
-	const route = useRoute()
-	console.log('router ----------->', router)
-	console.log('route ----------->', route)
+const router = useRouter()
+const route = useRoute()
+console.log('router ----------->', router)
+console.log('route ----------->', route)
 </script>
 
 <style scoped></style>

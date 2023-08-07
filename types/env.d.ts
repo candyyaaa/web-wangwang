@@ -2,14 +2,14 @@
  * @Description: <env>
  * @Author: smellycat littlecandyi@163.com
  * @Date: 2023-05-21 00:20:17
- * @LastEditors: smellycat littlecandyi@163.com
- * @LastEditTime: 2023-05-21 22:50:10
+ * @LastEditors: menggt littlecandyi@163.com
+ * @LastEditTime: 2023-08-07 18:05:07
  */
 /// <reference types="vite/client" />
 /// <reference types="vite-plugin-pages/client" />
 /// <reference types="vite-plugin-vue-layouts/client" />
 
-interface ImportMetaEnv {
+declare interface ProjectImportMetaEnv extends ImportMetaEnv {
 	readonly NODE_ENV: string
 	readonly VITE_APP_API_BASEURL: string
 	readonly VITE_PORT: number
@@ -17,6 +17,6 @@ interface ImportMetaEnv {
 	readonly VITE_GLOB_API_URL_PREFIX: string
 }
 
-interface ImportMeta {
-	readonly env: ImportMetaEnv
+declare interface ProjectImportMeta extends ImportMeta {
+	readonly env: ProjectImportMetaEnv
 }
