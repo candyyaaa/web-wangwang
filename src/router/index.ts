@@ -3,7 +3,7 @@
  * @Author: smellycat littlecandyi@163.com
  * @Date: 2023-05-21 21:18:33
  * @LastEditors: menggt littlecandyi@163.com
- * @LastEditTime: 2023-08-07 11:28:44
+ * @LastEditTime: 2023-08-08 15:47:35
  */
 import { createRouter, createWebHistory } from 'vue-router'
 import { setupLayouts } from 'virtual:generated-layouts'
@@ -19,7 +19,7 @@ export const routes = generatedRoutes.map(generatedRoute =>
 )
 
 const router = createRouter({
-	history: createWebHistory('/web-wangwang/'),
+	history: createWebHistory('/'),
 	routes
 })
 

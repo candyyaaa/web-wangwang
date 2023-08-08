@@ -3,12 +3,16 @@
  * @Author: menggt littlecandyi@163.com
  * @Date: 2023-08-07 11:15:58
  * @LastEditors: menggt littlecandyi@163.com
- * @LastEditTime: 2023-08-07 14:32:30
+ * @LastEditTime: 2023-08-08 15:12:56
 -->
-<route lang="yaml">
-name: Login
-meta: 
-	layout: false
+<route>
+{
+	name: "Login",
+	meta: {
+		layout: false,
+		title: "login"
+	}
+}
 </route>
 
 <script setup lang="ts"></script>

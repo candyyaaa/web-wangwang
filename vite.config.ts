@@ -3,7 +3,7 @@
  * @Author: smellycat littlecandyi@163.com
  * @Date: 2023-05-21 00:20:17
  * @LastEditors: menggt littlecandyi@163.com
- * @LastEditTime: 2023-08-07 18:01:26
+ * @LastEditTime: 2023-08-08 16:09:35
  */
 import { defineConfig, loadEnv } from 'vite'
 import { pathResolve } from './vite/utils'
@@ -23,7 +23,7 @@ export default ({ mode, command }) => {
 			: Boolean(env.VITE_DROP_CONSOLE)
 
 	return defineConfig({
-		base: '/web-wangwang/',
+		base: '/',
 		resolve: {
 			//设置别名
 			alias: [
@@ -66,6 +66,11 @@ export default ({ mode, command }) => {
 			cors: true,
 			// 设置 https 代理
 			proxy: {
+				// 静态资源
+				'/staticCode': {
+					target: 'http://38.55.96.95:80',
+					changeOrigin: true
+				},
 				'/m1/699628-0-default/api': {
 					// apifox 本地 Mock
 					target: 'http://127.0.0.1:4523',
