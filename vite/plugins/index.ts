@@ -2,8 +2,8 @@
  * @Description: <vite 插件>
  * @Author: smellycat littlecandyi@163.com
  * @Date: 2023-05-21 12:01:17
- * @LastEditors: candy littlecandyi@163.com
- * @LastEditTime: 2023-06-30 23:38:31
+ * @LastEditors: smellycat littlecandyi@163.com
+ * @LastEditTime: 2023-08-10 00:34:24
  */
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
@@ -28,10 +28,16 @@ export default function createVitePlugins(viteEnv: Record<string, string>, isBui
 		}),
 		vueJsx()
 	]
+
+	const { VITE_USE_IMAGEMIN } = viteEnv
+
+	const viteUseImagemin =
+		typeof VITE_USE_IMAGEMIN === 'boolean' ? VITE_USE_IMAGEMIN : Boolean(VITE_USE_IMAGEMIN)
+
 	vitePlugins.push(createAutoImport())
 	isBuild && vitePlugins.push(createCompression(viteEnv))
 	vitePlugins.push(createIcons())
-	vitePlugins.push(createImagemin())
+	isBuild && viteUseImagemin && vitePlugins.push(createImagemin())
 	vitePlugins.push(createLayouts())
 	vitePlugins.push(createPages())
 	vitePlugins.push(createProgress())
