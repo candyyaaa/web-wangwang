@@ -1,9 +1,9 @@
 /*
- * @Description: <>
+ * @Description: <工具函数集合>
  * @Author: menggt littlecandyi@163.com
  * @Date: 2023-08-04 17:49:12
  * @LastEditors: menggt littlecandyi@163.com
- * @LastEditTime: 2023-08-07 17:28:46
+ * @LastEditTime: 2023-08-09 15:31:55
  */
 import pako from 'pako'
 

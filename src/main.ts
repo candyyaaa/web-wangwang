@@ -3,7 +3,7 @@
  * @Author: smellycat littlecandyi@163.com
  * @Date: 2023-05-21 00:20:17
  * @LastEditors: menggt littlecandyi@163.com
- * @LastEditTime: 2023-08-07 17:48:16
+ * @LastEditTime: 2023-08-09 15:37:52
  */
 import { createApp } from 'vue'
 
@@ -14,10 +14,16 @@ import store from './store'
 // 跟组件
 import App from './App.vue'
 
+// tailwind 初始化css
 import '@unocss/reset/tailwind.css'
+// 全局css
 import './styles/main.css'
+// uno 原子化
 import 'virtual:uno.css'
+// svg 图标
 import 'virtual:svg-icons-register'
+// 苹方字体
+import 'font-pingfang-sc'
 
 const app = createApp(App)
 
