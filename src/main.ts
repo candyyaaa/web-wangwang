@@ -3,7 +3,7 @@
  * @Author: smellycat littlecandyi@163.com
  * @Date: 2023-05-21 00:20:17
  * @LastEditors: menggt littlecandyi@163.com
- * @LastEditTime: 2023-08-09 15:37:52
+ * @LastEditTime: 2023-08-10 13:57:09
  */
 import { createApp } from 'vue'
 
@@ -22,8 +22,6 @@ import './styles/main.css'
 import 'virtual:uno.css'
 // svg 图标
 import 'virtual:svg-icons-register'
-// 苹方字体
-import 'font-pingfang-sc'
 
 const app = createApp(App)
 
