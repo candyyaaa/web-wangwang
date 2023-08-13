@@ -23,5 +23,6 @@
 	// 	"source.fixAll.eslint": true,
 	// 	"source.fixAll.stylelint": true
 	// }
-	"unocss.root": "packages/client"
+	"unocss.root": "packages/client",
+	"typescript.tsdk": "node_modules/typescript/lib"
 }
