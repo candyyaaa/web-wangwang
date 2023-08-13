@@ -3,7 +3,7 @@
  * @Author: smellycat littlecandyi@163.com
  * @Date: 2023-05-21 23:05:42
  * @LastEditors: menggt littlecandyi@163.com
- * @LastEditTime: 2023-08-08 16:51:57
+ * @LastEditTime: 2023-08-11 10:36:22
 -->
 <template>
 	<div>
@@ -22,7 +22,11 @@
 		<li>阿松大</li>
 	</ul>
 
-	<LoaderLoading />
+	<WashingLoading />
+
+	<MatchLoading />
+
+	<div class="i-ant-design-down-circle-outlined" text-lg></div>
 </template>
 
 <script setup lang="ts">

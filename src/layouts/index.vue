@@ -2,11 +2,11 @@
  * @Description: <>
  * @Author: smellycat littlecandyi@163.com
  * @Date: 2023-05-21 23:35:18
- * @LastEditors: smellycat littlecandyi@163.com
- * @LastEditTime: 2023-05-29 00:32:26
+ * @LastEditors: menggt littlecandyi@163.com
+ * @LastEditTime: 2023-08-11 10:50:26
 -->
 <template>
-	<div nav-pt-nav h-full>
+	<div h-full pt-17.5>
 		<HeaderNav>头部</HeaderNav>
 		<main relative h-full w-full>
 			<RouterView />
@@ -15,11 +15,11 @@
 </template>
 
 <script setup lang="ts">
-	import HeaderNav from './components/header-nav/index.vue'
+import HeaderNav from './components/header-nav/index.vue'
 </script>
 
 <style scoped>
-	/* .layout-wrap {
+/* .layout-wrap {
 		height: 100%;
 	}
 

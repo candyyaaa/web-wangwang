@@ -3,23 +3,23 @@
  * @Author: menggt littlecandyi@163.com
  * @Date: 2023-06-03 15:02:38
  * @LastEditors: menggt littlecandyi@163.com
- * @LastEditTime: 2023-06-03 17:26:40
+ * @LastEditTime: 2023-08-11 09:31:47
 -->
 <script setup lang="ts"></script>
 
 <template>
-	<div class="loader-loading-wrap">
+	<div class="washing-loading-wrap">
 		<div
-			class="loader"
+			class="washing"
 			bg="white no-repeat after:#bbdefb before:#aaa"
-			rounded="6% after:50% before:t-0 before:b-4px"
+			rounded="md after:full before:t-none before:b"
 			position="relative after:absolute before:absolute"
 			top="before:full"
 			right="after:0"
-			bottom="after:1.25rem"
-			left="5px after:0 before:5px"
-			h="9.375rem after:5.9375rem before:0.3125rem"
-			w="7.5rem after:5.9375rem before:0.4375rem"
+			bottom="after:5"
+			left="1.5 after:0 before:1.5"
+			h="37.5 after:24 before:1.5"
+			w="30 after:24 before:2"
 			m="after:auto"
 			content="after:empty before:empty"
 		></div>
@@ -27,7 +27,7 @@
 </template>
 
 <style scoped>
-.loader {
+.washing {
 	background-image: linear-gradient(#ddd 50%, #bbb 51%), linear-gradient(#ddd, #ddd),
 		linear-gradient(#ddd, #ddd),
 		radial-gradient(ellipse at center, #aaa 25%, #eee 26%, #eee 50%, #0000 55%),
@@ -39,11 +39,11 @@
 	transform-origin: 60px 180px;
 }
 
-.loader:before {
+.washing:before {
 	box-shadow: 102px 0 #aaa;
 }
 
-.loader:after {
+.washing:after {
 	background-image: linear-gradient(to right, #0004 0%, #0004 49%, #0000 50%, #0000 100%),
 		linear-gradient(135deg, #64b5f6 50%, #607d8b 51%);
 	background-size: 30px 100%, 90px 80px;
