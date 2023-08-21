@@ -2,8 +2,8 @@
  * @Description: <vite 插件>
  * @Author: smellycat littlecandyi@163.com
  * @Date: 2023-05-21 12:01:17
- * @LastEditors: smellycat littlecandyi@163.com
- * @LastEditTime: 2023-08-10 00:34:24
+ * @LastEditors: menggt littlecandyi@163.com
+ * @LastEditTime: 2023-08-21 14:42:53
  */
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
@@ -11,6 +11,7 @@ import type { PluginOption } from 'vite'
 
 import createAutoImport from './auto-import'
 import createCompression from './compression'
+import createEnhanceLog from './enhance-log'
 import createIcons from './icons'
 import createImagemin from './imagemin'
 import createLayouts from './layouts'
@@ -36,6 +37,7 @@ export default function createVitePlugins(viteEnv: Record<string, string>, isBui
 
 	vitePlugins.push(createAutoImport())
 	isBuild && vitePlugins.push(createCompression(viteEnv))
+	vitePlugins.push(createEnhanceLog())
 	vitePlugins.push(createIcons())
 	isBuild && viteUseImagemin && vitePlugins.push(createImagemin())
 	vitePlugins.push(createLayouts())
