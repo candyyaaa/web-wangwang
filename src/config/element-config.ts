@@ -2,22 +2,28 @@
  * @Description: <>
  * @Author: menggt littlecandyi@163.com
  * @Date: 2023-06-15 15:41:17
- * @LastEditors: menggt littlecandyi@163.com
- * @LastEditTime: 2023-06-15 15:57:33
+ * @LastEditors: smellycat littlecandyi@163.com
+ * @LastEditTime: 2023-08-23 00:44:14
  */
 
 // 默认中文
 import zhCn from 'element-plus/es/locale/lang/zh-cn'
-
-export const localeConfig = zhCn
-
-export const sizeConfig = 'default' as const
-
-export const zIndexConfig = 2023
+import zhTw from 'element-plus/es/locale/lang/zh-tw'
+import en from 'element-plus/es/locale/lang/en'
 
 export const buttonConfig = {
 	autoInsertSpace: true
 }
+
+export const localeConfig = {
+	en,
+	'zh-CN': zhCn,
+	'zh-TW': zhTw
+}
+
+export const sizeConfig = 'default' as const
+
+export const zIndexConfig = 2023
 
 export default {
 	// 翻译文本对象

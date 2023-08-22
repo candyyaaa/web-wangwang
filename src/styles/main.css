@@ -2,8 +2,8 @@
  * @Description: <>
  * @Author: menggt littlecandyi@163.com
  * @Date: 2023-05-22 11:06:50
- * @LastEditors: menggt littlecandyi@163.com
- * @LastEditTime: 2023-08-10 14:32:35
+ * @LastEditors: smellycat littlecandyi@163.com
+ * @LastEditTime: 2023-08-22 22:50:21
  */
 @font-face {
 	font-display: auto;
@@ -33,4 +33,9 @@ html {
 	font-family: PingFangSC-Semibold, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
 		'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji',
 		'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+}
+
+/* 去除蓝色边框 */
+:focus {
+	outline: 0;
 }

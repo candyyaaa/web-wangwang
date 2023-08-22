@@ -24,7 +24,7 @@
 		"vue-router": "^4.2.2"
 	},
 	"devDependencies": {
-		"@iconify-json/ant-design": "^1.1.5",
+		"@iconify-json/bi": "^1.1.18",
 		"@iconify-json/carbon": "^1.1.20",
 		"@intlify/unplugin-vue-i18n": "^0.12.3",
 		"@types/node": "^20.3.1",

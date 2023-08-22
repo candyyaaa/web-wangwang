@@ -2,8 +2,8 @@
  * @Description: <>
  * @Author: smellycat littlecandyi@163.com
  * @Date: 2023-05-21 23:05:42
- * @LastEditors: menggt littlecandyi@163.com
- * @LastEditTime: 2023-08-11 10:36:22
+ * @LastEditors: smellycat littlecandyi@163.com
+ * @LastEditTime: 2023-08-23 00:46:17
 -->
 <template>
 	<div>
@@ -16,7 +16,7 @@
 	</div>
 	<HelloWorld msg="Vite + Vue" />
 
-	<el-button type="primary">可爱的按钮</el-button>
+	<el-button type="primary">{{ t('button.cute') }}</el-button>
 
 	<ul>
 		<li>阿松大</li>
@@ -27,10 +27,15 @@
 	<MatchLoading />
 
 	<div class="i-ant-design-down-circle-outlined" text-lg></div>
+
+	<el-table mb-1 :data="[]" />
+	<el-pagination :total="100" />
 </template>
 
 <script setup lang="ts">
 import HelloWorld from '../HelloWorld.vue'
+
+const { t } = useI18n()
 </script>
 
 <style scoped>

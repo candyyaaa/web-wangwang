@@ -1,3 +1,5 @@
 button:
   search: Search
   notification: Notification
+  toggle_langs: Change languages
+  cute: Cute button

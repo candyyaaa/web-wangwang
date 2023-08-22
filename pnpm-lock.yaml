@@ -4,7 +4,7 @@ overrides:
   bin-wrapper: npm:bin-wrapper-china
 
 specifiers:
-  '@iconify-json/ant-design': ^1.1.5
+  '@iconify-json/bi': ^1.1.18
   '@iconify-json/carbon': ^1.1.20
   '@intlify/unplugin-vue-i18n': ^0.12.3
   '@types/node': ^20.3.1
@@ -63,7 +63,7 @@ dependencies:
   vue-router: 4.2.2_vue@3.3.4
 
 devDependencies:
-  '@iconify-json/ant-design': 1.1.5
+  '@iconify-json/bi': 1.1.18
   '@iconify-json/carbon': 1.1.20
   '@intlify/unplugin-vue-i18n': 0.12.3_vue-i18n@9.2.2
   '@types/node': 20.3.1
@@ -861,8 +861,8 @@ packages:
     resolution: {integrity: sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==}
     dev: true
 
-  /@iconify-json/ant-design/1.1.5:
-    resolution: {integrity: sha512-lNEC95u9QdmS3GfMLnbAjLZCfQ9i4xURyn7P4UVHa6ejjLjs5FVyi/J+itrmnBpwb36YZo4CT0GDIn2AgvkNng==}
+  /@iconify-json/bi/1.1.18:
+    resolution: {integrity: sha512-nAQd+4Eb2SuYKg/5oa/dlvIudgF5d57VYGkF7P0JbuUipFHk0l2vAQ0CdKYaz0L66PO0rabWDln449lhBE2UJQ==}
     dependencies:
       '@iconify/types': 2.0.0
     dev: true
@@ -2484,7 +2484,7 @@ packages:
     dev: true
 
   /clone-response/1.0.2:
-    resolution: {integrity: sha1-0dyXOSAxTfZ/vrlCI7TuNQI56Ws=}
+    resolution: {integrity: sha512-yjLXh88P599UOyPTFX0POsd7WxnbsVsGohcwzHOLspIhhpalPw1BcqED8NblyZLKcGrL8dTgMlcaZxV2jAD41Q==}
     dependencies:
       mimic-response: 1.0.1
     dev: true
@@ -4856,7 +4856,7 @@ packages:
     dev: true
 
   /json-buffer/3.0.0:
-    resolution: {integrity: sha1-Wx85evx11ne96Lz8Dkfh+aPZqJg=}
+    resolution: {integrity: sha512-CuUqjv0FUZIdXkHPI8MezCnFCdaTAacej1TZYulLoAg1h/PhwkdXFN4V/gzY4g+fMBCOV2xF+rp7t2XD2ns/NQ==}
     dev: true
 
   /json-editor-vue/0.10.6_l2qtxqqjbzy53uujjyrcsc5zxq:
@@ -6087,7 +6087,7 @@ packages:
     dev: true
 
   /responselike/1.0.2:
-    resolution: {integrity: sha1-kYcg7ztjHFZCvgaPFa3lpG9Loec=}
+    resolution: {integrity: sha512-/Fpe5guzJk1gPqdJLJR5u7eG/gNY4nImjbRDaVWVMRhne55TCmj2i9Q+54PBRfatRC8v/rIiv9BN0pMd9OV5EQ==}
     dependencies:
       lowercase-keys: 1.0.1
     dev: true

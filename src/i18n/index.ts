@@ -2,8 +2,8 @@
  * @Description: <国际化>
  * @Author: menggt littlecandyi@163.com
  * @Date: 2023-08-22 11:32:38
- * @LastEditors: menggt littlecandyi@163.com
- * @LastEditTime: 2023-08-22 11:41:31
+ * @LastEditors: smellycat littlecandyi@163.com
+ * @LastEditTime: 2023-08-23 00:14:02
  */
 import { createI18n } from 'vue-i18n'
 import type { Locale } from 'vue-i18n'
@@ -36,7 +36,7 @@ const setI18nLanguage = (lang: Locale): string => {
 	return lang
 }
 
-const loadLanguageAsync = async (lang: string): Promise<Locale> => {
+export const loadLanguageAsync = async (lang: string): Promise<Locale> => {
 	// 如果是同一种语言
 	if (i18n.global.locale.value === lang) {
 		return setI18nLanguage(lang)

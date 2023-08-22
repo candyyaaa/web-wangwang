@@ -1,3 +1,6 @@
 button:
   search: 搜索
   notification: 通告
+  toggle_langs: 切换语言
+  cute: 可爱的按钮
+

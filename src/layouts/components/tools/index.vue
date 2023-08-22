@@ -2,14 +2,36 @@
  * @Description: <>
  * @Author: smellycat littlecandyi@163.com
  * @Date: 2023-05-29 00:31:35
- * @LastEditors: menggt littlecandyi@163.com
- * @LastEditTime: 2023-08-22 16:19:46
+ * @LastEditors: smellycat littlecandyi@163.com
+ * @LastEditTime: 2023-08-23 01:16:05
 -->
 <script setup lang="ts">
-const { t } = useI18n()
+import { useSettingsStore } from '@/store/modules/settings-store'
+import { loadLanguageAsync } from '@/i18n'
+
+// 系统设置状态
+const settingsStore = useSettingsStore()
+
+// 国际化
+const { t, locale } = useI18n()
 
 // 消息tab切换
 const activeName = ref('first')
+
+const toggleLangsList = [
+	{
+		label: '中文(简体)',
+		key: 'zh-CN'
+	},
+	{
+		label: '中文(繁体)',
+		key: 'zh-TW'
+	},
+	{
+		label: 'English',
+		key: 'en'
+	}
+]
 
 /**
  * @description: 点击搜索
@@ -23,6 +45,19 @@ const onSearch = (): void => {
  */
 const handleTabClick = (): void => {
 	console.log('handleTabClick ----------->')
+}
+
+/**
+ * @description: 国际化下拉点击切换触发
+ * @param {string} command 当前选中的语言
+ */
+const handleCommand = async (command: string): Promise<void> => {
+	// 更新状态
+	settingsStore.setLang(command)
+
+	// 更新国际化
+	await loadLanguageAsync(command)
+	locale.value = command
 }
 </script>
 
@@ -62,7 +97,16 @@ const handleTabClick = (): void => {
 								transition-all
 								duration-300
 							>
-								<div bg="#409EFF" rounded="1/2" h-7 w-7 flex items-center justify-center text-white>
+								<div
+									class="bg-[var(--el-color-primary)]"
+									rounded="1/2"
+									h-7
+									w-7
+									flex
+									items-center
+									justify-center
+									text-white
+								>
 									<div i-carbon-email-new text-lg />
 								</div>
 								<div class="info">
@@ -77,21 +121,33 @@ const handleTabClick = (): void => {
 			</el-popover>
 		</el-space>
 
+		<!-- 语言切换 -->
 		<el-space size="large">
-			<el-tooltip effect="dark" placement="bottom">
-				<template #default>
-					<span i-ant-design:fullscreen-outlined cursor-pointer text-lg></span>
+			<el-dropdown @command="handleCommand">
+				<button icon-btn :title="t('button.toggle_langs')" @click="onSearch">
+					<div i-carbon-language text-lg></div>
+				</button>
+
+				<template #dropdown>
+					<el-dropdown-menu>
+						<el-dropdown-item
+							v-for="item in toggleLangsList"
+							:key="item.key"
+							:command="item.key"
+							:disabled="settingsStore.currentLang === item.key"
+						>
+							{{ item.label }}
+						</el-dropdown-item>
+					</el-dropdown-menu>
 				</template>
-				<template #content>
-					<span>全屏</span>
-				</template>
-			</el-tooltip>
+			</el-dropdown>
 		</el-space>
 
+		<!-- 全屏切换 -->
 		<el-space size="large">
 			<el-tooltip effect="dark" placement="bottom">
 				<template #default>
-					<span i-ant-design:fullscreen-exit-outlined cursor-pointer text-lg></span>
+					<span i-bi-fullscreen cursor-pointer></span>
 				</template>
 				<template #content>
 					<span>默认</span>
@@ -102,7 +158,7 @@ const handleTabClick = (): void => {
 		<el-space size="large">
 			<el-tooltip effect="dark" placement="bottom">
 				<template #default>
-					<span i-ant-design:sync-outlined cursor-pointer text-lg></span>
+					<span i-carbon-renew text-lg></span>
 				</template>
 				<template #content>
 					<span>刷新</span>
