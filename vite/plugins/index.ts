@@ -3,7 +3,7 @@
  * @Author: smellycat littlecandyi@163.com
  * @Date: 2023-05-21 12:01:17
  * @LastEditors: menggt littlecandyi@163.com
- * @LastEditTime: 2023-08-21 14:42:53
+ * @LastEditTime: 2023-08-22 10:55:13
  */
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
@@ -21,6 +21,7 @@ import createSvgIcons from './svg-icon'
 import createUnoCSS from './unocss'
 import createComponents from './vue-components'
 import createVueDevTools from './vue-devtools'
+import createVueI18n from './vue-i18n'
 
 export default function createVitePlugins(viteEnv: Record<string, string>, isBuild = false) {
 	const vitePlugins: (PluginOption | PluginOption[])[] = [
@@ -47,6 +48,7 @@ export default function createVitePlugins(viteEnv: Record<string, string>, isBui
 	vitePlugins.push(createUnoCSS())
 	vitePlugins.push(createComponents())
 	vitePlugins.push(createVueDevTools())
+	vitePlugins.push(createVueI18n())
 
 	return vitePlugins
 }

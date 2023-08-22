@@ -3,7 +3,7 @@
  * @Author: menggt littlecandyi@163.com
  * @Date: 2023-05-22 11:30:47
  * @LastEditors: menggt littlecandyi@163.com
- * @LastEditTime: 2023-08-11 10:55:41
+ * @LastEditTime: 2023-08-22 10:25:27
  */
 import {
 	defineConfig,
@@ -20,7 +20,8 @@ export default defineConfig({
 	rules: [],
 	// 快捷方式
 	shortcuts: {
-		'nav-icon': 'cursor-pointer text-lg hover:scale-125'
+		'icon-btn':
+			'inline-block cursor-pointer select-none opacity-75 transition duration-200 ease-in-out hover:opacity-100 hover:text-teal-600 hover:scale-105'
 	},
 	theme: {},
 	presets: [

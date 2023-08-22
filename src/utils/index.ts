@@ -3,7 +3,7 @@
  * @Author: menggt littlecandyi@163.com
  * @Date: 2023-08-04 17:49:12
  * @LastEditors: menggt littlecandyi@163.com
- * @LastEditTime: 2023-08-09 15:31:55
+ * @LastEditTime: 2023-08-14 16:13:15
  */
 import pako from 'pako'
 
@@ -22,4 +22,26 @@ export const unzip = (b64Data: string): string => {
 		console.log('unzip err----------->', error)
 		return ''
 	}
+}
+
+/**
+ * @description: 扁平化树结构
+ * @param {array} tree
+ * @return {*}
+ */
+export const flattenTree = (tree: any): any[] => {
+	return [
+		tree,
+		...tree.children.reduceRight((acc: any, curr: any) => {
+			return [...acc, ...flattenTree(curr)]
+		}, [])
+	]
+}
+
+// tree 数组 扁平化
+export const treeToArray = (tree: any): any[] => {
+	return tree.reduce((res: any, item: any) => {
+		const { children, ...i } = item
+		return res.concat(i, children && children.length ? treeToArray(children) : [])
+	}, [])
 }

@@ -2,14 +2,14 @@
  * @Description: <直接使用 Composition API 等，无需导入>
  * @Author: smellycat littlecandyi@163.com
  * @Date: 2023-05-21 12:27:00
- * @LastEditors: smellycat littlecandyi@163.com
- * @LastEditTime: 2023-05-29 00:10:38
+ * @LastEditors: menggt littlecandyi@163.com
+ * @LastEditTime: 2023-08-22 10:58:52
  */
 import autoImport from 'unplugin-auto-import/vite'
 
 export default function createAutoImport() {
 	return autoImport({
-		imports: ['vue', 'vue-router', 'pinia', '@vueuse/core'],
+		imports: ['vue', 'vue-router', 'vue-i18n', 'pinia', '@vueuse/core'],
 		// eslint报错解决
 		eslintrc: {
 			// Default `false` 默认false, 需要生成,修改文件的时候改为 true, 没有文件, 自动按需引入 eslint 会报错

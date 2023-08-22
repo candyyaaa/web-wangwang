@@ -3,7 +3,7 @@
  * @Author: smellycat littlecandyi@163.com
  * @Date: 2023-05-21 00:20:17
  * @LastEditors: menggt littlecandyi@163.com
- * @LastEditTime: 2023-08-10 13:57:09
+ * @LastEditTime: 2023-08-22 14:55:48
  */
 import { createApp } from 'vue'
 
@@ -13,18 +13,22 @@ import router from './router'
 import store from './store'
 // 跟组件
 import App from './App.vue'
+// 国际化
+import { initLang } from './i18n'
 
 // tailwind 初始化css
 import '@unocss/reset/tailwind.css'
 // 全局css
 import './styles/main.css'
+import './styles/ep.css'
 // uno 原子化
 import 'virtual:uno.css'
 // svg 图标
 import 'virtual:svg-icons-register'
 
 const app = createApp(App)
-
+// 挂载国际化
+initLang(app)
 // 挂载路由
 app.use(router)
 // 挂载状态管理
