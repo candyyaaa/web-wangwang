@@ -3,6 +3,7 @@ button:
   notification: 通告
   toggle_langs: 切換語言
   toggle_screen: 全屏切換
+  toggle_dark: 切換深色模式
   refresh: 刷新
   cute: 可愛的按鈕
 

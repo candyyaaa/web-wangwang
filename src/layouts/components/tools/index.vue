@@ -2,8 +2,8 @@
  * @Description: <>
  * @Author: smellycat littlecandyi@163.com
  * @Date: 2023-05-29 00:31:35
- * @LastEditors: menggt littlecandyi@163.com
- * @LastEditTime: 2023-08-23 17:55:34
+ * @LastEditors: smellycat littlecandyi@163.com
+ * @LastEditTime: 2023-08-23 20:57:23
 -->
 <script setup lang="ts">
 import { useSettingsStore } from '@/store/modules/settings-store'
@@ -17,6 +17,10 @@ const settingsStore = useSettingsStore()
 
 // 全屏hook
 const { isFullscreen, toggle: onFullscreenToggle } = useFullscreen()
+
+// 深色模式hook
+const isDark = useDark()
+const toggleDark = useToggle(isDark)
 
 // 国际化
 const { t, locale } = useI18n()
@@ -70,7 +74,6 @@ const handleCommand = async (command: string): Promise<void> => {
  * @description: 页面刷新
  */
 const onRefresh = (): void => {
-	console.log('onRefresh ----------->')
 	router.push({
 		name: 'reload'
 	})
@@ -172,12 +175,17 @@ const onRefresh = (): void => {
 				<div i-carbon-renew text-lg></div>
 			</button>
 		</el-space>
+
+		<!-- 浅/深色切换 -->
 		<el-space size="large">
-			<span i-ep:search></span>
+			<button icon-btn :title="t('button.toggle_dark')" @click="toggleDark()">
+				<div i="carbon-sun dark:carbon-moon" text-lg></div>
+			</button>
 		</el-space>
-		<el-space size="large">
+
+		<!-- <el-space size="large">
 			<span i-ep:search></span>
-		</el-space>
+		</el-space> -->
 	</div>
 </template>
 

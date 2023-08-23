@@ -3,5 +3,6 @@ button:
   notification: Notification
   toggle_langs: Change languages
   toggle_screen: Change Full Screen
+  toggle_dark: Toggle dark mode
   refresh: Refresh Page
   cute: Cute button
