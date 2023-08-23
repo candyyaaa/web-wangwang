@@ -2,5 +2,7 @@ button:
   search: 搜索
   notification: 通告
   toggle_langs: 切換語言
+  toggle_screen: 全屏切換
+  refresh: 刷新
   cute: 可愛的按鈕
 

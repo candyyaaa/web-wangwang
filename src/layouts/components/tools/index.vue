@@ -2,15 +2,21 @@
  * @Description: <>
  * @Author: smellycat littlecandyi@163.com
  * @Date: 2023-05-29 00:31:35
- * @LastEditors: smellycat littlecandyi@163.com
- * @LastEditTime: 2023-08-23 01:16:05
+ * @LastEditors: menggt littlecandyi@163.com
+ * @LastEditTime: 2023-08-23 17:55:34
 -->
 <script setup lang="ts">
 import { useSettingsStore } from '@/store/modules/settings-store'
 import { loadLanguageAsync } from '@/i18n'
 
+// 路由
+const router = useRouter()
+
 // 系统设置状态
 const settingsStore = useSettingsStore()
+
+// 全屏hook
+const { isFullscreen, toggle: onFullscreenToggle } = useFullscreen()
 
 // 国际化
 const { t, locale } = useI18n()
@@ -58,6 +64,16 @@ const handleCommand = async (command: string): Promise<void> => {
 	// 更新国际化
 	await loadLanguageAsync(command)
 	locale.value = command
+}
+
+/**
+ * @description: 页面刷新
+ */
+const onRefresh = (): void => {
+	console.log('onRefresh ----------->')
+	router.push({
+		name: 'reload'
+	})
 }
 </script>
 
@@ -145,25 +161,16 @@ const handleCommand = async (command: string): Promise<void> => {
 
 		<!-- 全屏切换 -->
 		<el-space size="large">
-			<el-tooltip effect="dark" placement="bottom">
-				<template #default>
-					<span i-bi-fullscreen cursor-pointer></span>
-				</template>
-				<template #content>
-					<span>默认</span>
-				</template>
-			</el-tooltip>
+			<button icon-btn :title="t('button.toggle_screen')" @click="onFullscreenToggle">
+				<div :i="isFullscreen ? 'carbon-screen' : 'carbon-fit-to-screen'" text-lg></div>
+			</button>
 		</el-space>
 
+		<!-- 刷新页面 -->
 		<el-space size="large">
-			<el-tooltip effect="dark" placement="bottom">
-				<template #default>
-					<span i-carbon-renew text-lg></span>
-				</template>
-				<template #content>
-					<span>刷新</span>
-				</template>
-			</el-tooltip>
+			<button icon-btn :title="t('button.refresh')" @click="onRefresh">
+				<div i-carbon-renew text-lg></div>
+			</button>
 		</el-space>
 		<el-space size="large">
 			<span i-ep:search></span>

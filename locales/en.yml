@@ -2,4 +2,6 @@ button:
   search: Search
   notification: Notification
   toggle_langs: Change languages
+  toggle_screen: Change Full Screen
+  refresh: Refresh Page
   cute: Cute button
