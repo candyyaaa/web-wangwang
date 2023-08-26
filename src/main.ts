@@ -2,8 +2,8 @@
  * @Description: <main>
  * @Author: smellycat littlecandyi@163.com
  * @Date: 2023-05-21 00:20:17
- * @LastEditors: menggt littlecandyi@163.com
- * @LastEditTime: 2023-08-22 14:55:48
+ * @LastEditors: candy littlecandyi@163.com
+ * @LastEditTime: 2023-08-26 21:50:10
  */
 import { createApp } from 'vue'
 
@@ -25,6 +25,8 @@ import './styles/ep.css'
 import 'virtual:uno.css'
 // svg 图标
 import 'virtual:svg-icons-register'
+// ep 暗黑模式css
+import 'element-plus/theme-chalk/dark/css-vars.css'
 
 const app = createApp(App)
 // 挂载国际化

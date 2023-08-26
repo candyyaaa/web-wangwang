@@ -2,20 +2,26 @@
  * @Description: <>
  * @Author: smellycat littlecandyi@163.com
  * @Date: 2023-05-21 23:35:18
- * @LastEditors: menggt littlecandyi@163.com
- * @LastEditTime: 2023-08-11 10:50:26
+ * @LastEditors: candy littlecandyi@163.com
+ * @LastEditTime: 2023-08-26 23:17:58
 -->
 <template>
-	<div h-full pt-17.5>
-		<HeaderNav>头部</HeaderNav>
-		<main relative h-full w-full>
-			<RouterView />
-		</main>
+	<div h-full>
+		<el-container h-full>
+			<el-header bg="#222b45"><Header /></el-header>
+			<el-container>
+				<el-aside width="220px"><Aside /></el-aside>
+				<el-main>
+					<RouterView />
+				</el-main>
+			</el-container>
+		</el-container>
 	</div>
 </template>
 
 <script setup lang="ts">
-import HeaderNav from './components/header-nav/index.vue'
+import Header from './components/header/index.vue'
+import Aside from './components/aside/index.vue'
 </script>
 
 <style scoped>

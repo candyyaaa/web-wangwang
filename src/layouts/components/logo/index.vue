@@ -2,8 +2,8 @@
  * @Description: <logo>
  * @Author: smellycat littlecandyi@163.com
  * @Date: 2023-05-26 00:46:54
- * @LastEditors: menggt littlecandyi@163.com
- * @LastEditTime: 2023-08-10 17:43:16
+ * @LastEditors: candy littlecandyi@163.com
+ * @LastEditTime: 2023-08-26 23:50:55
 -->
 <script setup lang="ts">
 import { useSettingsStore } from '@/store/modules/settings-store'
@@ -29,7 +29,7 @@ const to = computed<{ name?: string | undefined }>(() => {
 		name?: string
 	} = {}
 	if (settingsStore.home.enable) {
-		rtn.name = 'home'
+		rtn.name = 'index'
 	}
 	return rtn
 })
@@ -38,7 +38,6 @@ const to = computed<{ name?: string | undefined }>(() => {
 <template>
 	<router-link
 		:to="to"
-		p="x-0 y-2.5"
 		relative
 		top-0
 		z-1000
@@ -52,14 +51,16 @@ const to = computed<{ name?: string | undefined }>(() => {
 		:title="title"
 	>
 		<img v-if="props.showLogo" :src="logoImg" alt="logo" h-12.5 w-12.5 object-contain />
-		<span v-if="props.showTitle" block truncate text-2xl font-bold tracking-wide text-white>{{
-			title
-		}}</span>
+		<span
+			v-if="props.showTitle"
+			ml-2.5
+			block
+			truncate
+			text-2xl
+			font-bold
+			tracking-wide
+			text-white
+			>{{ title }}</span
+		>
 	</router-link>
 </template>
-
-<style scoped>
-.box {
-	width: 30px;
-}
-</style>

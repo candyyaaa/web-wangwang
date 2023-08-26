@@ -2,15 +2,19 @@
  * @Description: <>
  * @Author: smellycat littlecandyi@163.com
  * @Date: 2023-05-29 00:31:35
- * @LastEditors: smellycat littlecandyi@163.com
- * @LastEditTime: 2023-08-23 20:57:23
+ * @LastEditors: candy littlecandyi@163.com
+ * @LastEditTime: 2023-08-27 01:51:04
 -->
 <script setup lang="ts">
+import { useUserStore } from '@/store/modules/user-store'
 import { useSettingsStore } from '@/store/modules/settings-store'
 import { loadLanguageAsync } from '@/i18n'
 
 // 路由
 const router = useRouter()
+
+// 用户信息状态
+const userStore = useUserStore()
 
 // 系统设置状态
 const settingsStore = useSettingsStore()
@@ -78,10 +82,17 @@ const onRefresh = (): void => {
 		name: 'reload'
 	})
 }
+
+/**
+ * @description: 用户下拉
+ */
+const onUserCommand = (): void => {
+	console.log('onUserCommand ----------->')
+}
 </script>
 
 <template>
-	<div flex items-center whitespace-nowrap px-0 py-5>
+	<div flex items-center whitespace-nowrap px-0 py-5 text-white>
 		<!-- 搜索 -->
 		<el-space size="large">
 			<button icon-btn :title="t('button.search')" @click="onSearch">
@@ -142,7 +153,7 @@ const onRefresh = (): void => {
 
 		<!-- 语言切换 -->
 		<el-space size="large">
-			<el-dropdown @command="handleCommand">
+			<el-dropdown @command="handleCommand" text="[white_!important]">
 				<button icon-btn :title="t('button.toggle_langs')" @click="onSearch">
 					<div i-carbon-language text-lg></div>
 				</button>
@@ -183,10 +194,24 @@ const onRefresh = (): void => {
 			</button>
 		</el-space>
 
-		<!-- <el-space size="large">
-			<span i-ep:search></span>
-		</el-space> -->
+		<el-dropdown size="default" @command="onUserCommand" text="[white_!important]">
+			<div flex items-center text-base>
+				<el-avatar size="small" mr-2>
+					<div i-carbon-user-filled text-lg></div>
+				</el-avatar>
+				{{ userStore.name }}
+				<i i-carbon-caret-down ml-1 inline-block text-lg></i>
+			</div>
+
+			<template #dropdown>
+				<el-dropdown-menu class="user-dropdown">
+					<el-dropdown-item v-if="settingsStore.home.enable" command="home">
+						{{ settingsStore.home.title }}
+					</el-dropdown-item>
+					<el-dropdown-item command="setting"> 个人设置 </el-dropdown-item>
+					<el-dropdown-item divided command="logout"> 退出登录 </el-dropdown-item>
+				</el-dropdown-menu>
+			</template>
+		</el-dropdown>
 	</div>
 </template>
-
-<style scoped></style>

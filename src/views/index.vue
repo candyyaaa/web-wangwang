@@ -2,12 +2,12 @@
  * @Description: <>
  * @Author: smellycat littlecandyi@163.com
  * @Date: 2023-05-21 21:19:10
- * @LastEditors: menggt littlecandyi@163.com
- * @LastEditTime: 2023-08-07 14:36:31
+ * @LastEditors: candy littlecandyi@163.com
+ * @LastEditTime: 2023-08-26 21:45:27
 -->
 <route>
 {
-	name: "name-override",
+	name: "index",
 	meta: {
 		layout: "index",
 		title: "wangWang",
