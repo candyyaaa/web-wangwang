@@ -2,8 +2,8 @@
  * @Description: <>
  * @Author: menggt littlecandyi@163.com
  * @Date: 2023-05-26 17:58:26
- * @LastEditors: candy littlecandyi@163.com
- * @LastEditTime: 2023-08-26 21:45:50
+ * @LastEditors: menggt littlecandyi@163.com
+ * @LastEditTime: 2023-08-31 14:46:58
  */
 import { localeConfig } from '@/config/element-config'
 
@@ -19,6 +19,10 @@ export const useSettingsStore = defineStore({
 			home: {
 				title: '头部头部',
 				enable: true
+			},
+			// 导航栏模式
+			menu: {
+				menuMode: 'side'
 			}
 		}
 	},

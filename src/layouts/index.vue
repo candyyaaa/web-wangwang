@@ -2,15 +2,15 @@
  * @Description: <>
  * @Author: smellycat littlecandyi@163.com
  * @Date: 2023-05-21 23:35:18
- * @LastEditors: candy littlecandyi@163.com
- * @LastEditTime: 2023-08-26 23:17:58
+ * @LastEditors: menggt littlecandyi@163.com
+ * @LastEditTime: 2023-08-31 14:10:43
 -->
 <template>
 	<div h-full>
 		<el-container h-full>
 			<el-header bg="#222b45"><Header /></el-header>
 			<el-container>
-				<el-aside width="220px"><Aside /></el-aside>
+				<el-aside width="220px"><Menu /></el-aside>
 				<el-main>
 					<RouterView />
 				</el-main>
@@ -21,7 +21,7 @@
 
 <script setup lang="ts">
 import Header from './components/header/index.vue'
-import Aside from './components/aside/index.vue'
+import Menu from './components/menu/index.vue'
 </script>
 
 <style scoped>

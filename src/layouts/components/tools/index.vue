@@ -2,8 +2,8 @@
  * @Description: <>
  * @Author: smellycat littlecandyi@163.com
  * @Date: 2023-05-29 00:31:35
- * @LastEditors: candy littlecandyi@163.com
- * @LastEditTime: 2023-08-27 01:51:04
+ * @LastEditors: menggt littlecandyi@163.com
+ * @LastEditTime: 2023-08-31 11:32:18
 -->
 <script setup lang="ts">
 import { useUserStore } from '@/store/modules/user-store'
@@ -123,7 +123,7 @@ const onUserCommand = (): void => {
 								class="border-[var(--el-border-color)]"
 								flex
 								p="y-3.5 x-2.5"
-								border="b"
+								b
 								transition-all
 								duration-300
 							>

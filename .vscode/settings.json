@@ -16,7 +16,8 @@
 		"pnpm",
 		"wangwang",
 		"Attributify",
-		"pako"
+		"pako",
+    "smellycat"
 	],
 	"files.eol": "\n",
 	"unocss.root": "packages/client",
