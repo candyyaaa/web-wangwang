@@ -2,8 +2,8 @@
  * @Description: <unocss 配置>
  * @Author: menggt littlecandyi@163.com
  * @Date: 2023-05-22 11:30:47
- * @LastEditors: candy littlecandyi@163.com
- * @LastEditTime: 2023-08-26 22:32:50
+ * @LastEditors: smellycat littlecandyi@163.com
+ * @LastEditTime: 2023-09-01 00:39:14
  */
 import {
 	defineConfig,
@@ -30,7 +30,7 @@ export default defineConfig({
 		// 属性模式预设
 		presetAttributify(),
 		// 图标预设
-		presetIcons({ warn: true }),
+		presetIcons({ scale: 1.2, warn: true }),
 		// 排版预设
 		presetTypography(),
 		// 字体预设

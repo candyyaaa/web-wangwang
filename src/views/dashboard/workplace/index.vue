@@ -1,13 +1,13 @@
 <!--
  * @Description: <工作台>
- * @Author: candy littlecandyi@163.com
- * @Date: 2023-08-27 02:24:02
+ * @Author: smellycat littlecandyi@163.com
+ * @Date: 2023-08-31 21:51:06
  * @LastEditors: smellycat littlecandyi@163.com
- * @LastEditTime: 2023-08-31 22:03:17
+ * @LastEditTime: 2023-08-31 21:54:19
 -->
 <route>
 {
-	name: "dashboard",
+	name: "DashboardWorkplace",
 	meta: {
 		layout: "index",
 		title: "工作台",
@@ -17,7 +17,7 @@
 </route>
 
 <template>
-	<div h-full w-full>
+	<div>
 		<h1>工作台</h1>
 	</div>
 </template>

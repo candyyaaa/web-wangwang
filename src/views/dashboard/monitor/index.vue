@@ -1,24 +1,23 @@
 <!--
- * @Description: <工作台>
- * @Author: candy littlecandyi@163.com
- * @Date: 2023-08-27 02:24:02
+ * @Description: <监控台>
+ * @Author: smellycat littlecandyi@163.com
+ * @Date: 2023-08-31 21:49:47
  * @LastEditors: smellycat littlecandyi@163.com
- * @LastEditTime: 2023-08-31 22:03:17
+ * @LastEditTime: 2023-08-31 21:54:25
 -->
 <route>
 {
-	name: "dashboard",
+	name: "DashboardMonitor",
 	meta: {
 		layout: "index",
-		title: "工作台",
+		title: "监控台",
 		requiresAuth: false
 	}
 }
 </route>
-
 <template>
-	<div h-full w-full>
-		<h1>工作台</h1>
+	<div>
+		<h1>监控台</h1>
 	</div>
 </template>
 

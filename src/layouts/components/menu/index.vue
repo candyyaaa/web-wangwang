@@ -2,12 +2,13 @@
  * @Description: <侧边菜单>
  * @Author: candy littlecandyi@163.com
  * @Date: 2023-08-26 22:49:32
- * @LastEditors: menggt littlecandyi@163.com
- * @LastEditTime: 2023-08-31 17:59:31
+ * @LastEditors: smellycat littlecandyi@163.com
+ * @LastEditTime: 2023-09-01 00:58:57
 -->
 <script setup lang="ts">
 import { useSettingsStore } from '@/store/modules/settings-store'
 import Logo from '../logo/index.vue'
+import MenuItem from '../menu-item/index.vue'
 
 const router = useRouter()
 
@@ -33,29 +34,16 @@ const handleClose = (key: string, keyPath: string[]) => {
 			<Logo :show-logo="settingsStore.menu.menuMode === 'single'" />
 		</div>
 		<TransitionGroup name="aside-menu">
-			<div px-2.5 :key="'menu-wrap'">
+			<div :px="settingsStore.menu.menuFillStyle === 'radius' ? '2.5' : '0'" :key="'menu-wrap'">
 				<el-menu
-					class="w-[inherit] transition-colors-3 b-r-0!"
+					class="w-[inherit] transition-colors-300 b-r-0!"
 					:collapse="isCollapse"
-					default-active="2"
+					default-active="1-4-1"
 					router
 					@open="handleOpen"
 					@close="handleClose"
 				>
-					<el-sub-menu first:pt-2.5 index="1">
-						<template #title>
-							<i i-carbon-chart-network></i>
-							<span>Navigator One</span>
-						</template>
-						<el-sub-menu index="1-4">
-							<template #title><span>item four</span></template>
-							<el-menu-item index="1-4-1">item one</el-menu-item>
-						</el-sub-menu>
-					</el-sub-menu>
-					<el-menu-item first:pt-2.5 index="2">
-						<i i-carbon-chart-network></i>
-						<template #title>Navigator Two</template>
-					</el-menu-item>
+					<MenuItem />
 				</el-menu>
 			</div>
 		</TransitionGroup>
