@@ -2,8 +2,8 @@
  * @Description: <>
  * @Author: menggt littlecandyi@163.com
  * @Date: 2023-05-26 17:58:26
- * @LastEditors: smellycat littlecandyi@163.com
- * @LastEditTime: 2023-09-01 00:09:06
+ * @LastEditors: menggt littlecandyi@163.com
+ * @LastEditTime: 2023-09-01 17:18:48
  */
 import { localeConfig } from '@/config/element-config'
 
@@ -24,7 +24,9 @@ export const useSettingsStore = defineStore({
 				// 导航栏模式
 				menuMode: 'side',
 				// 导航栏填充样式 - 'default' | 'radius'
-				menuFillStyle: 'default'
+				menuFillStyle: 'default',
+				// 菜单导航是否收起 - 'false' | true
+				collapse: false
 			}
 		}
 	},
@@ -37,6 +39,20 @@ export const useSettingsStore = defineStore({
 		setLang(lang: string): void {
 			this.currentLang = lang
 			this.currentEpLang = localeConfig[lang as keyof typeof localeConfig]
+		},
+		/**
+		 * @description: 设置导航栏填充样式
+		 * @param {string} style
+		 */
+		setMenuFillStyle(style: 'default' | 'radius'): void {
+			this.menu.menuFillStyle = style
+		},
+		/**
+		 * @description: 切换菜单导航是否收起
+		 * @param {boolean} collapse
+		 */
+		setMenuCollapse(collapse: boolean): void {
+			this.menu.collapse = collapse
 		}
 	}
 })

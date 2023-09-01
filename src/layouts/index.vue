@@ -3,14 +3,21 @@
  * @Author: smellycat littlecandyi@163.com
  * @Date: 2023-05-21 23:35:18
  * @LastEditors: menggt littlecandyi@163.com
- * @LastEditTime: 2023-08-31 14:10:43
+ * @LastEditTime: 2023-09-01 17:50:03
 -->
 <template>
-	<div h-full>
+	<div class="bg-[var(--el-bg-color-page)]" h-full>
 		<el-container h-full>
 			<el-header bg="#222b45"><Header /></el-header>
 			<el-container>
-				<el-aside width="220px"><Menu /></el-aside>
+				<el-aside
+					shadow="xl #0000001f dark:#000000b8"
+					bg="white dark:#0a0a0a"
+					transition-all-300
+					:width="settingsStore.menu.collapse ? '64px' : '220px'"
+				>
+					<Menu />
+				</el-aside>
 				<el-main>
 					<RouterView />
 				</el-main>
@@ -20,8 +27,12 @@
 </template>
 
 <script setup lang="ts">
+import { useSettingsStore } from '@/store/modules/settings-store'
 import Header from './components/header/index.vue'
 import Menu from './components/menu/index.vue'
+
+// 设置状态
+const settingsStore = useSettingsStore()
 </script>
 
 <style scoped>

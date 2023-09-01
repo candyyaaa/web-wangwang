@@ -2,8 +2,8 @@
  * @Description: <>
  * @Author: smellycat littlecandyi@163.com
  * @Date: 2023-05-21 23:05:42
- * @LastEditors: candy littlecandyi@163.com
- * @LastEditTime: 2023-08-27 00:38:21
+ * @LastEditors: menggt littlecandyi@163.com
+ * @LastEditTime: 2023-09-01 17:22:31
 -->
 <template>
 	<div>
@@ -30,12 +30,27 @@
 
 	<el-table mb-1 :data="[]" />
 	<el-pagination :total="100" />
+
+	<el-button type="primary" @click="toggleMenuFillStyle('default')">默认</el-button>
+	<el-button type="primary" @click="toggleMenuFillStyle('radius')">圆角</el-button>
+	<el-button type="primary" @click="toggleMenuCollapse">切换折叠状态</el-button>
 </template>
 
 <script setup lang="ts">
+import { useSettingsStore } from '@/store/modules/settings-store'
 import HelloWorld from '../HelloWorld.vue'
 
 const { t } = useI18n()
+const settingsStore = useSettingsStore()
+
+const toggleMenuFillStyle = (style: 'default' | 'radius') => {
+	settingsStore.setMenuFillStyle(style)
+}
+
+const toggleMenuCollapse = () => {
+	const isCollapse = !settingsStore.menu.collapse
+	settingsStore.setMenuCollapse(isCollapse)
+}
 </script>
 
 <style scoped>

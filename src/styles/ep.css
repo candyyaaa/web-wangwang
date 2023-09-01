@@ -3,9 +3,10 @@
  * @Author: menggt littlecandyi@163.com
  * @Date: 2023-08-22 14:52:12
  * @LastEditors: menggt littlecandyi@163.com
- * @LastEditTime: 2023-08-22 14:58:38
+ * @LastEditTime: 2023-09-01 17:13:55
  */
 
+ /* 导航栏 el-popover 样式 ----------------------------------------------------------- */
 .notification-popover .notification-tabs {
 	margin-top: -10px;
 }
@@ -17,4 +18,35 @@
 .notification-popover .notification-tabs .el-tabs__header .el-tabs__nav-scroll {
 	display: flex;
 	justify-content: center;
+}
+
+/* 菜单栏 el-menu 样式 ----------------------------------------------------------- */
+.menu-box .el-sub-menu__title {
+	background-color: transparent;
+	transition: all 0.3s, var(--el-transition-color);
+}
+
+.menu-box .el-sub-menu__title:hover {
+	background-color: #e1e1e1;
+}
+
+.menu-box .el-sub-menu__title:hover i {
+	transform: scale(1.2);
+}
+
+.menu-box .el-sub-menu .el-menu--inline {
+	background-color: #e8e8e8;
+}
+
+.menu-box .el-menu-item.is-active,
+.menu-box .el-menu--collapse .el-sub-menu.is-active > .el-sub-menu__title,
+.menu-box .el-sub-menu .el-menu--inline .el-menu-item.is-active {
+  color: #fff;
+  background-color: var(--el-color-primary) !important;
+	transition: background-color .3s, var(--el-transition-color);
+}
+
+.menu-box__radius .el-sub-menu__title,
+.menu-box__radius .el-sub-menu .el-menu--inline {
+	border-radius: 12px;
 }

@@ -2,52 +2,69 @@
  * @Description: <侧边菜单项>
  * @Author: menggt littlecandyi@163.com
  * @Date: 2023-08-31 17:03:15
- * @LastEditors: smellycat littlecandyi@163.com
- * @LastEditTime: 2023-09-01 00:58:22
+ * @LastEditors: menggt littlecandyi@163.com
+ * @LastEditTime: 2023-09-01 17:58:11
 -->
 <script setup lang="ts">
 import { useSettingsStore } from '@/store/modules/settings-store'
+import type { RouteRecordRaw } from 'vue-router'
 
-// import type { RouteRecordRaw } from 'vue-router'
+interface Props {
+	itemData: RouteRecordRaw
+}
 
-// interface Props {
-// 	data: RouteRecordRaw[]
-// }
+// 组件重新定义名称
+defineOptions({
+	name: 'MenuItem'
+})
 
 const settingsStore = useSettingsStore()
 
-// const props = withDefaults(defineProps<Props>(), {
-// 	data: () => {
-// 		return []
-// 	}
-// })
+const props = withDefaults(defineProps<Props>(), {})
 
-// console.log('props.data ----------->', props.data)
+// 是否有children嵌套路由
+const hasChildren = computed<boolean>(() => {
+	let flag = true
+	if (props.itemData.children) {
+		if (props.itemData.children.every(v => v.meta?.sidebar === false)) {
+			flag = false
+		}
+	} else {
+		flag = false
+	}
+
+	return flag
+})
 </script>
 
 <template>
 	<el-menu-item
+		v-if="!hasChildren"
 		class="group bg-transparent transition-all-300"
-		:pt="settingsStore.menu.menuFillStyle === 'radius' ? 'first:2.5' : '0'"
+		:rounded="settingsStore.menu.menuFillStyle === 'radius' ? 'xl' : 'none'"
 		bg="transparent hover:#e1e1e1! hover:dark:[var(--el-color-primary-light-5)]!"
-		index="2"
+		:index="props.itemData.path"
 	>
-		<i i-carbon-chart-network text-lg transition-transform-300 group-hover:scale-120></i>
-		<template #title><span mx-2.5>Navigator Two</span></template>
-	</el-menu-item>
-	<el-sub-menu
-		transition-all-300
-		:pt="settingsStore.menu.menuFillStyle === 'radius' ? 'first:2.5' : '0'"
-		index="1"
-	>
+		<div
+			:class="[props.itemData.meta?.icon]"
+			text-lg
+			transition-transform-300
+			group-hover:scale-120
+		/>
 		<template #title>
-			<i i-carbon-chart-network text-lg transition-transform-300></i>
-			<span mx-2.5>Navigator One</span>
+			<span mx-2.5>{{ props.itemData.meta?.title }}</span>
 		</template>
-		<el-sub-menu index="1-4">
-			<template #title><span>item four</span></template>
-			<el-menu-item index="1-4-1">item one</el-menu-item>
-		</el-sub-menu>
+	</el-menu-item>
+	<el-sub-menu v-else transition-all-300 :index="props.itemData.path">
+		<template #title>
+			<div :class="[props.itemData.meta?.icon]" text-lg transition-transform-300 />
+			<span mx-2.5>{{ props.itemData.meta?.title }}</span>
+		</template>
+
+		<!-- 递归循环嵌套路由 -->
+		<template v-for="route in props.itemData.children" :key="route.path">
+			<MenuItem :itemData="route" />
+		</template>
 	</el-sub-menu>
 </template>
 
