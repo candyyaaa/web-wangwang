@@ -2,15 +2,17 @@
  * @Description: <>
  * @Author: menggt littlecandyi@163.com
  * @Date: 2023-08-07 11:15:58
- * @LastEditors: menggt littlecandyi@163.com
- * @LastEditTime: 2023-08-08 15:12:56
+ * @LastEditors: smellycat littlecandyi@163.com
+ * @LastEditTime: 2023-09-03 03:14:35
 -->
 <route>
 {
 	name: "Login",
 	meta: {
 		layout: false,
-		title: "login"
+		title: "login",
+		constant: true,
+		hidden: true
 	}
 }
 </route>

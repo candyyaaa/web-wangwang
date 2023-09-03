@@ -2,8 +2,8 @@
  * @Description: <侧边菜单项>
  * @Author: menggt littlecandyi@163.com
  * @Date: 2023-08-31 17:03:15
- * @LastEditors: menggt littlecandyi@163.com
- * @LastEditTime: 2023-09-01 17:58:11
+ * @LastEditors: smellycat littlecandyi@163.com
+ * @LastEditTime: 2023-09-03 01:44:43
 -->
 <script setup lang="ts">
 import { useSettingsStore } from '@/store/modules/settings-store'
@@ -45,19 +45,23 @@ const hasChildren = computed<boolean>(() => {
 		bg="transparent hover:#e1e1e1! hover:dark:[var(--el-color-primary-light-5)]!"
 		:index="props.itemData.path"
 	>
-		<div
-			:class="[props.itemData.meta?.icon]"
-			text-lg
-			transition-transform-300
-			group-hover:scale-120
-		/>
+		<el-icon>
+			<div
+				:class="[props.itemData.meta?.icon]"
+				text-lg
+				transition-transform-300
+				group-hover:scale-120
+			/>
+		</el-icon>
 		<template #title>
 			<span mx-2.5>{{ props.itemData.meta?.title }}</span>
 		</template>
 	</el-menu-item>
 	<el-sub-menu v-else transition-all-300 :index="props.itemData.path">
 		<template #title>
-			<div :class="[props.itemData.meta?.icon]" text-lg transition-transform-300 />
+			<el-icon>
+				<div :class="[props.itemData.meta?.icon]" text-lg transition-transform-300 />
+			</el-icon>
 			<span mx-2.5>{{ props.itemData.meta?.title }}</span>
 		</template>
 

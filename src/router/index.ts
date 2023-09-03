@@ -2,12 +2,14 @@
  * @Description: <>
  * @Author: smellycat littlecandyi@163.com
  * @Date: 2023-05-21 21:18:33
- * @LastEditors: menggt littlecandyi@163.com
- * @LastEditTime: 2023-08-08 15:47:35
+ * @LastEditors: smellycat littlecandyi@163.com
+ * @LastEditTime: 2023-09-03 03:10:10
  */
 import { createRouter, createWebHistory } from 'vue-router'
 import { setupLayouts } from 'virtual:generated-layouts'
 import generatedRoutes from '~pages'
+import { constantRoutes, asyncRoutes } from './routes'
+console.log('constantRoutes ----------->', constantRoutes, asyncRoutes)
 console.log('generatedRoutes ----------->', generatedRoutes)
 
 // 进度条插件

@@ -2,14 +2,16 @@
  * @Description: <reload>
  * @Author: menggt littlecandyi@163.com
  * @Date: 2023-08-23 17:51:23
- * @LastEditors: menggt littlecandyi@163.com
- * @LastEditTime: 2023-08-23 17:54:52
+ * @LastEditors: smellycat littlecandyi@163.com
+ * @LastEditTime: 2023-09-03 03:13:47
 -->
 <route>
 	{
 		name: "reload",
 		meta: {
-			layout: false
+			layout: false,
+			constant: true,
+			hidden: true
 		}
 	}
 	</route>
