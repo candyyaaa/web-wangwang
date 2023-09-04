@@ -2,8 +2,8 @@
  * @Description: <>
  * @Author: smellycat littlecandyi@163.com
  * @Date: 2023-05-21 21:19:10
- * @LastEditors: candy littlecandyi@163.com
- * @LastEditTime: 2023-08-26 21:45:27
+ * @LastEditors: menggt littlecandyi@163.com
+ * @LastEditTime: 2023-09-04 18:03:29
 -->
 <route>
 {
@@ -11,6 +11,8 @@
 	meta: {
 		layout: "index",
 		title: "wangWang",
+		constant: true,
+		roles: ["1"],
 		requiresAuth: false
 	}
 }
@@ -23,10 +25,10 @@
 </template>
 
 <script setup lang="ts">
-const router = useRouter()
-const route = useRoute()
-console.log('router ----------->', router)
-console.log('route ----------->', route)
+// const router = useRouter()
+// const route = useRoute()
+// console.log('router ----------->', router)
+// console.log('route ----------->', route)
 </script>
 
 <style scoped></style>

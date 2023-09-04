@@ -3,7 +3,7 @@
  * @Author: smellycat littlecandyi@163.com
  * @Date: 2023-05-21 23:35:18
  * @LastEditors: menggt littlecandyi@163.com
- * @LastEditTime: 2023-09-01 17:50:03
+ * @LastEditTime: 2023-09-04 10:51:46
 -->
 <template>
 	<div class="bg-[var(--el-bg-color-page)]" h-full>
@@ -16,7 +16,7 @@
 					transition-all-300
 					:width="settingsStore.menu.collapse ? '64px' : '220px'"
 				>
-					<Menu />
+					<SideBar />
 				</el-aside>
 				<el-main>
 					<RouterView />
@@ -29,7 +29,7 @@
 <script setup lang="ts">
 import { useSettingsStore } from '@/store/modules/settings-store'
 import Header from './components/header/index.vue'
-import Menu from './components/menu/index.vue'
+import SideBar from './components/side-bar/index.vue'
 
 // 设置状态
 const settingsStore = useSettingsStore()

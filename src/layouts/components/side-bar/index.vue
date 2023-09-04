@@ -3,26 +3,27 @@
  * @Author: candy littlecandyi@163.com
  * @Date: 2023-08-26 22:49:32
  * @LastEditors: menggt littlecandyi@163.com
- * @LastEditTime: 2023-09-01 17:20:13
+ * @LastEditTime: 2023-09-04 16:35:25
 -->
 <script setup lang="ts">
 import { useSettingsStore } from '@/store/modules/settings-store'
 import Logo from '../logo/index.vue'
-import MenuItem from '../menu-item/index.vue'
+import SideBarItem from '../side-bar-item/index.vue'
+import type { RouteRecordRaw } from 'vue-router'
 
-const router = useRouter()
+// const router = useRouter()
 
-const routes = router.getRoutes()
-console.log('routes ----------->', routes)
+// const routes = router.getRoutes()
+// console.log('routes ----------->', routes)
 
 // app设置
 const settingsStore = useSettingsStore()
 
-const menuList = [
+const menuList: RouteRecordRaw[] = [
 	{
 		name: 'Permission',
 		path: '/permission',
-		props: true,
+		children: [],
 		meta: {
 			layout: 'index',
 			title: '权限验证',
@@ -44,6 +45,7 @@ const menuList = [
 				name: 'DashboardWorkplace',
 				path: 'workplace',
 				props: true,
+				children: [],
 				meta: {
 					layout: 'index',
 					title: '工作台',
@@ -55,6 +57,7 @@ const menuList = [
 				name: 'DashboardMonitor',
 				path: 'monitor',
 				props: true,
+				children: [],
 				meta: {
 					layout: 'index',
 					title: '监控台',
@@ -66,6 +69,7 @@ const menuList = [
 				name: 'DashboardConsole',
 				path: 'console',
 				props: true,
+				children: [],
 				meta: {
 					layout: 'index',
 					title: '主控台',
@@ -105,7 +109,7 @@ const handleClose = (key: string, keyPath: string[]) => {
 					@close="handleClose"
 				>
 					<template v-for="item in menuList" :key="item.path">
-						<MenuItem :itemData="item" />
+						<SideBarItem :itemData="item" :base-path="item.path" />
 					</template>
 				</el-menu>
 			</div>

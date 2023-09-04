@@ -3,7 +3,7 @@
  * @Author: menggt littlecandyi@163.com
  * @Date: 2023-09-01 10:52:05
  * @LastEditors: menggt littlecandyi@163.com
- * @LastEditTime: 2023-09-01 10:53:11
+ * @LastEditTime: 2023-09-04 16:28:07
 -->
 <route>
 {
@@ -11,6 +11,7 @@
 	meta: {
 		layout: "index",
 		title: "权限验证",
+		roles: ["1"],
 		requiresAuth: false
 	}
 }

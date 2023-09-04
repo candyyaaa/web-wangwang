@@ -3,14 +3,16 @@
  * @Author: menggt littlecandyi@163.com
  * @Date: 2023-09-01 10:20:02
  * @LastEditors: menggt littlecandyi@163.com
- * @LastEditTime: 2023-09-01 10:25:27
+ * @LastEditTime: 2023-09-04 16:47:55
 -->
 <route>
 {
 	name: "Dashboard",
 	redirect: "/dashboard/console",
 	meta: {
-		title: "仪表盘"
+		layout: "index",
+		title: "仪表盘",
+		roles: ["1"]
 	}
 }
 </route>

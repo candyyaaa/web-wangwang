@@ -3,8 +3,9 @@
  * @Author: menggt littlecandyi@163.com
  * @Date: 2023-08-04 17:49:12
  * @LastEditors: menggt littlecandyi@163.com
- * @LastEditTime: 2023-08-14 16:13:15
+ * @LastEditTime: 2023-09-04 11:15:54
  */
+import { resolve } from 'path-browserify'
 import pako from 'pako'
 
 /**
@@ -44,4 +45,14 @@ export const treeToArray = (tree: any): any[] => {
 		const { children, ...i } = item
 		return res.concat(i, children && children.length ? treeToArray(children) : [])
 	}, [])
+}
+
+/**
+ * @description: 转化路由路径
+ * @param {string} basePath
+ * @param {string} routePath
+ * @return {string} path
+ */
+export function resolveRoutePath(basePath: string, routePath?: string): string {
+	return basePath ? resolve(basePath, routePath ?? '') : routePath ?? ''
 }
