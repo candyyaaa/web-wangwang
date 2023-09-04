@@ -2,8 +2,8 @@
  * @Description: <vite 项目配置>
  * @Author: smellycat littlecandyi@163.com
  * @Date: 2023-05-21 00:20:17
- * @LastEditors: menggt littlecandyi@163.com
- * @LastEditTime: 2023-08-10 14:33:15
+ * @LastEditors: candy littlecandyi@163.com
+ * @LastEditTime: 2023-09-04 23:33:55
  */
 import { defineConfig, loadEnv } from 'vite'
 import { pathResolve } from './vite/utils'
@@ -66,11 +66,11 @@ export default ({ mode, command }) => {
 			cors: true,
 			// 设置 https 代理
 			proxy: {
-				'/m1/699628-0-default/api': {
+				'/api': {
 					// apifox 本地 Mock
-					target: 'http://127.0.0.1:4523',
-					changeOrigin: true,
-					rewrite: (path: string) => path.replace(/^\/m1^\/699628-0-default^\/api/, '')
+					target: 'http://127.0.0.1:4523/m1/699628-0-default',
+					changeOrigin: true
+					// rewrite: (path: string) => path.replace(/^\/m1^\/699628-0-default^\/api/, '')
 				}
 			}
 		},

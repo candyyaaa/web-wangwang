@@ -2,17 +2,20 @@
  * @Description: <>
  * @Author: menggt littlecandyi@163.com
  * @Date: 2023-05-23 17:54:43
- * @LastEditors: menggt littlecandyi@163.com
- * @LastEditTime: 2023-08-07 16:18:25
+ * @LastEditors: candy littlecandyi@163.com
+ * @LastEditTime: 2023-09-04 23:56:04
  */
 
 import { createAlova } from 'alova'
 import GlobalFetch from 'alova/GlobalFetch'
 import VueHook from 'alova/vue'
+// import { useUserStoreHook } from '@/store/modules/user-store'
 
-const alova = createAlova({
+// const userStore = useUserStoreHook()
+
+const alovaInst = createAlova({
 	// 请求的根路径
-	baseURL: 'https://api.alovajs.org',
+	baseURL: '/api',
 	// 它用于确定在 use hook
 	statesHook: VueHook,
 	// 请求适配器 GlobalFetch: window.fetch 请求方式
@@ -32,6 +35,14 @@ const alova = createAlova({
 		// 第二个参数为当前请求的method实例，你可以用它同步请求前后的配置信息
 		onSuccess: (response, method) => {
 			console.log(' ----------->', response, method)
+
+			// if (userStore.token) {
+			// 	method.config.headers = {
+			// 		Authorization: `Bearer ${userStore.token}`
+			// 	}
+			// }
+
+			return response.json()
 		},
 		// 请求失败的拦截器
 		// 请求错误时将会进入该拦截器。
@@ -42,4 +53,4 @@ const alova = createAlova({
 	}
 })
 
-export default alova
+export default alovaInst

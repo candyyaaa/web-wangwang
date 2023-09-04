@@ -2,9 +2,10 @@
  * @Description: <权限状态>
  * @Author: smellycat littlecandyi@163.com
  * @Date: 2023-09-03 02:25:02
- * @LastEditors: menggt littlecandyi@163.com
- * @LastEditTime: 2023-09-04 17:01:58
+ * @LastEditors: candy littlecandyi@163.com
+ * @LastEditTime: 2023-09-04 22:49:34
  */
+import store from '@/store'
 import cloneDeep from 'lodash-es/cloneDeep'
 // import { Message } from 'element-plus'
 import { constantRoutes, asyncRoutes } from '@/router/routes'
@@ -51,6 +52,7 @@ export const usePermissionStore = defineStore({
 	id: 'permission',
 	state: (): Permission.State<RouteRecordRaw> => {
 		return {
+			ingenerate: false,
 			routes: [],
 			accessRoutes: []
 		}
@@ -68,6 +70,12 @@ export const usePermissionStore = defineStore({
 			this.routes = constantRoutes.concat(permissionRoutes)
 			// 有权限路由
 			this.accessRoutes = permissionRoutes
+			this.ingenerate = true
 		}
 	}
 })
+
+/**
+ * @description: 在 setup 外使用
+ */
+export const usePermissionStoreHook = () => usePermissionStore(store)
