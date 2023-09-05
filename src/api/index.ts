@@ -2,8 +2,8 @@
  * @Description: <>
  * @Author: menggt littlecandyi@163.com
  * @Date: 2023-05-23 17:54:43
- * @LastEditors: candy littlecandyi@163.com
- * @LastEditTime: 2023-09-04 23:56:04
+ * @LastEditors: menggt littlecandyi@163.com
+ * @LastEditTime: 2023-09-05 11:13:24
  */
 
 import { createAlova } from 'alova'
@@ -12,6 +12,12 @@ import VueHook from 'alova/vue'
 // import { useUserStoreHook } from '@/store/modules/user-store'
 
 // const userStore = useUserStoreHook()
+
+export interface ResultData<T = any> {
+	code: number
+	data: T
+	message: string
+}
 
 const alovaInst = createAlova({
 	// 请求的根路径

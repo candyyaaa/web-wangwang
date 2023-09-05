@@ -2,8 +2,8 @@
  * @Description: <main>
  * @Author: smellycat littlecandyi@163.com
  * @Date: 2023-05-21 00:20:17
- * @LastEditors: candy littlecandyi@163.com
- * @LastEditTime: 2023-08-26 21:50:10
+ * @LastEditors: menggt littlecandyi@163.com
+ * @LastEditTime: 2023-09-05 14:57:26
  */
 import { createApp } from 'vue'
 
@@ -27,6 +27,9 @@ import 'virtual:uno.css'
 import 'virtual:svg-icons-register'
 // ep 暗黑模式css
 import 'element-plus/theme-chalk/dark/css-vars.css'
+// ep ElMessage 和 ElLoading 的css样式文件
+import 'element-plus/theme-chalk/el-loading.css'
+import 'element-plus/theme-chalk/el-message.css'
 
 const app = createApp(App)
 // 挂载国际化
