@@ -2,32 +2,19 @@
  * @Description: <>
  * @Author: smellycat littlecandyi@163.com
  * @Date: 2023-05-21 21:18:33
- * @LastEditors: candy littlecandyi@163.com
- * @LastEditTime: 2023-09-04 23:02:41
+ * @LastEditors: smellycat littlecandyi@163.com
+ * @LastEditTime: 2023-09-06 00:50:42
  */
 import { createRouter, createWebHistory } from 'vue-router'
-import { setupLayouts } from 'virtual:generated-layouts'
-// import generatedRoutes from '~pages'
 import cloneDeep from 'lodash-es/cloneDeep'
-import { constantRoutes, asyncRoutes } from './routes'
+import { constantRoutes } from './routes'
 import { useUserStoreHook } from '@/store/modules/user-store'
 import { usePermissionStoreHook } from '@/store/modules/permission-store'
-console.log('constantRoutes ----------->', constantRoutes, asyncRoutes)
 // 进度条插件
 import { start, done } from '@/utils/nprogress'
 
 // 白名单
 const whiteList = ['/login']
-
-// 用户信息状态
-const userStore = useUserStoreHook()
-// 权限状态
-const permissionStore = usePermissionStoreHook()
-
-// 路由数组
-export const routes = constantRoutes.map(generatedRoute =>
-	generatedRoute.name === 'index' ? setupLayouts([generatedRoute])[0] : generatedRoute
-)
 
 const router = createRouter({
 	history: createWebHistory('/'),
@@ -37,36 +24,58 @@ const router = createRouter({
 // 路由切换之前触发
 router.beforeEach(async (to, _, next) => {
 	start()
-	// next()
+	// 用户信息状态
+	const userStore = useUserStoreHook()
+	// 权限状态
+	const permissionStore = usePermissionStoreHook()
 
 	if (userStore.token) {
-		if (to.path === '/login') {
-			next({ path: '/' })
-			done()
-		} else {
-			// 是否已根据权限动态生成并注册路由
-			if (permissionStore.ingenerate) {
-				// 正常加载页面
-				next()
+		// 是否已根据权限动态生成并注册路由
+		if (permissionStore.ingenerate) {
+			// console.log(' 1----------->', router)
+			// console.log(' 2----------->', to)
+			// console.log(' 3----------->', to.name === 'login')
+			if (to.name === 'login') {
+				next({ name: 'index', replace: true })
 			} else {
+				next()
+			}
+		} else {
+			// 动态生成路由
+			try {
 				//! 请求获取用户信息
-				await userStore.getUserInfo()
-				// 请求返回角色权限信息
-				const roles = cloneDeep(userStore.roles)
+				const result = await userStore.getUserInfo()
 
-				// 根据角色权限信息动态生成可访问的路由信息 routers
-				permissionStore.generateRoutes(roles)
-				// 更新路由列表
-				permissionStore.accessRoutes.forEach(r => {
-					router.addRoute(r)
-				})
+				if (result.code === 200) {
+					permissionStore.generateRoutes(cloneDeep(userStore.roles))
+					const removeRoutes: (() => void)[] = []
 
-				//* 动态路由生成并注册后，重新进入当前路由
-				next({
-					path: to.path,
-					query: to.query,
-					replace: true
-				})
+					permissionStore.accessRoutes.forEach(r => {
+						if (!/^(https?:|mailto|tel:)/.test(r.path)) {
+							removeRoutes.push(router.addRoute(r))
+						}
+					})
+
+					permissionStore.setCurrentRemoveRoutes(removeRoutes)
+
+					// console.log('router 1----------->', router)
+					// router
+					// 	.isReady()
+					// 	.then(() => {
+					// 		console.log('router 2----------->', router)
+					// 	})
+					// 	.catch(err => {
+					// 		console.log('router.isReady err ----------->', err)
+					// 	})
+					//* 动态路由生成并注册后，重新进入当前路由
+					next({
+						path: to.path,
+						query: to.query,
+						replace: true
+					})
+				}
+			} catch (error) {
+				console.log('error ----------->', error)
 			}
 		}
 	} else {

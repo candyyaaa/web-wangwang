@@ -2,14 +2,14 @@
  * @Description: <>
  * @Author: menggt littlecandyi@163.com
  * @Date: 2023-05-23 17:54:43
- * @LastEditors: menggt littlecandyi@163.com
- * @LastEditTime: 2023-09-05 11:13:24
+ * @LastEditors: smellycat littlecandyi@163.com
+ * @LastEditTime: 2023-09-06 00:40:07
  */
 
 import { createAlova } from 'alova'
 import GlobalFetch from 'alova/GlobalFetch'
 import VueHook from 'alova/vue'
-// import { useUserStoreHook } from '@/store/modules/user-store'
+import storage from '@/utils/storage'
 
 // const userStore = useUserStoreHook()
 
@@ -18,6 +18,8 @@ export interface ResultData<T = any> {
 	data: T
 	message: string
 }
+
+const token = storage.getCache('token')
 
 const alovaInst = createAlova({
 	// 请求的根路径
@@ -31,7 +33,11 @@ const alovaInst = createAlova({
 
 	// 全局请求拦截器
 	beforeRequest(method) {
-		console.log('beforeRequest method----------->', method)
+		if (token) {
+			method.config.headers = {
+				Authorization: `Bearer ${token}`
+			}
+		}
 	},
 
 	// 全局响应拦截器
@@ -39,8 +45,8 @@ const alovaInst = createAlova({
 		// 请求成功的拦截器
 		// 当使用GlobalFetch请求适配器时，第一个参数接收Response对象
 		// 第二个参数为当前请求的method实例，你可以用它同步请求前后的配置信息
-		onSuccess: (response, method) => {
-			console.log(' ----------->', response, method)
+		onSuccess: response => {
+			// console.log(' ----------->', response, method)
 
 			// if (userStore.token) {
 			// 	method.config.headers = {

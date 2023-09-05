@@ -2,8 +2,8 @@
  * @Description: <>
  * @Author: menggt littlecandyi@163.com
  * @Date: 2023-08-07 11:15:58
- * @LastEditors: menggt littlecandyi@163.com
- * @LastEditTime: 2023-09-05 16:41:28
+ * @LastEditors: smellycat littlecandyi@163.com
+ * @LastEditTime: 2023-09-05 22:21:16
 -->
 <route>
 {
@@ -31,10 +31,10 @@ const redirect = ref(route.query.redirect?.toString() ?? '/')
 
 const onSubmitLogin = async () => {
 	const query = {
-		// account: 'candy',
-		account: 'candy1',
-		// password: '123456!'
-		password: '123456!1'
+		account: 'candy',
+		// account: 'candy1',
+		password: '123456!'
+		// password: '123456!1'
 	}
 
 	btnLoading.value = true

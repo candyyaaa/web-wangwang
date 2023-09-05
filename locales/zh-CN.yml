@@ -6,4 +6,6 @@ button:
   toggle_dark: 切换深色模式
   refresh: 刷新
   cute: 可爱的按钮
+  back: 返回
+not-found: 未找到页面
 

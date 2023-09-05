@@ -2,8 +2,8 @@
  * @Description: <pinia状态 类型>
  * @Author: menggt littlecandyi@163.com
  * @Date: 2023-09-04 16:05:29
- * @LastEditors: candy littlecandyi@163.com
- * @LastEditTime: 2023-09-04 22:21:26
+ * @LastEditors: smellycat littlecandyi@163.com
+ * @LastEditTime: 2023-09-06 00:29:02
  */
 
 /* 用户状态 */
@@ -36,5 +36,10 @@ declare namespace Permission {
 		 * @默认值 `[]`
 		 */
 		routes: T[]
+		/**
+		 * @description: 当前删除路由
+		 * @默认值 `[]`
+		 */
+		currentRemoveRoutes: (() => void)[]
 	}
 }

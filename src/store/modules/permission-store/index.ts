@@ -2,8 +2,8 @@
  * @Description: <权限状态>
  * @Author: smellycat littlecandyi@163.com
  * @Date: 2023-09-03 02:25:02
- * @LastEditors: candy littlecandyi@163.com
- * @LastEditTime: 2023-09-04 22:49:34
+ * @LastEditors: smellycat littlecandyi@163.com
+ * @LastEditTime: 2023-09-06 00:29:51
  */
 import store from '@/store'
 import cloneDeep from 'lodash-es/cloneDeep'
@@ -54,13 +54,14 @@ export const usePermissionStore = defineStore({
 		return {
 			ingenerate: false,
 			routes: [],
-			accessRoutes: []
+			accessRoutes: [],
+			currentRemoveRoutes: []
 		}
 	},
 	getters: {},
 	actions: {
 		/**
-		 * @description: 根据权限数组生成路由
+		 * @description: 根据权限数组动态生成路由
 		 * @param {string[]} roles - 权限数组
 		 */
 		generateRoutes(roles: string[]): void {
@@ -71,6 +72,14 @@ export const usePermissionStore = defineStore({
 			// 有权限路由
 			this.accessRoutes = permissionRoutes
 			this.ingenerate = true
+		},
+		// 记录 accessRoutes 路由，用于登出时删除路由
+		/**
+		 * @description: 记录 accessRoutes 路由，用于登出时删除路由
+		 * @param {function} routes
+		 */
+		setCurrentRemoveRoutes(routes: (() => void)[]) {
+			this.currentRemoveRoutes = routes
 		}
 	}
 })
