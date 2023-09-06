@@ -2,8 +2,8 @@
  * @Description: <element-plus 样式穿透修改>
  * @Author: menggt littlecandyi@163.com
  * @Date: 2023-08-22 14:52:12
- * @LastEditors: smellycat littlecandyi@163.com
- * @LastEditTime: 2023-09-02 14:53:04
+ * @LastEditors: menggt littlecandyi@163.com
+ * @LastEditTime: 2023-09-06 17:18:42
  */
 
  /* 导航栏 el-popover 样式 ----------------------------------------------------------- */
@@ -27,7 +27,7 @@
 }
 
 .menu-box .el-sub-menu__title:hover {
-	background-color: #e1e1e1;
+	--el-menu-hover-bg-color: #e1e1e1
 }
 
 .menu-box .el-sub-menu__title:hover div[class^=i-carbon] {
@@ -35,7 +35,7 @@
 }
 
 .menu-box .el-sub-menu .el-menu--inline {
-	background-color: #e8e8e8;
+	--el-menu-bg-color: #e8e8e8;
 }
 
 .menu-box .el-menu-item.is-active,

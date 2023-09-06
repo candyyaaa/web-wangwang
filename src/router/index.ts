@@ -2,10 +2,10 @@
  * @Description: <>
  * @Author: smellycat littlecandyi@163.com
  * @Date: 2023-05-21 21:18:33
- * @LastEditors: smellycat littlecandyi@163.com
- * @LastEditTime: 2023-09-06 00:50:42
+ * @LastEditors: menggt littlecandyi@163.com
+ * @LastEditTime: 2023-09-06 17:02:44
  */
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHistory, isNavigationFailure } from 'vue-router'
 import cloneDeep from 'lodash-es/cloneDeep'
 import { constantRoutes } from './routes'
 import { useUserStoreHook } from '@/store/modules/user-store'
@@ -13,8 +13,13 @@ import { usePermissionStoreHook } from '@/store/modules/permission-store'
 // 进度条插件
 import { start, done } from '@/utils/nprogress'
 
-// 白名单
-const whiteList = ['/login']
+// 白名单路由路径
+const whiteList = ['/login', '/redirect', '/:all(.*)*']
+
+// 用户信息状态
+const userStore = useUserStoreHook()
+// 权限状态
+const permissionStore = usePermissionStoreHook()
 
 const router = createRouter({
 	history: createWebHistory('/'),
@@ -24,17 +29,10 @@ const router = createRouter({
 // 路由切换之前触发
 router.beforeEach(async (to, _, next) => {
 	start()
-	// 用户信息状态
-	const userStore = useUserStoreHook()
-	// 权限状态
-	const permissionStore = usePermissionStoreHook()
 
 	if (userStore.token) {
 		// 是否已根据权限动态生成并注册路由
 		if (permissionStore.ingenerate) {
-			// console.log(' 1----------->', router)
-			// console.log(' 2----------->', to)
-			// console.log(' 3----------->', to.name === 'login')
 			if (to.name === 'login') {
 				next({ name: 'index', replace: true })
 			} else {
@@ -58,15 +56,6 @@ router.beforeEach(async (to, _, next) => {
 
 					permissionStore.setCurrentRemoveRoutes(removeRoutes)
 
-					// console.log('router 1----------->', router)
-					// router
-					// 	.isReady()
-					// 	.then(() => {
-					// 		console.log('router 2----------->', router)
-					// 	})
-					// 	.catch(err => {
-					// 		console.log('router.isReady err ----------->', err)
-					// 	})
 					//* 动态路由生成并注册后，重新进入当前路由
 					next({
 						path: to.path,
@@ -86,14 +75,43 @@ router.beforeEach(async (to, _, next) => {
 		} else {
 			// 其他没有访问权限的页面将被重定向到登录页面
 			next('/login')
-			done()
 		}
 	}
 })
 
 // 路由切换完成后触发
-router.afterEach(() => {
+router.afterEach((to, _, failure) => {
 	done()
+	useTitle(to.meta?.title as string)
+
+	if (isNavigationFailure(failure)) {
+		console.log('failed navigation ----------->', failure)
+	}
+
+	const keepAliveComponents = permissionStore.keepAliveComponents
+	// 当前组件名称
+	const currentComName = to.matched.find(v => v.name === to.name)?.name
+
+	if (
+		currentComName &&
+		!keepAliveComponents.includes(currentComName as string) &&
+		to.meta?.keepAlive
+	) {
+		// 需要缓存的组件
+		keepAliveComponents.push(currentComName as string)
+	} else if (!to.meta?.keepAlive || to.name === 'redirect') {
+		// 不需要缓存的组件
+		const index = keepAliveComponents.findIndex(name => name === currentComName)
+		if (index !== -1) {
+			keepAliveComponents.splice(index, 1)
+		}
+	}
+
+	// 存入store
+	permissionStore.setKeepAliveComponents(keepAliveComponents)
+
+	// 滚动到最上面
+	document.documentElement.scrollTop = 0
 })
 
 export default router

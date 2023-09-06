@@ -3,83 +3,16 @@
  * @Author: candy littlecandyi@163.com
  * @Date: 2023-08-26 22:49:32
  * @LastEditors: menggt littlecandyi@163.com
- * @LastEditTime: 2023-09-04 16:35:25
+ * @LastEditTime: 2023-09-06 18:02:16
 -->
 <script setup lang="ts">
 import { useSettingsStore } from '@/store/modules/settings-store'
+import { usePermissionStore } from '@/store/modules/permission-store'
 import Logo from '../logo/index.vue'
 import SideBarItem from '../side-bar-item/index.vue'
-import type { RouteRecordRaw } from 'vue-router'
 
-// const router = useRouter()
-
-// const routes = router.getRoutes()
-// console.log('routes ----------->', routes)
-
-// app设置
 const settingsStore = useSettingsStore()
-
-const menuList: RouteRecordRaw[] = [
-	{
-		name: 'Permission',
-		path: '/permission',
-		children: [],
-		meta: {
-			layout: 'index',
-			title: '权限验证',
-			icon: 'i-carbon-manage-protection',
-			requiresAuth: false
-		}
-	},
-	{
-		name: 'Dashboard',
-		path: '/dashboard',
-		props: true,
-		redirect: '/dashboard/console',
-		meta: {
-			title: '仪表盘',
-			icon: 'i-carbon-dashboard'
-		},
-		children: [
-			{
-				name: 'DashboardWorkplace',
-				path: 'workplace',
-				props: true,
-				children: [],
-				meta: {
-					layout: 'index',
-					title: '工作台',
-					icon: 'i-carbon-screen',
-					requiresAuth: false
-				}
-			},
-			{
-				name: 'DashboardMonitor',
-				path: 'monitor',
-				props: true,
-				children: [],
-				meta: {
-					layout: 'index',
-					title: '监控台',
-					icon: 'i-carbon-cloud-monitoring',
-					requiresAuth: false
-				}
-			},
-			{
-				name: 'DashboardConsole',
-				path: 'console',
-				props: true,
-				children: [],
-				meta: {
-					layout: 'index',
-					title: '主控台',
-					icon: 'i-carbon-home',
-					requiresAuth: false
-				}
-			}
-		]
-	}
-]
+const permissionStore = usePermissionStore()
 
 const handleOpen = (key: string, keyPath: string[]) => {
 	console.log(key, keyPath)
@@ -87,6 +20,45 @@ const handleOpen = (key: string, keyPath: string[]) => {
 const handleClose = (key: string, keyPath: string[]) => {
 	console.log(key, keyPath)
 }
+
+function flattenRoutes(originalRoutes: any[]): any[] {
+	const flattenedRoutes: any[] = []
+
+	function flatten(route: any) {
+		if (route.children && route.children.length === 1) {
+			// If a route has only one child, use the child directly
+			flatten(route.children[0])
+		} else {
+			const flattenedRoute: any = {
+				path: route.path,
+				meta: route.meta
+			}
+
+			if (route.children && route.children.length > 0) {
+				route.children.forEach((child: any) => {
+					const flattenedChild: any = {
+						name: child.name || '',
+						path: child.path,
+						props: child.props || false,
+						meta: child.meta
+					}
+					flattenedRoutes.push(flattenedChild)
+				})
+			}
+
+			flattenedRoutes.push(flattenedRoute)
+		}
+	}
+
+	originalRoutes.forEach(route => {
+		flatten(route)
+	})
+
+	return flattenedRoutes
+}
+
+const resList = flattenRoutes(permissionStore.getMenus)
+console.log('resList ----------->', resList)
 </script>
 
 <template>
@@ -108,7 +80,7 @@ const handleClose = (key: string, keyPath: string[]) => {
 					@open="handleOpen"
 					@close="handleClose"
 				>
-					<template v-for="item in menuList" :key="item.path">
+					<template v-for="item in permissionStore.getMenus" :key="item.path">
 						<SideBarItem :itemData="item" :base-path="item.path" />
 					</template>
 				</el-menu>
@@ -124,7 +96,9 @@ const handleClose = (key: string, keyPath: string[]) => {
 
 /* 次侧边栏动画 */
 .aside-menu-enter-active {
-	transition: opacity 0.3s, transform 0.3s;
+	transition:
+		opacity 0.3s,
+		transform 0.3s;
 }
 
 .aside-menu-enter-from,

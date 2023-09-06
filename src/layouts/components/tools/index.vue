@@ -3,7 +3,7 @@
  * @Author: smellycat littlecandyi@163.com
  * @Date: 2023-05-29 00:31:35
  * @LastEditors: menggt littlecandyi@163.com
- * @LastEditTime: 2023-08-31 11:32:18
+ * @LastEditTime: 2023-09-06 13:54:32
 -->
 <script setup lang="ts">
 import { useUserStore } from '@/store/modules/user-store'
@@ -12,6 +12,7 @@ import { loadLanguageAsync } from '@/i18n'
 
 // 路由
 const router = useRouter()
+const route = useRoute()
 
 // 用户信息状态
 const userStore = useUserStore()
@@ -79,7 +80,7 @@ const handleCommand = async (command: string): Promise<void> => {
  */
 const onRefresh = (): void => {
 	router.push({
-		name: 'reload'
+		path: `/redirect${unref(route).fullPath}`
 	})
 }
 
