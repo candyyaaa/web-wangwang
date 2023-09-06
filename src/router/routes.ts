@@ -2,8 +2,8 @@
  * @Description: <>
  * @Author: smellycat littlecandyi@163.com
  * @Date: 2023-09-03 02:52:17
- * @LastEditors: menggt littlecandyi@163.com
- * @LastEditTime: 2023-09-06 16:09:45
+ * @LastEditors: smellycat littlecandyi@163.com
+ * @LastEditTime: 2023-09-06 22:11:22
  */
 import { setupLayouts } from 'virtual:generated-layouts'
 import generatedRoutes from '~pages'
@@ -21,4 +21,11 @@ export const constantRoutes = constantList.map(v => (!v.meta?.layout ? v : setup
  */
 export const asyncRoutes = setupLayouts(
 	generatedRoutes.filter(v => !v.meta?.constant && v.meta?.layout)
+)
+
+/**
+ * 动态菜单
+ */
+export const asyncMenus = generatedRoutes.filter(
+	v => !v.meta?.constant && v.meta?.layout && !v.meta.hidden
 )

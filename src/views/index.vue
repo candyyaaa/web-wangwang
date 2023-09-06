@@ -2,17 +2,19 @@
  * @Description: <>
  * @Author: smellycat littlecandyi@163.com
  * @Date: 2023-05-21 21:19:10
- * @LastEditors: candy littlecandyi@163.com
- * @LastEditTime: 2023-09-04 22:38:01
+ * @LastEditors: smellycat littlecandyi@163.com
+ * @LastEditTime: 2023-09-06 22:37:36
 -->
 <route>
 {
 	name: "index",
 	meta: {
 		layout: "index",
-		title: "wangWang",
+		title: "主页",
 		roles: ["1"],
-		requiresAuth: false
+		icon: "i-carbon-home",
+		hidden: false,
+		ranking: 0
 	}
 }
 </route>

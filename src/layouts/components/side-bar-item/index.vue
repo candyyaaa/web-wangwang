@@ -2,8 +2,8 @@
  * @Description: <侧边菜单项>
  * @Author: menggt littlecandyi@163.com
  * @Date: 2023-08-31 17:03:15
- * @LastEditors: menggt littlecandyi@163.com
- * @LastEditTime: 2023-09-04 11:29:29
+ * @LastEditors: smellycat littlecandyi@163.com
+ * @LastEditTime: 2023-09-06 22:49:37
 -->
 <script setup lang="ts">
 import { useSettingsStore } from '@/store/modules/settings-store'
@@ -49,7 +49,7 @@ const hasChildren = computed<boolean>(() => {
 		bg="transparent hover:#e1e1e1! hover:dark:[var(--el-color-primary-light-5)]!"
 		:index="resolveRoutePath(props.basePath, props.itemData.path)"
 	>
-		<el-icon>
+		<el-icon v-if="props.itemData.meta?.icon">
 			<div
 				:class="[props.itemData.meta?.icon]"
 				text-lg
@@ -68,7 +68,7 @@ const hasChildren = computed<boolean>(() => {
 		:index="resolveRoutePath(props.basePath, props.itemData.path)"
 	>
 		<template #title>
-			<el-icon>
+			<el-icon v-if="props.itemData.meta?.icon">
 				<div :class="[props.itemData.meta?.icon]" text-lg transition-transform-300 />
 			</el-icon>
 			<span mx-2.5>{{ props.itemData.meta?.title }}</span>

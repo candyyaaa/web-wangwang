@@ -2,8 +2,8 @@
  * @Description: <监控台>
  * @Author: smellycat littlecandyi@163.com
  * @Date: 2023-08-31 21:49:47
- * @LastEditors: menggt littlecandyi@163.com
- * @LastEditTime: 2023-09-04 16:37:40
+ * @LastEditors: smellycat littlecandyi@163.com
+ * @LastEditTime: 2023-09-06 22:10:21
 -->
 <route>
 {
@@ -11,8 +11,7 @@
 	meta: {
 		layout: "index",
 		title: "监控台",
-		roles: ["11"],
-		requiresAuth: false
+		roles: ["11"]
 	}
 }
 </route>

@@ -2,15 +2,14 @@
  * @Description: <权限状态>
  * @Author: smellycat littlecandyi@163.com
  * @Date: 2023-09-03 02:25:02
- * @LastEditors: menggt littlecandyi@163.com
- * @LastEditTime: 2023-09-06 17:47:17
+ * @LastEditors: smellycat littlecandyi@163.com
+ * @LastEditTime: 2023-09-06 22:48:29
  */
 import store from '@/store'
 import cloneDeep from 'lodash-es/cloneDeep'
 // import { Message } from 'element-plus'
-import { constantRoutes, asyncRoutes } from '@/router/routes'
+import { constantRoutes, asyncRoutes, asyncMenus } from '@/router/routes'
 import type { RouteRecordRaw } from 'vue-router'
-console.log('asyncRoutes ----------->', asyncRoutes)
 
 /**
  * @description: 判断是否有权限
@@ -48,6 +47,20 @@ const filterAsyncRoutes = (routes: RouteRecordRaw[], roles: string[]): RouteReco
 	return arr
 }
 
+const sortTreeByRanking = (tree: RouteRecordRaw[]): RouteRecordRaw[] => {
+	// 首先，对当前层级的节点进行排序
+	tree.sort((a, b) => ((a.meta?.ranking as number) ?? 0) - ((b.meta?.ranking as number) ?? 0))
+
+	// 然后，递归对子节点进行排序
+	for (const node of tree) {
+		if (node.children && node.children.length > 0) {
+			node.children = sortTreeByRanking(node.children)
+		}
+	}
+
+	return tree
+}
+
 export const usePermissionStore = defineStore({
 	// 状态唯一id
 	id: 'permission',
@@ -67,8 +80,9 @@ export const usePermissionStore = defineStore({
 		 * @returns {RouteRecordRaw[]} 返回有权访问的菜单
 		 */
 		getMenus(): RouteRecordRaw[] {
-			console.log('toRaw(this.menus) ----------->', toRaw(this.menus))
-			return toRaw(this.menus)
+			const tmpMenus = cloneDeep(this.menus)
+
+			return toRaw(sortTreeByRanking(tmpMenus))
 		}
 	},
 	actions: {
@@ -79,12 +93,13 @@ export const usePermissionStore = defineStore({
 		generateRoutes(roles: string[]): void {
 			// 动态权限路由
 			const permissionRoutes = filterAsyncRoutes(asyncRoutes, roles)
+			const permissionMenus = filterAsyncRoutes(asyncMenus, roles)
 			// 可访问路由
 			this.routes = constantRoutes.concat(permissionRoutes)
 			// 有权限路由
 			this.accessRoutes = permissionRoutes
 			// 菜单
-			this.menus = permissionRoutes
+			this.menus = permissionMenus
 			this.ingenerate = true
 		},
 		/**

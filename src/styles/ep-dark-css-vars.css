@@ -2,8 +2,8 @@
  * @Description: <修改element-plus 暗黑模式样式>
  * @Author: menggt littlecandyi@163.com
  * @Date: 2023-09-06 17:09:22
- * @LastEditors: menggt littlecandyi@163.com
- * @LastEditTime: 2023-09-06 17:17:25
+ * @LastEditors: smellycat littlecandyi@163.com
+ * @LastEditTime: 2023-09-06 22:17:11
  */
 
 /* html.dark {
@@ -14,5 +14,5 @@ html.dark .menu-box .el-sub-menu__title:hover {
 }
 
 html.dark .menu-box .el-sub-menu .el-menu--inline {
-	--el-menu-bg-color: var(--el-color-primary-light-5);
+	--el-menu-bg-color: var(--el-bg-color);
 }

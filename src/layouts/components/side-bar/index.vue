@@ -2,14 +2,16 @@
  * @Description: <侧边菜单>
  * @Author: candy littlecandyi@163.com
  * @Date: 2023-08-26 22:49:32
- * @LastEditors: menggt littlecandyi@163.com
- * @LastEditTime: 2023-09-06 18:02:16
+ * @LastEditors: smellycat littlecandyi@163.com
+ * @LastEditTime: 2023-09-06 22:30:10
 -->
 <script setup lang="ts">
 import { useSettingsStore } from '@/store/modules/settings-store'
 import { usePermissionStore } from '@/store/modules/permission-store'
 import Logo from '../logo/index.vue'
 import SideBarItem from '../side-bar-item/index.vue'
+
+const route = useRoute()
 
 const settingsStore = useSettingsStore()
 const permissionStore = usePermissionStore()
@@ -20,45 +22,6 @@ const handleOpen = (key: string, keyPath: string[]) => {
 const handleClose = (key: string, keyPath: string[]) => {
 	console.log(key, keyPath)
 }
-
-function flattenRoutes(originalRoutes: any[]): any[] {
-	const flattenedRoutes: any[] = []
-
-	function flatten(route: any) {
-		if (route.children && route.children.length === 1) {
-			// If a route has only one child, use the child directly
-			flatten(route.children[0])
-		} else {
-			const flattenedRoute: any = {
-				path: route.path,
-				meta: route.meta
-			}
-
-			if (route.children && route.children.length > 0) {
-				route.children.forEach((child: any) => {
-					const flattenedChild: any = {
-						name: child.name || '',
-						path: child.path,
-						props: child.props || false,
-						meta: child.meta
-					}
-					flattenedRoutes.push(flattenedChild)
-				})
-			}
-
-			flattenedRoutes.push(flattenedRoute)
-		}
-	}
-
-	originalRoutes.forEach(route => {
-		flatten(route)
-	})
-
-	return flattenedRoutes
-}
-
-const resList = flattenRoutes(permissionStore.getMenus)
-console.log('resList ----------->', resList)
 </script>
 
 <template>
@@ -75,8 +38,9 @@ console.log('resList ----------->', resList)
 					class="menu-box w-[inherit] transition-colors-300 b-r-0!"
 					:class="{ 'menu-box__radius': settingsStore.menu.menuFillStyle === 'radius' }"
 					:collapse="settingsStore.menu.collapse"
-					default-active="1-4-1"
+					:default-active="permissionStore.getMenus && route.path"
 					router
+					unique-opened
 					@open="handleOpen"
 					@close="handleClose"
 				>
