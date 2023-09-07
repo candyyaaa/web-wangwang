@@ -6,6 +6,9 @@
  * @LastEditTime: 2023-09-06 01:02:25
 -->
 <script setup lang="ts">
+defineOptions({
+	name: 'notFound'
+})
 const { t } = useI18n()
 </script>
 

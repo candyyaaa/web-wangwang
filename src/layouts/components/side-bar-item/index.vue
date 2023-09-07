@@ -2,8 +2,8 @@
  * @Description: <侧边菜单项>
  * @Author: menggt littlecandyi@163.com
  * @Date: 2023-08-31 17:03:15
- * @LastEditors: smellycat littlecandyi@163.com
- * @LastEditTime: 2023-09-06 22:49:37
+ * @LastEditors: menggt littlecandyi@163.com
+ * @LastEditTime: 2023-09-07 14:08:51
 -->
 <script setup lang="ts">
 import { useSettingsStore } from '@/store/modules/settings-store'
@@ -13,6 +13,7 @@ import type { RouteRecordRaw } from 'vue-router'
 interface Props {
 	itemData: RouteRecordRaw
 	basePath?: string
+	isRadius: boolean
 }
 
 // 组件重新定义名称
@@ -21,6 +22,10 @@ defineOptions({
 })
 
 const settingsStore = useSettingsStore()
+// 菜单选中、hover 样式是否圆角
+const isChildRadius = computed(() => {
+	return settingsStore.menu.menuFillStyle === 'radius' && !settingsStore.menu.collapse
+})
 
 const props = withDefaults(defineProps<Props>(), {
 	basePath: ''
@@ -45,7 +50,7 @@ const hasChildren = computed<boolean>(() => {
 	<el-menu-item
 		v-if="!hasChildren"
 		class="group bg-transparent transition-all-300"
-		:rounded="settingsStore.menu.menuFillStyle === 'radius' ? 'xl' : 'none'"
+		:rounded="props.isRadius ? 'xl' : 'none'"
 		bg="transparent hover:#e1e1e1! hover:dark:[var(--el-color-primary-light-5)]!"
 		:index="resolveRoutePath(props.basePath, props.itemData.path)"
 	>
@@ -76,7 +81,7 @@ const hasChildren = computed<boolean>(() => {
 
 		<!-- 递归循环嵌套路由 -->
 		<template v-for="route in props.itemData.children" :key="route.path">
-			<SideBarItem :itemData="route" :base-path="props.basePath" />
+			<SideBarItem :itemData="route" :base-path="props.basePath" :isRadius="isChildRadius" />
 		</template>
 	</el-sub-menu>
 </template>

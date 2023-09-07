@@ -3,7 +3,7 @@
  * @Author: smellycat littlecandyi@163.com
  * @Date: 2023-05-21 21:18:33
  * @LastEditors: menggt littlecandyi@163.com
- * @LastEditTime: 2023-09-06 17:02:44
+ * @LastEditTime: 2023-09-07 15:36:09
  */
 import { createRouter, createWebHistory, isNavigationFailure } from 'vue-router'
 import cloneDeep from 'lodash-es/cloneDeep'
@@ -33,8 +33,8 @@ router.beforeEach(async (to, _, next) => {
 	if (userStore.token) {
 		// 是否已根据权限动态生成并注册路由
 		if (permissionStore.ingenerate) {
-			if (to.name === 'login') {
-				next({ name: 'index', replace: true })
+			if (to.name === 'Login') {
+				next({ name: 'Index', replace: true })
 			} else {
 				next()
 			}
@@ -99,7 +99,7 @@ router.afterEach((to, _, failure) => {
 	) {
 		// 需要缓存的组件
 		keepAliveComponents.push(currentComName as string)
-	} else if (!to.meta?.keepAlive || to.name === 'redirect') {
+	} else if (!to.meta?.keepAlive || to.name === 'Redirect') {
 		// 不需要缓存的组件
 		const index = keepAliveComponents.findIndex(name => name === currentComName)
 		if (index !== -1) {

@@ -3,7 +3,7 @@
  * @Author: menggt littlecandyi@163.com
  * @Date: 2023-08-22 14:52:12
  * @LastEditors: menggt littlecandyi@163.com
- * @LastEditTime: 2023-09-06 17:18:42
+ * @LastEditTime: 2023-09-07 14:14:49
  */
 
  /* 导航栏 el-popover 样式 ----------------------------------------------------------- */
@@ -41,9 +41,8 @@
 .menu-box .el-menu-item.is-active,
 .menu-box .el-menu--collapse .el-sub-menu.is-active > .el-sub-menu__title,
 .menu-box .el-sub-menu .el-menu--inline .el-menu-item.is-active {
-  color: #fff;
-  background-color: var(--el-color-primary) !important;
-	transition: background-color .3s, var(--el-transition-color);
+  --el-menu-active-color: #fff;
+  background-color: var(--el-color-primary);
 }
 
 .menu-box__radius .el-sub-menu__title,

@@ -2,8 +2,8 @@
  * @Description: <侧边菜单>
  * @Author: candy littlecandyi@163.com
  * @Date: 2023-08-26 22:49:32
- * @LastEditors: smellycat littlecandyi@163.com
- * @LastEditTime: 2023-09-06 22:30:10
+ * @LastEditors: menggt littlecandyi@163.com
+ * @LastEditTime: 2023-09-07 15:01:02
 -->
 <script setup lang="ts">
 import { useSettingsStore } from '@/store/modules/settings-store'
@@ -16,6 +16,21 @@ const route = useRoute()
 const settingsStore = useSettingsStore()
 const permissionStore = usePermissionStore()
 
+// 菜单选中、hover 样式是否圆角
+const isRadius = computed<boolean>(() => {
+	return settingsStore.menu.menuFillStyle === 'radius' && !settingsStore.menu.collapse
+})
+
+// 菜单模式
+const menuMode = computed<string>(() => {
+	return settingsStore.menu.menuMode
+})
+
+// 是否折叠菜单
+const collapse = computed<boolean>(() => {
+	return settingsStore.menu.collapse
+})
+
 const handleOpen = (key: string, keyPath: string[]) => {
 	console.log(key, keyPath)
 }
@@ -26,18 +41,26 @@ const handleClose = (key: string, keyPath: string[]) => {
 
 <template>
 	<div h-full w-full>
-		<div h-12.5 px-2.5 bg="#222b45">
-			<Logo :show-logo="settingsStore.menu.menuMode === 'single'" />
+		<div
+			h-12.5
+			px-2.5
+			:bg="menuMode === 'side' ? '#fff' : '#222b45'"
+			transition-background-color-300
+		>
+			<Logo
+				:class="[menuMode === 'side' ? 'text-[var(--el-text-color-primary)]' : 'text-white']"
+				:show-logo="menuMode === 'single'"
+				:show-title="!collapse"
+				sidebar-logo
+				text-base
+			/>
 		</div>
 		<TransitionGroup name="aside-menu">
-			<div
-				:p="settingsStore.menu.menuFillStyle === 'radius' ? 'x-2.5 t-2.5' : '0'"
-				:key="'menu-wrap'"
-			>
+			<div :p="isRadius ? 'x-2.5 t-2.5' : '0'" :key="'menu-wrap'">
 				<el-menu
 					class="menu-box w-[inherit] transition-colors-300 b-r-0!"
-					:class="{ 'menu-box__radius': settingsStore.menu.menuFillStyle === 'radius' }"
-					:collapse="settingsStore.menu.collapse"
+					:class="{ 'menu-box__radius': isRadius }"
+					:collapse="collapse"
 					:default-active="permissionStore.getMenus && route.path"
 					router
 					unique-opened
@@ -45,7 +68,7 @@ const handleClose = (key: string, keyPath: string[]) => {
 					@close="handleClose"
 				>
 					<template v-for="item in permissionStore.getMenus" :key="item.path">
-						<SideBarItem :itemData="item" :base-path="item.path" />
+						<SideBarItem :itemData="item" :base-path="item.path" :isRadius="isRadius" />
 					</template>
 				</el-menu>
 			</div>
@@ -54,10 +77,6 @@ const handleClose = (key: string, keyPath: string[]) => {
 </template>
 
 <style scoped>
-.box {
-	width: 10px;
-}
-
 /* 次侧边栏动画 */
 .aside-menu-enter-active {
 	transition:

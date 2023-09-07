@@ -3,12 +3,12 @@
  * @Author: smellycat littlecandyi@163.com
  * @Date: 2023-05-21 23:35:18
  * @LastEditors: menggt littlecandyi@163.com
- * @LastEditTime: 2023-09-04 10:51:46
+ * @LastEditTime: 2023-09-07 17:57:36
 -->
 <template>
 	<div class="bg-[var(--el-bg-color-page)]" h-full>
 		<el-container h-full>
-			<el-header bg="#222b45"><Header /></el-header>
+			<el-header height="80px" bg="#222b45"><Header /></el-header>
 			<el-container>
 				<el-aside
 					shadow="xl #0000001f dark:#000000b8"
@@ -18,8 +18,12 @@
 				>
 					<SideBar />
 				</el-aside>
-				<el-main>
-					<RouterView />
+				<el-main p="0!" overflow="hidden!">
+					<TagsView />
+
+					<div class="h-[calc(100%-6rem)]" w-full>
+						<RouterView />
+					</div>
 				</el-main>
 			</el-container>
 		</el-container>
@@ -30,6 +34,7 @@
 import { useSettingsStore } from '@/store/modules/settings-store'
 import Header from './components/header/index.vue'
 import SideBar from './components/side-bar/index.vue'
+import TagsView from './components/tags-view/index.vue'
 
 // 设置状态
 const settingsStore = useSettingsStore()

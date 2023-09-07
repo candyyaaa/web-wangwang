@@ -2,8 +2,8 @@
  * @Description: <权限验证>
  * @Author: menggt littlecandyi@163.com
  * @Date: 2023-09-01 10:52:05
- * @LastEditors: smellycat littlecandyi@163.com
- * @LastEditTime: 2023-09-06 22:37:40
+ * @LastEditors: menggt littlecandyi@163.com
+ * @LastEditTime: 2023-09-07 15:08:37
 -->
 <route>
 {
@@ -24,6 +24,10 @@
 	</div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+defineOptions({
+	name: 'Permission'
+})
+</script>
 
 <style scoped></style>

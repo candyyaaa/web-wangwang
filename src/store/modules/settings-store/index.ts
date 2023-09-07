@@ -3,7 +3,7 @@
  * @Author: menggt littlecandyi@163.com
  * @Date: 2023-05-26 17:58:26
  * @LastEditors: menggt littlecandyi@163.com
- * @LastEditTime: 2023-09-04 10:03:12
+ * @LastEditTime: 2023-09-07 14:24:33
  */
 import { localeConfig } from '@/config/element-config'
 
@@ -24,7 +24,7 @@ export const useSettingsStore = defineStore({
 				// 导航栏模式
 				menuMode: 'side',
 				// 导航栏填充样式 - 'default' | 'radius'
-				menuFillStyle: 'default',
+				menuFillStyle: 'radius',
 				// 菜单导航是否收起 - 'false' | true
 				collapse: false
 			}

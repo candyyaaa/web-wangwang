@@ -2,8 +2,8 @@
  * @Description: <工作台>
  * @Author: smellycat littlecandyi@163.com
  * @Date: 2023-08-31 21:51:06
- * @LastEditors: smellycat littlecandyi@163.com
- * @LastEditTime: 2023-09-06 22:10:26
+ * @LastEditors: menggt littlecandyi@163.com
+ * @LastEditTime: 2023-09-07 15:12:33
 -->
 <route>
 {
@@ -21,6 +21,10 @@
 	</div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+defineOptions({
+	name: 'DashboardWorkplace'
+})
+</script>
 
 <style scoped></style>

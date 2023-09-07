@@ -3,11 +3,11 @@
  * @Author: menggt littlecandyi@163.com
  * @Date: 2023-08-07 11:15:58
  * @LastEditors: menggt littlecandyi@163.com
- * @LastEditTime: 2023-09-06 10:27:45
+ * @LastEditTime: 2023-09-07 15:11:49
 -->
 <route>
 {
-	name: "login",
+	name: "Login",
 	meta: {
 		layout: false,
 		title: "登录",
@@ -19,6 +19,10 @@
 
 <script setup lang="ts">
 import { useUserStore } from '@/store/modules/user-store'
+
+defineOptions({
+	name: 'Login'
+})
 
 const router = useRouter()
 const route = useRoute()

@@ -34,6 +34,9 @@
 	<el-button type="primary" @click="toggleMenuFillStyle('default')">默认</el-button>
 	<el-button type="primary" @click="toggleMenuFillStyle('radius')">圆角</el-button>
 	<el-button type="primary" @click="toggleMenuCollapse">切换折叠状态</el-button>
+	<el-button type="primary" @click="toggleMenuMode(1)">切换侧边栏模式（含主导航）</el-button>
+	<el-button type="primary" @click="toggleMenuMode(2)">切换顶部模式</el-button>
+	<el-button type="primary" @click="toggleMenuMode(3)">切换侧边栏模式（不含主导航）</el-button>
 </template>
 
 <script setup lang="ts">
@@ -50,6 +53,20 @@ const toggleMenuFillStyle = (style: 'default' | 'radius') => {
 const toggleMenuCollapse = () => {
 	const isCollapse = !settingsStore.menu.collapse
 	settingsStore.setMenuCollapse(isCollapse)
+}
+
+const toggleMenuMode = (type: number) => {
+	switch (type) {
+		case 1:
+			settingsStore.menu.menuMode = 'side'
+			break
+		case 2:
+			settingsStore.menu.menuMode = 'head'
+			break
+		case 3:
+			settingsStore.menu.menuMode = 'single'
+			break
+	}
 }
 </script>
 
