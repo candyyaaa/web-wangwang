@@ -3,7 +3,7 @@
  * @Author: candy littlecandyi@163.com
  * @Date: 2023-08-26 22:49:32
  * @LastEditors: menggt littlecandyi@163.com
- * @LastEditTime: 2023-09-07 15:01:02
+ * @LastEditTime: 2023-09-08 14:07:22
 -->
 <script setup lang="ts">
 import { useSettingsStore } from '@/store/modules/settings-store'
@@ -40,8 +40,22 @@ const handleClose = (key: string, keyPath: string[]) => {
 </script>
 
 <template>
-	<div h-full w-full>
+	<div
+		class="shadow-[10px_0_10px_-10px_#0000001f] dark:shadow-[10px_0_10px_-10px_#000000b8]"
+		absolute
+		bottom-0
+		left-0
+		top-0
+		h-full
+		w-full
+		overflow-x-hidden
+		overflow-y-auto
+		overscroll-contain
+		bg="white dark:#0a0a0a"
+		transition-all-300
+	>
 		<div
+			v-if="menuMode !== 'head'"
 			h-12.5
 			px-2.5
 			:bg="menuMode === 'side' ? '#fff' : '#222b45'"

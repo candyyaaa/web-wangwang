@@ -3,7 +3,7 @@
  * @Author: menggt littlecandyi@163.com
  * @Date: 2023-05-26 17:58:26
  * @LastEditors: menggt littlecandyi@163.com
- * @LastEditTime: 2023-09-07 14:24:33
+ * @LastEditTime: 2023-09-08 17:25:05
  */
 import { localeConfig } from '@/config/element-config'
 
@@ -22,11 +22,16 @@ export const useSettingsStore = defineStore({
 			},
 			menu: {
 				// 导航栏模式
-				menuMode: 'side',
+				menuMode: 'head',
 				// 导航栏填充样式 - 'default' | 'radius'
 				menuFillStyle: 'radius',
 				// 菜单导航是否收起 - 'false' | true
 				collapse: false
+			},
+			// 标签栏
+			tabBar: {
+				// fashion | card | diamond
+				style: 'fashion'
 			}
 		}
 	},

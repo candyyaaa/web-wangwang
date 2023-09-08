@@ -22,6 +22,5 @@
 	"files.eol": "\n",
 	"unocss.root": "packages/client",
 	"typescript.tsdk": "node_modules/typescript/lib",
-	"i18n-ally.localesPaths": ["locales", "src/i18n"],
-  "typescript.preferences.autoImportFileExcludePatterns": ["vue-router"]
+	"i18n-ally.localesPaths": ["locales", "src/i18n"]
 }

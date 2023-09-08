@@ -3,7 +3,7 @@
  * @Author: menggt littlecandyi@163.com
  * @Date: 2023-05-22 11:06:50
  * @LastEditors: menggt littlecandyi@163.com
- * @LastEditTime: 2023-09-07 17:41:02
+ * @LastEditTime: 2023-09-08 17:48:02
  */
 @font-face {
 	font-display: auto;
@@ -17,7 +17,6 @@ body,
 	height: 100%;
 	margin: 0;
 	padding: 0;
-	overflow: hidden;
 }
 
 /*
@@ -36,25 +35,40 @@ html {
 		'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 }
 
+body {
+	line-height: initial;
+}
+
 /* 全局样式 */
 ::-webkit-scrollbar {
-  width: 12px;
-  height: 12px;
+	width: 12px;
 }
 
-::-webkit-scrollbar-thumb {
-  background-color: rgb(0 0 0 / 40%);
-  background-clip: padding-box;
-  border: 3px solid transparent;
-  border-radius: 6px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background-color: rgb(0 0 0 / 50%);
+::-webkit-scrollbar:horizontal {
+	height: 12px;
 }
 
 ::-webkit-scrollbar-track {
-  background-color: transparent;
+	border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+	background-color: #0003;
+	border-radius: 10px;
+	transition: all 0.2s ease-in-out;
+}
+
+::-webkit-scrollbar-thumb:hover {
+	cursor: pointer;
+	background-color: #0000004d;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+	background-color: #fff3;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+	background-color: #fff6;
 }
 
 /* 去除蓝色边框 */

@@ -3,7 +3,7 @@
  * @Author: smellycat littlecandyi@163.com
  * @Date: 2023-05-21 23:05:42
  * @LastEditors: menggt littlecandyi@163.com
- * @LastEditTime: 2023-09-01 17:22:31
+ * @LastEditTime: 2023-09-08 10:27:08
 -->
 <template>
 	<div>
@@ -21,6 +21,10 @@
 	<ul>
 		<li>阿松大</li>
 	</ul>
+
+	<WashingLoading />
+
+	<WashingLoading />
 
 	<WashingLoading />
 

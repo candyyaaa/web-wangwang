@@ -3,7 +3,7 @@
  * @Author: menggt littlecandyi@163.com
  * @Date: 2023-06-03 15:02:38
  * @LastEditors: menggt littlecandyi@163.com
- * @LastEditTime: 2023-08-11 09:31:47
+ * @LastEditTime: 2023-09-08 16:35:38
 -->
 <script setup lang="ts"></script>
 
@@ -33,8 +33,20 @@
 		radial-gradient(ellipse at center, #aaa 25%, #eee 26%, #eee 50%, #0000 55%),
 		radial-gradient(ellipse at center, #aaa 25%, #eee 26%, #eee 50%, #0000 55%),
 		radial-gradient(ellipse at center, #aaa 25%, #eee 26%, #eee 50%, #0000 55%);
-	background-position: 0 20px, 45px 0, 8px 6px, 55px 3px, 75px 3px, 95px 3px;
-	background-size: 100% 4px, 1px 23px, 30px 8px, 15px 15px, 15px 15px, 15px 15px;
+	background-position:
+		0 20px,
+		45px 0,
+		8px 6px,
+		55px 3px,
+		75px 3px,
+		95px 3px;
+	background-size:
+		100% 4px,
+		1px 23px,
+		30px 8px,
+		15px 15px,
+		15px 15px,
+		15px 15px;
 	animation: shake 3s ease-in-out infinite;
 	transform-origin: 60px 180px;
 }
@@ -46,11 +58,15 @@
 .washing:after {
 	background-image: linear-gradient(to right, #0004 0%, #0004 49%, #0000 50%, #0000 100%),
 		linear-gradient(135deg, #64b5f6 50%, #607d8b 51%);
-	background-size: 30px 100%, 90px 80px;
+	background-size:
+		30px 100%,
+		90px 80px;
 	background-repeat: repeat, no-repeat;
 	background-position: 0 0;
 	border: 10px solid #ddd;
-	box-shadow: 0 0 0 4px #999 inset, 0 0 6px 6px #0004 inset;
+	box-shadow:
+		0 0 0 4px #999 inset,
+		0 0 6px 6px #0004 inset;
 	animation: spin 3s ease-in-out infinite;
 }
 
