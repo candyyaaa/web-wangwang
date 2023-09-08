@@ -2,8 +2,8 @@
  * @Description: <unocss 配置>
  * @Author: menggt littlecandyi@163.com
  * @Date: 2023-05-22 11:30:47
- * @LastEditors: smellycat littlecandyi@163.com
- * @LastEditTime: 2023-09-01 00:39:14
+ * @LastEditors: candy littlecandyi@163.com
+ * @LastEditTime: 2023-09-09 01:22:09
  */
 import {
 	defineConfig,
@@ -17,7 +17,12 @@ import {
 } from 'unocss'
 
 export default defineConfig({
-	rules: [],
+	rules: [
+		[
+			'title-mask',
+			{ '-webkit-mask-image': 'linear-gradient(to right, #000 calc(100% - 20px), transparent)' }
+		]
+	],
 	// 快捷方式
 	shortcuts: {
 		'icon-btn':
