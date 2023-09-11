@@ -2,13 +2,14 @@
  * @Description: <权限状态>
  * @Author: smellycat littlecandyi@163.com
  * @Date: 2023-09-03 02:25:02
- * @LastEditors: smellycat littlecandyi@163.com
- * @LastEditTime: 2023-09-06 22:48:29
+ * @LastEditors: menggt littlecandyi@163.com
+ * @LastEditTime: 2023-09-11 17:27:17
  */
 import store from '@/store'
 import cloneDeep from 'lodash-es/cloneDeep'
 // import { Message } from 'element-plus'
 import { constantRoutes, asyncRoutes, asyncMenus } from '@/router/routes'
+import { storage } from '@/utils/storage'
 import type { RouteRecordRaw } from 'vue-router'
 
 /**
@@ -69,9 +70,11 @@ export const usePermissionStore = defineStore({
 			ingenerate: false,
 			routes: [],
 			menus: [],
+			menusDefaultActive: '/',
 			accessRoutes: [],
 			currentRemoveRoutes: [],
-			keepAliveComponents: []
+			keepAliveComponents: [],
+			tabList: storage.getCache<RouteRecordRaw[]>('tag_tabList', false)
 		}
 	},
 	getters: {
@@ -83,6 +86,16 @@ export const usePermissionStore = defineStore({
 			const tmpMenus = cloneDeep(this.menus)
 
 			return toRaw(sortTreeByRanking(tmpMenus))
+		},
+
+		/**
+		 * 获取标签栏列表数据
+		 * @returns {RouteRecordRaw[]} 返回 sessionStorage 存储的有权访问的标签栏
+		 */
+		getTabs(): RouteRecordRaw[] {
+			const tmpMenus = cloneDeep(this.tabList)
+
+			return toRaw(tmpMenus)
 		}
 	},
 	actions: {
@@ -100,6 +113,13 @@ export const usePermissionStore = defineStore({
 			this.accessRoutes = permissionRoutes
 			// 菜单
 			this.menus = permissionMenus
+
+			// 标签数据
+			storage.setCache(
+				'tag_tabList',
+				permissionMenus.filter(v => v.path === this.menusDefaultActive),
+				false
+			)
 			this.ingenerate = true
 		},
 		/**

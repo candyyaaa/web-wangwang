@@ -3,7 +3,7 @@
  * @Author: smellycat littlecandyi@163.com
  * @Date: 2023-05-21 00:20:17
  * @LastEditors: menggt littlecandyi@163.com
- * @LastEditTime: 2023-09-06 17:13:43
+ * @LastEditTime: 2023-09-11 14:16:15
  */
 import { createApp } from 'vue'
 
@@ -15,6 +15,8 @@ import store from './store'
 import App from './App.vue'
 // 国际化
 import { initLang } from './i18n'
+// 自定义指令
+import { setupDirective } from './directives'
 
 // tailwind 初始化css
 import '@unocss/reset/tailwind.css'
@@ -35,6 +37,8 @@ import 'element-plus/theme-chalk/el-message.css'
 const app = createApp(App)
 // 挂载国际化
 initLang(app)
+// 挂载自定义指令
+setupDirective(app)
 // 挂载路由
 app.use(router)
 // 挂载状态管理

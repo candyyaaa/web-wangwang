@@ -2,14 +2,14 @@
  * @Description: <>
  * @Author: menggt littlecandyi@163.com
  * @Date: 2023-05-23 17:54:43
- * @LastEditors: smellycat littlecandyi@163.com
- * @LastEditTime: 2023-09-06 00:40:07
+ * @LastEditors: menggt littlecandyi@163.com
+ * @LastEditTime: 2023-09-11 17:16:22
  */
 
 import { createAlova } from 'alova'
 import GlobalFetch from 'alova/GlobalFetch'
 import VueHook from 'alova/vue'
-import storage from '@/utils/storage'
+import { storage } from '@/utils/storage'
 
 // const userStore = useUserStoreHook()
 

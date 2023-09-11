@@ -3,7 +3,7 @@
  * @Author: smellycat littlecandyi@163.com
  * @Date: 2023-05-21 23:05:42
  * @LastEditors: menggt littlecandyi@163.com
- * @LastEditTime: 2023-09-08 10:27:08
+ * @LastEditTime: 2023-09-11 14:54:26
 -->
 <template>
 	<div>
@@ -18,7 +18,7 @@
 
 	<el-button type="primary">{{ t('button.cute') }}</el-button>
 
-	<ul>
+	<ul class="text-ul">
 		<li>阿松大</li>
 	</ul>
 
@@ -86,5 +86,9 @@ const toggleMenuMode = (type: number) => {
 }
 .logo.vue:hover {
 	filter: drop-shadow(0 0 2em #42b883aa);
+}
+
+.text-ul {
+	margin-bottom: 20px;
 }
 </style>

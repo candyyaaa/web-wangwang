@@ -3,7 +3,7 @@
  * @Author: menggt littlecandyi@163.com
  * @Date: 2023-09-04 16:05:29
  * @LastEditors: menggt littlecandyi@163.com
- * @LastEditTime: 2023-09-06 17:40:14
+ * @LastEditTime: 2023-09-11 16:59:46
  */
 
 /* 用户状态 */
@@ -42,6 +42,11 @@ declare namespace Permission {
 		 */
 		menus: T[]
 		/**
+		 * 菜单默认选中
+		 * @默认值 `/` - 路由路径
+		 */
+		menusDefaultActive: '/'
+		/**
 		 * @description: 当前删除路由
 		 * @默认值 `[]`
 		 */
@@ -51,5 +56,10 @@ declare namespace Permission {
 		 * @默认值 `[]`
 		 */
 		keepAliveComponents: string[]
+		/**
+		 * 标签列表
+		 * @默认值 `[]` - 空数组
+		 */
+		tabList: T[]
 	}
 }

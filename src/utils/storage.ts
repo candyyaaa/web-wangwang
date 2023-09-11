@@ -3,7 +3,7 @@
  * @Author: menggt littlecandyi@163.com
  * @Date: 2023-09-05 09:29:08
  * @LastEditors: menggt littlecandyi@163.com
- * @LastEditTime: 2023-09-05 09:35:15
+ * @LastEditTime: 2023-09-11 17:15:22
  */
 export class LocalCache {
 	setCache<T = any>(key: string, value: T): boolean
@@ -15,7 +15,7 @@ export class LocalCache {
 	 * @param {boolean} localOrSessionStorage  - true: localStorage, false: sessionStorage
 	 * @return {boolean} 返回是否设置成功
 	 */
-	setCache<T = any>(key: string, value: T, localOrSessionStorage = true): boolean {
+	setCache<T = any>(key: string, value: T, localOrSessionStorage: boolean = true): boolean {
 		try {
 			const val = JSON.stringify(value)
 			if (localOrSessionStorage) {
@@ -37,7 +37,7 @@ export class LocalCache {
 	 * @param {boolean} localOrSessionStorage  - true: localStorage, false: sessionStorage
 	 * @return {unknown} 返回缓存
 	 */
-	getCache<T>(key: string, localOrSessionStorage = true): T {
+	getCache<T>(key: string, localOrSessionStorage: boolean = true): T {
 		let res: any
 		if (localOrSessionStorage) {
 			const val = window.localStorage.getItem(key)
@@ -58,7 +58,7 @@ export class LocalCache {
 	 * @param {string} key - 缓存key
 	 * @param {boolean} localOrSessionStorage - true: localStorage, false: sessionStorage
 	 */
-	deleteCache(key: string, localOrSessionStorage = true): void {
+	deleteCache(key: string, localOrSessionStorage: boolean = true): void {
 		if (localOrSessionStorage) window.localStorage.removeItem(key)
 		else window.sessionStorage.removeItem(key)
 	}
@@ -68,11 +68,11 @@ export class LocalCache {
 	 * @description: 清除所有缓存
 	 * @param {boolean} localOrSessionStorage  - true: localStorage, false: sessionStorage
 	 */
-	clearCache(localOrSessionStorage = true): void {
+	clearCache(localOrSessionStorage: boolean = true): void {
 		if (localOrSessionStorage) window.localStorage.clear()
 		else window.sessionStorage.clear()
 	}
 }
 
 // 缓存对象
-export default new LocalCache()
+export const storage = new LocalCache()

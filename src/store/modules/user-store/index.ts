@@ -3,14 +3,14 @@
  * @Author: menggt littlecandyi@163.com
  * @Date: 2023-05-23 18:19:59
  * @LastEditors: menggt littlecandyi@163.com
- * @LastEditTime: 2023-09-05 16:41:17
+ * @LastEditTime: 2023-09-11 17:16:35
  */
 import store from '@/store'
 import { ElMessage as message } from 'element-plus'
 import { useRequest } from 'alova'
 import { cloneDeep } from 'lodash-es'
 import { login, getUserInfoData } from '@/api/user'
-import storage from '@/utils/storage'
+import { storage } from '@/utils/storage'
 import type { LoginParams, LoginResult, UserInfoResult } from '@/api/user/type'
 import type { ResultData } from '@/api'
 
