@@ -3,7 +3,7 @@
  * @Author: menggt littlecandyi@163.com
  * @Date: 2023-09-07 15:24:08
  * @LastEditors: menggt littlecandyi@163.com
- * @LastEditTime: 2023-09-11 18:00:12
+ * @LastEditTime: 2023-09-14 17:45:29
 -->
 <script setup lang="ts">
 import { useSettingsStore } from '@/store/modules/settings-store'
@@ -97,6 +97,7 @@ const onWheel = (e: WheelEvent) => {
 								leading-9.5
 								hover:z-3
 							>
+								<!-- 分隔线 -->
 								<div
 									absolute
 									top="1/2"
@@ -109,6 +110,8 @@ const onWheel = (e: WheelEvent) => {
 									before:content-empty
 									before:empty="block absolute top-0 left-px bottom-0 w-px opacity-100 bg-[var(--el-border-color-darker)] transition-all-300 select-none group-first:opacity-0"
 								/>
+
+								<!-- 标签背景 20px-->
 								<div
 									:rounded-t="tabBarStyle === 'fashion' ? 2.5 : 0"
 									:bg="
@@ -127,7 +130,12 @@ const onWheel = (e: WheelEvent) => {
 									:opacity="route.fullPath === permissionStore.menusDefaultActive ? 100 : 0"
 									transition-all-300
 									group-hover:opacity-100
+									:content="tabBarStyle === 'card' ? '' : 'after:empty before:empty'"
+									before:empty="tab-corner -left-5 clip-left shadow-[0_0_0_1.25rem_var(--el-bg-color)]"
+									after:empty="tab-corner -right-5 clip-right shadow-[0_0_0_1.25rem_var(--el-bg-color)]"
 								/>
+
+								<!-- 内容主体 -->
 								<div
 									pointer-events-auto
 									h-full

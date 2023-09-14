@@ -3,13 +3,15 @@
  * @Author: candy littlecandyi@163.com
  * @Date: 2023-08-26 22:49:32
  * @LastEditors: menggt littlecandyi@163.com
- * @LastEditTime: 2023-09-11 17:06:34
+ * @LastEditTime: 2023-09-14 15:36:03
 -->
 <script setup lang="ts">
 import { useSettingsStore } from '@/store/modules/settings-store'
 import { usePermissionStore } from '@/store/modules/permission-store'
 import Logo from '../logo/index.vue'
 import SideBarItem from '../side-bar-item/index.vue'
+
+const route = useRoute()
 
 const settingsStore = useSettingsStore()
 const permissionStore = usePermissionStore()
@@ -30,6 +32,7 @@ const collapse = computed<boolean>(() => {
 })
 
 const handleOpen = (key: string, keyPath: string[]) => {
+	console.log('handleOpen ----------->', key, keyPath)
 	console.log(key, keyPath)
 }
 const handleClose = (key: string, keyPath: string[]) => {
@@ -73,7 +76,7 @@ const handleClose = (key: string, keyPath: string[]) => {
 					class="menu-box w-[inherit] transition-colors-300 b-r-0!"
 					:class="{ 'menu-box__radius': isRadius }"
 					:collapse="collapse"
-					:default-active="permissionStore.getMenus && permissionStore.menusDefaultActive"
+					:default-active="permissionStore.getMenus && route.path"
 					router
 					unique-opened
 					@open="handleOpen"

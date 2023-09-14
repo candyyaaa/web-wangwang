@@ -3,7 +3,7 @@
  * @Author: menggt littlecandyi@163.com
  * @Date: 2023-09-04 16:05:29
  * @LastEditors: menggt littlecandyi@163.com
- * @LastEditTime: 2023-09-11 16:59:46
+ * @LastEditTime: 2023-09-14 15:09:53
  */
 
 /* 用户状态 */
@@ -45,7 +45,7 @@ declare namespace Permission {
 		 * 菜单默认选中
 		 * @默认值 `/` - 路由路径
 		 */
-		menusDefaultActive: '/'
+		menusDefaultActive: string
 		/**
 		 * @description: 当前删除路由
 		 * @默认值 `[]`

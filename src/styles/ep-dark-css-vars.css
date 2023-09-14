@@ -3,11 +3,16 @@
  * @Author: menggt littlecandyi@163.com
  * @Date: 2023-09-06 17:09:22
  * @LastEditors: menggt littlecandyi@163.com
- * @LastEditTime: 2023-09-07 14:15:27
+ * @LastEditTime: 2023-09-14 16:21:47
  */
 
 /* html.dark {
+
 } */
+
+html.dark .menu-box .el-menu-item:hover {
+	--el-menu-hover-bg-color: var(--el-color-primary-light-5);
+}
 
 html.dark .menu-box .el-sub-menu__title:hover {
 	--el-menu-hover-bg-color: var(--el-color-primary-light-5);

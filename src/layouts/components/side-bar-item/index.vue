@@ -3,7 +3,7 @@
  * @Author: menggt littlecandyi@163.com
  * @Date: 2023-08-31 17:03:15
  * @LastEditors: menggt littlecandyi@163.com
- * @LastEditTime: 2023-09-07 14:08:51
+ * @LastEditTime: 2023-09-14 16:07:12
 -->
 <script setup lang="ts">
 import { useSettingsStore } from '@/store/modules/settings-store'
@@ -49,9 +49,8 @@ const hasChildren = computed<boolean>(() => {
 <template>
 	<el-menu-item
 		v-if="!hasChildren"
-		class="group bg-transparent transition-all-300"
+		class="group transition-all-300"
 		:rounded="props.isRadius ? 'xl' : 'none'"
-		bg="transparent hover:#e1e1e1! hover:dark:[var(--el-color-primary-light-5)]!"
 		:index="resolveRoutePath(props.basePath, props.itemData.path)"
 	>
 		<el-icon v-if="props.itemData.meta?.icon">

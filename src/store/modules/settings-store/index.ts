@@ -3,7 +3,7 @@
  * @Author: menggt littlecandyi@163.com
  * @Date: 2023-05-26 17:58:26
  * @LastEditors: menggt littlecandyi@163.com
- * @LastEditTime: 2023-09-08 17:25:05
+ * @LastEditTime: 2023-09-14 17:28:14
  */
 import { localeConfig } from '@/config/element-config'
 
