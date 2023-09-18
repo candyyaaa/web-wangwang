@@ -2,8 +2,8 @@
  * @Description: <侧边菜单项>
  * @Author: menggt littlecandyi@163.com
  * @Date: 2023-08-31 17:03:15
- * @LastEditors: menggt littlecandyi@163.com
- * @LastEditTime: 2023-09-14 16:07:12
+ * @LastEditors: smellycat littlecandyi@163.com
+ * @LastEditTime: 2023-09-18 23:30:21
 -->
 <script setup lang="ts">
 import { useSettingsStore } from '@/store/modules/settings-store'
@@ -11,9 +11,9 @@ import { resolveRoutePath } from '@/utils'
 import type { RouteRecordRaw } from 'vue-router'
 
 interface Props {
-	itemData: RouteRecordRaw
 	basePath?: string
 	isRadius: boolean
+	itemData: RouteRecordRaw
 }
 
 // 组件重新定义名称
@@ -53,13 +53,8 @@ const hasChildren = computed<boolean>(() => {
 		:rounded="props.isRadius ? 'xl' : 'none'"
 		:index="resolveRoutePath(props.basePath, props.itemData.path)"
 	>
-		<el-icon v-if="props.itemData.meta?.icon">
-			<div
-				:class="[props.itemData.meta?.icon]"
-				text-lg
-				transition-transform-300
-				group-hover:scale-120
-			/>
+		<el-icon v-if="props.itemData.meta?.icon" transition-transform-300 group-hover:scale-120>
+			<div :class="[props.itemData.meta?.icon]" />
 		</el-icon>
 		<template #title>
 			<span mx-2.5>{{ props.itemData.meta?.title }}</span>
@@ -72,8 +67,8 @@ const hasChildren = computed<boolean>(() => {
 		:index="resolveRoutePath(props.basePath, props.itemData.path)"
 	>
 		<template #title>
-			<el-icon v-if="props.itemData.meta?.icon">
-				<div :class="[props.itemData.meta?.icon]" text-lg transition-transform-300 />
+			<el-icon v-if="props.itemData.meta?.icon" transition-transform-300>
+				<div :class="[props.itemData.meta?.icon]" />
 			</el-icon>
 			<span mx-2.5>{{ props.itemData.meta?.title }}</span>
 		</template>

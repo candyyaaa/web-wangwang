@@ -2,8 +2,8 @@
  * @Description: <>
  * @Author: menggt littlecandyi@163.com
  * @Date: 2023-09-01 10:20:02
- * @LastEditors: menggt littlecandyi@163.com
- * @LastEditTime: 2023-09-07 15:09:12
+ * @LastEditors: smellycat littlecandyi@163.com
+ * @LastEditTime: 2023-09-19 00:01:16
 -->
 <route>
 {
@@ -20,8 +20,8 @@
 </route>
 
 <template>
-	<div>
-		<h1>仪表盘</h1>
+	<div h-full w-full>
+		<RouterView />
 	</div>
 </template>
 
