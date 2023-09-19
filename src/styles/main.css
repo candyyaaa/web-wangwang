@@ -3,13 +3,13 @@
  * @Author: menggt littlecandyi@163.com
  * @Date: 2023-05-22 11:06:50
  * @LastEditors: menggt littlecandyi@163.com
- * @LastEditTime: 2023-09-11 15:36:48
+ * @LastEditTime: 2023-09-19 17:20:05
  */
-@font-face {
+/* @font-face {
 	font-display: auto;
 	font-family: PingFangSC-Regular;
 	src: url('/fonts/PingFangSC-Regular.woff2') format('woff2');
-}
+} */
 
 html,
 body,
@@ -29,7 +29,7 @@ body,
 	苹方-简 中黑体: PingFangSC-Medium
 	苹方-简 中粗体: PingFangSC-Semibold
 */
-html {
+/* html {
 	font-family:
 		PingFangSC-Regular,
 		ui-sans-serif,
@@ -46,11 +46,11 @@ html {
 		'Segoe UI Emoji',
 		'Segoe UI Symbol',
 		'Noto Color Emoji';
-}
+} */
 
-body {
+/* body {
 	line-height: initial;
-}
+} */
 
 /* 全局样式 */
 ::-webkit-scrollbar {

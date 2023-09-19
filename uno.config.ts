@@ -3,7 +3,7 @@
  * @Author: menggt littlecandyi@163.com
  * @Date: 2023-05-22 11:30:47
  * @LastEditors: menggt littlecandyi@163.com
- * @LastEditTime: 2023-09-14 17:36:19
+ * @LastEditTime: 2023-09-19 17:20:54
  */
 import {
 	defineConfig,
@@ -43,7 +43,47 @@ export default defineConfig({
 		// 排版预设
 		presetTypography(),
 		// 字体预设
-		presetWebFonts({})
+		presetWebFonts({
+			fonts: {
+				sans: 'Roboto',
+				mono: ['Fira Code', 'Fira Mono:400,700'],
+				lobster: 'Lobster',
+				lato: [
+					{
+						name: 'Lato',
+						weights: ['400', '700'],
+						italic: true
+					},
+					{
+						name: 'sans-serif',
+						provider: 'none'
+					}
+				]
+			}
+
+			/* 
+				web-fonts生成的字体样式
+				
+				@import url('https://fonts.googleapis.com/css2?family=Roboto&family=Fira+Code&family=Fira+Mono:wght@400;700&family=Lobster&family=Lato:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+				.font-lato {
+					font-family: "Lato", sans-serif;
+				}
+				.font-lobster {
+					font-family: "Lobster";
+				}
+				.font-mono {
+					font-family: "Fira Code", "Fira Mono", ui-monospace, SFMono-Regular, Menlo,
+						Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+				}
+				.font-sans {
+					font-family: "Roboto", ui-sans-serif, system-ui, -apple-system,
+						BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans",
+						sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+						"Noto Color Emoji";
+				}
+			*/
+		})
 	],
 	transformers: [transformerDirectives(), transformerVariantGroup()]
 })

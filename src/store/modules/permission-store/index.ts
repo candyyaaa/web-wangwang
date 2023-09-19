@@ -3,7 +3,7 @@
  * @Author: smellycat littlecandyi@163.com
  * @Date: 2023-09-03 02:25:02
  * @LastEditors: menggt littlecandyi@163.com
- * @LastEditTime: 2023-09-14 15:10:00
+ * @LastEditTime: 2023-09-19 16:09:28
  */
 import store from '@/store'
 import cloneDeep from 'lodash-es/cloneDeep'
@@ -100,7 +100,7 @@ export const usePermissionStore = defineStore({
 	},
 	actions: {
 		/**
-		 * @description: 根据权限数组动态生成路由
+		 * 根据权限数组动态生成路由
 		 * @param {string[]} roles - 权限数组
 		 */
 		generateRoutes(roles: string[]): void {
@@ -123,7 +123,7 @@ export const usePermissionStore = defineStore({
 			this.ingenerate = true
 		},
 		/**
-		 * @description: 记录 accessRoutes 路由，用于登出时删除路由
+		 * 记录 accessRoutes 路由，用于登出时删除路由
 		 * @param {function[]} routes - 数组
 		 */
 		setCurrentRemoveRoutes(routes: (() => void)[]) {
@@ -135,6 +135,13 @@ export const usePermissionStore = defineStore({
 		 */
 		setKeepAliveComponents(compNames: string[]) {
 			this.keepAliveComponents = compNames
+		},
+		/**
+		 * 设置 tab 数据
+		 * @param {RouteRecordRaw[]} list - 侧边菜单数组
+		 */
+		setTagTabList(list: RouteRecordRaw[]) {
+			storage.setCache('tag_tabList', list, false)
 		},
 		/**
 		 * 清空动态路由

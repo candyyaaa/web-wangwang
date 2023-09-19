@@ -3,7 +3,7 @@
  * @Author: smellycat littlecandyi@163.com
  * @Date: 2023-05-21 00:20:17
  * @LastEditors: menggt littlecandyi@163.com
- * @LastEditTime: 2023-09-11 14:16:15
+ * @LastEditTime: 2023-09-19 16:26:47
  */
 import { createApp } from 'vue'
 
@@ -23,8 +23,6 @@ import '@unocss/reset/tailwind.css'
 // 全局css
 import './styles/main.css'
 import './styles/ep.css'
-// uno 原子化
-import 'virtual:uno.css'
 // svg 图标
 import 'virtual:svg-icons-register'
 // ep 暗黑模式css
@@ -33,6 +31,8 @@ import '@/styles/ep-dark-css-vars.css'
 // ep ElMessage 和 ElLoading 的css样式文件
 import 'element-plus/theme-chalk/el-loading.css'
 import 'element-plus/theme-chalk/el-message.css'
+// uno 原子化
+import 'virtual:uno.css'
 
 const app = createApp(App)
 // 挂载国际化
