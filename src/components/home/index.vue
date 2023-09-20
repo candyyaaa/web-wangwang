@@ -3,7 +3,7 @@
  * @Author: smellycat littlecandyi@163.com
  * @Date: 2023-05-21 23:05:42
  * @LastEditors: menggt littlecandyi@163.com
- * @LastEditTime: 2023-09-11 14:54:26
+ * @LastEditTime: 2023-09-20 10:36:41
 -->
 <template>
 	<div>
@@ -29,6 +29,8 @@
 	<WashingLoading />
 
 	<MatchLoading />
+
+	<CubeLoading />
 
 	<div class="i-ant-design-down-circle-outlined" text-lg></div>
 
