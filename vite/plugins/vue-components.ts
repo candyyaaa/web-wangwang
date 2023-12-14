@@ -3,7 +3,7 @@
  * @Author: smellycat littlecandyi@163.com
  * @Date: 2023-05-21 13:25:04
  * @LastEditors: smellycat littlecandyi@163.com
- * @LastEditTime: 2023-05-21 22:25:06
+ * @LastEditTime: 2023-12-12 21:53:10
  */
 import components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
@@ -14,7 +14,7 @@ export default function createComponents() {
 		// 要搜索组件的目录的相对路径
 		dirs: ['src/components'],
 		// 组件的有效文件扩展名。
-		extensions: ['vue'],
+		extensions: ['vue', 'tsx'],
 		// 搜索子目录
 		deep: true,
 		// 自定义组件的解析器

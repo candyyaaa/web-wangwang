@@ -17,10 +17,12 @@
 		"wangwang",
 		"Attributify",
 		"pako",
-    "smellycat"
+		"smellycat",
+    "menggt"
 	],
 	"files.eol": "\n",
 	"unocss.root": "packages/client",
 	"typescript.tsdk": "node_modules/typescript/lib",
-	"i18n-ally.localesPaths": ["locales", "src/i18n"]
+	"i18n-ally.localesPaths": ["locales", "src/i18n"],
+  "css.lint.unknownAtRules": "ignore",
 }

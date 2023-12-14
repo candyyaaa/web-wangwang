@@ -2,8 +2,8 @@
  * @Description: <>
  * @Author: menggt littlecandyi@163.com
  * @Date: 2023-05-22 11:06:50
- * @LastEditors: menggt littlecandyi@163.com
- * @LastEditTime: 2023-09-19 17:20:05
+ * @LastEditors: smellycat littlecandyi@163.com
+ * @LastEditTime: 2023-12-12 23:54:09
  */
 /* @font-face {
 	font-display: auto;
@@ -21,7 +21,7 @@ body,
 
 /*
 	TODO: font-pingfang-sc 苹方字体npm包名
-	缺点: 不管有没有用到会把所有的字体都打包 高达 35M
+	! 缺点: 不管有没有用到会把所有的字体都打包 高达 35M
 	苹方-简 常规体: PingFangSC-Regular
 	苹方-简 极细体: PingFangSC-Ultralight
 	苹方-简 细 体: PingFangSC-Light

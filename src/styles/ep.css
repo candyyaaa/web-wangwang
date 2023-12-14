@@ -3,10 +3,10 @@
  * @Author: menggt littlecandyi@163.com
  * @Date: 2023-08-22 14:52:12
  * @LastEditors: smellycat littlecandyi@163.com
- * @LastEditTime: 2023-09-18 23:32:40
+ * @LastEditTime: 2023-12-14 01:04:30
  */
 
- /* 导航栏 el-popover 样式 ----------------------------------------------------------- */
+/* 导航栏 el-popover 样式 ----------------------------------------------------------- */
 .notification-popover .notification-tabs {
 	margin-top: -10px;
 }
@@ -23,11 +23,13 @@
 /* 菜单栏 el-menu 样式 ----------------------------------------------------------- */
 .menu-box .el-sub-menu__title {
 	background-color: transparent;
-	transition: all 0.3s, var(--el-transition-color);
+	transition:
+		all 0.3s,
+		var(--el-transition-color);
 }
 
 .menu-box .el-sub-menu__title:hover {
-	--el-menu-hover-bg-color: #e1e1e1
+	--el-menu-hover-bg-color: #e1e1e1;
 }
 
 .menu-box .el-sub-menu__title:hover .el-icon {
@@ -45,11 +47,59 @@
 .menu-box .el-menu-item.is-active,
 .menu-box .el-menu--collapse .el-sub-menu.is-active > .el-sub-menu__title,
 .menu-box .el-sub-menu .el-menu--inline .el-menu-item.is-active {
-  --el-menu-active-color: #fff;
-  background-color: var(--el-color-primary);
+	--el-menu-active-color: #fff;
+	background-color: var(--el-color-primary);
 }
 
 .menu-box__radius .el-sub-menu__title,
 .menu-box__radius .el-sub-menu .el-menu--inline {
 	border-radius: 12px;
+}
+
+/* 登录页面魔改表单样式 */
+.login-center {
+	.login-form {
+		@apply h-full flex flex-1 flex-col justify-center;
+
+		.el-input__wrapper {
+			@apply tracking-[0.15px] border-none rounded-lg bg-login-bg transition-all-250 shadow-[inset_2px_2px_4px_#d1d9e6,inset_-2px_-2px_4px_#f9f9f9];
+
+			&:hover {
+				@apply shadow-[inset_2px_2px_4px_#d1d9e6,inset_-2px_-2px_4px_#f9f9f9];
+			}
+
+			&.is-focus {
+				@apply shadow-[inset_4px_4px_4px_#d1d9e6,inset_-4px_-4px_4px_#f9f9f9];
+			}
+		}
+	}
+
+	.el-button {
+		@apply mt-4 w-full bg-#4B70E2 border-none shadow-[8px_8px_16px_#d1d9e6,-8px_-8px_16px_#f9f9f9] transition-all-250;
+
+		.el-button__text--expand {
+			@apply text-#f9f9f9;
+		}
+
+		&:hover {
+			@apply shadow-[2px_2px_6px_#d1d9e6,-2px_-2px_6px_#f9f9f9] scale-[0.97] bg-#4B70E2;
+		}
+
+		&:focus {
+			@apply bg-#4B70E2;
+		}
+	}
+
+	.switch-btn {
+		@apply w-48 h-10 mt-10;
+
+		&:active,
+		&:focus {
+			@apply shadow-[2px_2px_6px_#d1d9e6,-2px_-2px_6px_#f9f9f9] scale-[0.97];
+		}
+	}
+
+	.el-link {
+		vertical-align: baseline;
+	}
 }
