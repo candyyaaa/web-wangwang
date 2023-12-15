@@ -3,7 +3,7 @@
  * @Author: menggt littlecandyi@163.com
  * @Date: 2023-05-22 11:30:47
  * @LastEditors: smellycat littlecandyi@163.com
- * @LastEditTime: 2023-12-14 19:54:37
+ * @LastEditTime: 2023-12-16 00:16:47
  */
 import {
 	defineConfig,
@@ -25,19 +25,31 @@ export default defineConfig({
 		['clip-left', { 'clip-path': 'inset(50% -0.625rem 0 50%)' }],
 		['clip-right', { 'clip-path': 'inset(50% 50% 0 -0.625rem)' }]
 	],
-	// 快捷方式 300px
-	shortcuts: {
-		'icon-btn':
-			'inline-block cursor-pointer select-none transition duration-200 ease-in-out hover:text-teal-600 hover:scale-105',
-		'tab-corner':
-			'absolute bottom-0 h-5 w-5 rounded-100% shadow-[0_0_0_1.25rem_transparent] transition-shadow-300 select-none',
-		'login-container':
-			'flex items-center justify-center absolute top-0 w-3/5 h-full p-6 bg-login-bg transition-all-1250',
-		'login-switch_circle':
-			'absolute w-125 h-125 rounded-1/2 bg-login-bg shadow-[inset_8px_8px_12px_#b8bec7,inset_-8px_-8px_12px_#fff] -bottom-3/5 -left-3/5 transition-all-1250',
-		'login-switch_circle-t': '-top-30% left-3/5 w-75 h-75',
-		'login-switch-hidden': 'absolute invisible opacity-0 transition-all-1250'
-	},
+	// 快捷方式
+	shortcuts: [
+		{
+			'icon-btn':
+				'inline-block cursor-pointer select-none transition duration-200 ease-in-out hover:text-teal-600 hover:scale-105'
+		},
+		{
+			'tab-corner':
+				'absolute bottom-0 h-5 w-5 rounded-100% shadow-[0_0_0_1.25rem_transparent] transition-shadow-300 select-none'
+		},
+		{
+			'login-container':
+				'flex items-center justify-center absolute top-0 w-3/5 h-full p-6 bg-login-bg transition-all-1250'
+		},
+		{
+			'login-switch_circle':
+				'absolute w-[calc(100%*1.25)] rounded-1/2 bg-login-bg shadow-[inset_8px_8px_12px_#b8bec7,inset_-8px_-8px_12px_#fff] -bottom-3/5 left-0 transition-all-1250'
+		},
+		{
+			'login-switch_circle-t': 'left-0 w-[calc(100%*0.75)] -top-30%'
+		},
+		{
+			'login-switch-hidden': 'absolute invisible opacity-0 transition-all-1250'
+		}
+	],
 	theme: {
 		colors: {
 			loginBg: '#ecf0f3'

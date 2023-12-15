@@ -3,7 +3,7 @@
  * @Author: menggt littlecandyi@163.com
  * @Date: 2023-08-07 11:15:58
  * @LastEditors: smellycat littlecandyi@163.com
- * @LastEditTime: 2023-12-14 19:59:26
+ * @LastEditTime: 2023-12-16 01:27:12
 -->
 <route>
 {
@@ -42,7 +42,8 @@ const route = useRoute()
 const userStore = useUserStore()
 
 // 按钮loading
-const btnLoading = ref(false)
+const loginBtnLoading = ref(false)
+const registerBtnLoading = ref(false)
 // 登录成功重定向
 const redirect = ref(route.query.redirect?.toString() ?? '/')
 
@@ -62,7 +63,9 @@ const registerRules = reactive<FormRules<RegisterRuleForm>>({
 // 登录表单
 const loginFormRef = ref<FormInstance>()
 const loginForm = reactive<LoginRuleForm>({
+	// name: '',
 	name: 'candy',
+	// password: '',
 	password: '123456!',
 	rememberPassword: false
 })
@@ -74,44 +77,136 @@ const loginRules = reactive<FormRules<LoginRuleForm>>({
 // 切换控制 默认显示登录
 const switchLoginController = ref(true)
 const switchRegisterController = ref(false)
+// 切换框缩放控制
+const switchExpandController = ref(false)
+// 控制移动
+const switchMoveController = ref(false)
+// 登录注册表单移动控制
+const containerMoveController = ref(false)
+// 密码可见控制
+const loginPasswordInvisible = ref(false)
+const registerPasswordInvisible = ref(false)
+const registerConfirmPasswordInvisible = ref(false)
+// 动态获取宽度
+const loginSwitch = ref<HTMLDivElement | null>(null)
+const loginSwitchOffsetWidth = ref<number>(0)
 
-const onSubmitLogin = async () => {
-	const query = {
-		account: 'candy',
-		// account: 'candy1',
-		password: '123456!'
-		// password: '123456!1'
+onMounted(() => {
+	loginSwitchOffsetWidth.value = loginSwitch.value?.offsetWidth ?? 0
+})
+
+const onSubmitLogin = async (formEl: FormInstance | undefined) => {
+	if (!formEl) {
+		return
 	}
 
-	btnLoading.value = true
-
-	userStore
-		.login(query)
-		.then(result => {
-			if (result.token) {
-				router.push(redirect.value)
+	await formEl.validate(valid => {
+		if (valid) {
+			const query = {
+				account: loginForm.name,
+				password: loginForm.password
 			}
-		})
-		.catch(err => {
-			console.log('err ----------->', err)
-		})
-		.finally(() => {
-			btnLoading.value = false
-		})
+
+			loginBtnLoading.value = true
+
+			userStore
+				.login(query)
+				.then(result => {
+					if (result.token) {
+						router.push(redirect.value)
+					}
+				})
+				.catch(err => {
+					console.log('err ----------->', err)
+				})
+				.finally(() => {
+					loginBtnLoading.value = false
+				})
+		}
+	})
+}
+
+const onSubmitRegister = async (formEl: FormInstance | undefined) => {
+	if (!formEl) {
+		return
+	}
+
+	formEl.validate(valid => {
+		if (valid) {
+			const query = {
+				account: registerForm.name,
+				password: registerForm.password
+			}
+
+			console.log(query)
+		}
+	})
 }
 
 const handleSwitch = (): void => {
+	if (!registerFormRef) {
+		return
+	}
+
+	if (!loginFormRef) {
+		return
+	}
+
+	// 优先切换框缩放
+	switchExpandController.value = true
+	setTimeout(() => {
+		// 删除类名
+		switchExpandController.value = false
+	}, 1500)
+
+	// 移动
+	switchMoveController.value = !switchMoveController.value
+
+	// 切换显示控制
 	switchLoginController.value = !switchLoginController.value
 	switchRegisterController.value = !switchRegisterController.value
+
+	// 表单移动
+	containerMoveController.value = !containerMoveController.value
+
+	// 清空表单数据
+	clearFormDate()
 }
 
-const handleRegister = () => {
-	console.log(registerForm)
+const handlePasswordIcon = (key: number, val: boolean): void => {
+	switch (key) {
+		case 1:
+			loginPasswordInvisible.value = !val
+			break
+		case 2:
+			registerPasswordInvisible.value = !val
+			break
+		case 3:
+			registerConfirmPasswordInvisible.value = !val
+			break
+	}
+}
+
+const clearFormDate = (): void => {
+	loginForm.name = ''
+	loginForm.password = ''
+	loginForm.rememberPassword = false
+
+	registerForm.name = ''
+	registerForm.password = ''
+	registerForm.confirmPassword = ''
+
+	loginPasswordInvisible.value = false
+	registerPasswordInvisible.value = false
+	registerConfirmPasswordInvisible.value = false
+
+	registerFormRef.value?.resetFields()
+	loginFormRef.value?.resetFields()
 }
 </script>
 
 <template>
-	<div bg-login-bg h-full w-full flex items-center justify-center overflow-hidden text="#a0a5a8">
+	<div h-full w-full flex items-center justify-center overflow-hidden bg-login-bg text="#a0a5a8">
 		<div
 			class="login-center"
 			relative
@@ -123,7 +218,12 @@ const handleRegister = () => {
 			p-6
 		>
 			<!-- 注册 -->
-			<!-- <div login-container right-0 z-0>
+			<div
+				:class="{ 'left-2/5': containerMoveController, 'z-200': containerMoveController }"
+				login-container
+				left-0
+				z-0
+			>
 				<el-form
 					ref="registerFormRef"
 					:model="registerForm"
@@ -152,6 +252,14 @@ const handleRegister = () => {
 									<template #prefix>
 										<SvgIcon name="lock" />
 									</template>
+									<template #suffix>
+										<SvgIcon
+											class="icon-btn hover:text-#a0a5a8"
+											v-show="registerForm.password"
+											:name="registerPasswordInvisible ? 'eye' : 'eye-invisible'"
+											@click="handlePasswordIcon(2, registerPasswordInvisible)"
+										/>
+									</template>
 								</el-input>
 							</el-form-item>
 						</el-col>
@@ -163,6 +271,14 @@ const handleRegister = () => {
 									<template #prefix>
 										<SvgIcon name="lock" />
 									</template>
+									<template #suffix>
+										<SvgIcon
+											class="icon-btn hover:text-#a0a5a8"
+											v-show="registerForm.confirmPassword"
+											:name="registerConfirmPasswordInvisible ? 'eye' : 'eye-invisible'"
+											@click="handlePasswordIcon(3, registerConfirmPasswordInvisible)"
+										/>
+									</template>
 								</el-input>
 							</el-form-item>
 						</el-col>
@@ -170,15 +286,20 @@ const handleRegister = () => {
 					<el-row justify="center">
 						<el-col :span="16">
 							<el-form-item>
-								<el-button round @click="handleRegister">注册</el-button>
+								<el-button
+									round
+									:loading="registerBtnLoading"
+									@click="onSubmitRegister(registerFormRef)"
+									>注册</el-button
+								>
 							</el-form-item>
 						</el-col>
 					</el-row>
 				</el-form>
-			</div> -->
+			</div>
 
 			<!-- 登录 -->
-			<div login-container left-0 z-100>
+			<div :class="{ 'left-2/5': containerMoveController }" login-container left-0 z-100>
 				<el-form
 					ref="loginFormRef"
 					:model="loginForm"
@@ -197,15 +318,28 @@ const handleRegister = () => {
 										<SvgIcon name="user" />
 									</template>
 								</el-input>
+								<!-- <label class="placeholder">用户名</label> -->
 							</el-form-item>
 						</el-col>
 					</el-row>
 					<el-row justify="center">
 						<el-col :span="16">
 							<el-form-item prop="password">
-								<el-input v-model="loginForm.password" placeholder="密码" clearable>
+								<el-input
+									v-model="loginForm.password"
+									:type="loginPasswordInvisible ? 'text' : 'password'"
+									placeholder="密码"
+								>
 									<template #prefix>
 										<SvgIcon name="lock" />
+									</template>
+									<template #suffix>
+										<SvgIcon
+											class="icon-btn hover:text-#a0a5a8"
+											v-show="loginForm.password"
+											:name="loginPasswordInvisible ? 'eye' : 'eye-invisible'"
+											@click="handlePasswordIcon(1, loginPasswordInvisible)"
+										/>
 									</template>
 								</el-input>
 							</el-form-item>
@@ -222,21 +356,26 @@ const handleRegister = () => {
 					<el-row justify="center">
 						<el-col :span="16">
 							<el-form-item>
-								<el-button round @click="handleRegister">登录</el-button>
+								<el-button round :loading="loginBtnLoading" @click="onSubmitLogin(loginFormRef)"
+									>登录</el-button
+								>
 							</el-form-item>
 						</el-col>
 					</el-row>
 				</el-form>
 			</div>
 
-			<!-- 切换 23.75rem-->
+			<!-- 切换 -->
 			<div
+				ref="loginSwitch"
+				:class="{
+					'left-[calc(100%-40%)]': true,
+					'animate-login-expand': switchExpandController,
+					'left-0': switchMoveController
+				}"
 				w="2/5"
 				shadow="[4px_4px_10px_#d1d9e6,-4px_-4px_10px_#d1d9e6]"
-				bg-login-bg
-				animate-login-expand
 				absolute
-				right-0
 				top-0
 				z-200
 				h-full
@@ -244,11 +383,23 @@ const handleRegister = () => {
 				items-center
 				justify-center
 				overflow-hidden
+				bg-login-bg
 				p-12
 				transition-all-1250
 			>
-				<div login-switch_circle></div>
-				<div login-switch_circle login-switch_circle-t></div>
+				<!-- 顶部圆圈 -->
+				<div
+					login-switch_circle
+					login-switch_circle-t
+					:class="{ 'left-2/5': switchMoveController }"
+					:style="{ height: `calc(${loginSwitchOffsetWidth}px*0.75)` }"
+				></div>
+				<!-- 底部部圆圈 -->
+				<div
+					login-switch_circle
+					:class="{ '-left-3/5': switchMoveController }"
+					:style="{ height: `calc(${loginSwitchOffsetWidth}px*1.25)` }"
+				></div>
 
 				<div
 					:class="{ 'login-switch-hidden': switchRegisterController }"
@@ -301,10 +452,5 @@ const handleRegister = () => {
 				</div>
 			</div>
 		</div>
-		<h1>登录页面</h1>
-		<!-- .625rem -->
-		<el-button type="primary" :loading="btnLoading" @click="onSubmitLogin">登录</el-button>
 	</div>
 </template>
-
-<style lang="scss" scoped></style>
