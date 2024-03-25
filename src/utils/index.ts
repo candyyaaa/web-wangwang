@@ -2,50 +2,12 @@
  * @Description: <工具函数集合>
  * @Author: menggt littlecandyi@163.com
  * @Date: 2023-08-04 17:49:12
- * @LastEditors: menggt littlecandyi@163.com
- * @LastEditTime: 2023-09-04 11:15:54
+ * @LastEditors: smellycat littlecandyi@163.com
+ * @LastEditTime: 2024-02-02 01:38:37
  */
 import { resolve } from 'path-browserify'
-import pako from 'pako'
 
-/**
- * @description: 解压gzip
- * @param {string} b64Data
- * @return {string} `string`
- */
-export const unzip = (b64Data: string): string => {
-	try {
-		const strData = atob(b64Data)
-		const charData = strData.split('').map(x => x.charCodeAt(0))
-		const binData = new Uint8Array(charData)
-		return pako.inflate(binData, { to: 'string' })
-	} catch (error) {
-		console.log('unzip err----------->', error)
-		return ''
-	}
-}
-
-/**
- * @description: 扁平化树结构
- * @param {array} tree
- * @return {*}
- */
-export const flattenTree = (tree: any): any[] => {
-	return [
-		tree,
-		...tree.children.reduceRight((acc: any, curr: any) => {
-			return [...acc, ...flattenTree(curr)]
-		}, [])
-	]
-}
-
-// tree 数组 扁平化
-export const treeToArray = (tree: any): any[] => {
-	return tree.reduce((res: any, item: any) => {
-		const { children, ...i } = item
-		return res.concat(i, children && children.length ? treeToArray(children) : [])
-	}, [])
-}
+import type { RouteRecordRaw } from 'vue-router'
 
 /**
  * @description: 转化路由路径
@@ -55,4 +17,18 @@ export const treeToArray = (tree: any): any[] => {
  */
 export function resolveRoutePath(basePath: string, routePath?: string): string {
 	return basePath ? resolve(basePath, routePath ?? '') : routePath ?? ''
+}
+
+/**
+ * 根据传入的权限标识列表，判断当前路由是否有权限
+ * @param {string[]} roles - 权限标识列表
+ * @param {RouteRecordRaw} value - 路由信息
+ * @returns {boolean} 返回 true 表示有权限，返回 false 表示无权限
+ */
+export const hasPermission = (roles: string[], value: RouteRecordRaw): boolean => {
+	if (!value.meta?.roles) {
+		return false
+	}
+
+	return roles.some(role => value.meta?.roles?.includes(role))
 }

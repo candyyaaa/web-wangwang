@@ -2,8 +2,8 @@
  * @Description: <>
  * @Author: smellycat littlecandyi@163.com
  * @Date: 2023-05-21 21:19:10
- * @LastEditors: menggt littlecandyi@163.com
- * @LastEditTime: 2023-09-07 17:55:32
+ * @LastEditors: smellycat littlecandyi@163.com
+ * @LastEditTime: 2023-09-27 23:00:13
 -->
 <route>
 {
@@ -14,7 +14,8 @@
 		roles: ["1"],
 		icon: "i-carbon-home",
 		hidden: false,
-		ranking: 0
+		ranking: 0,
+		affix: true
 	}
 }
 </route>

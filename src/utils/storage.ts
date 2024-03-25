@@ -2,12 +2,12 @@
  * @Description: <>
  * @Author: menggt littlecandyi@163.com
  * @Date: 2023-09-05 09:29:08
- * @LastEditors: menggt littlecandyi@163.com
- * @LastEditTime: 2023-09-11 17:15:22
+ * @LastEditors: smellycat littlecandyi@163.com
+ * @LastEditTime: 2024-02-01 02:17:05
  */
 export class LocalCache {
-	setCache<T = any>(key: string, value: T): boolean
-	setCache<T = any>(key: string, value: T, localOrSessionStorage: boolean): boolean
+	setCache<T = unknown>(key: string, value: T): boolean
+	setCache<T = unknown>(key: string, value: T, localOrSessionStorage: boolean): boolean
 	/**
 	 * @description: 设置缓存
 	 * @param {string} key - 缓存key
@@ -15,7 +15,7 @@ export class LocalCache {
 	 * @param {boolean} localOrSessionStorage  - true: localStorage, false: sessionStorage
 	 * @return {boolean} 返回是否设置成功
 	 */
-	setCache<T = any>(key: string, value: T, localOrSessionStorage: boolean = true): boolean {
+	setCache<T = unknown>(key: string, value: T, localOrSessionStorage: boolean = true): boolean {
 		try {
 			const val = JSON.stringify(value)
 			if (localOrSessionStorage) {
@@ -29,8 +29,8 @@ export class LocalCache {
 		return true
 	}
 
-	getCache<T = any>(key: string): T
-	getCache<T = any>(key: string, localOrSessionStorage: boolean): T
+	getCache<T = unknown>(key: string): T
+	getCache<T = unknown>(key: string, localOrSessionStorage: boolean): T
 	/**
 	 * @description: 获取缓存
 	 * @param {string} key - 缓存key
@@ -38,7 +38,7 @@ export class LocalCache {
 	 * @return {unknown} 返回缓存
 	 */
 	getCache<T>(key: string, localOrSessionStorage: boolean = true): T {
-		let res: any
+		let res: unknown
 		if (localOrSessionStorage) {
 			const val = window.localStorage.getItem(key)
 			if (val) {

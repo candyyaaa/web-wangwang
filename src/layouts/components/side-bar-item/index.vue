@@ -3,10 +3,10 @@
  * @Author: menggt littlecandyi@163.com
  * @Date: 2023-08-31 17:03:15
  * @LastEditors: smellycat littlecandyi@163.com
- * @LastEditTime: 2023-11-19 02:02:18
+ * @LastEditTime: 2024-02-24 22:26:23
 -->
 <script setup lang="ts">
-import { useSettingsStore } from '@/store/modules/settings-store'
+import appStore from '@/store'
 import { resolveRoutePath } from '@/utils'
 import type { RouteRecordRaw } from 'vue-router'
 
@@ -21,10 +21,10 @@ defineOptions({
 	name: 'SideBarItem'
 })
 
-const settingsStore = useSettingsStore()
+const { menu } = storeToRefs(appStore.useSettingsStore)
 // 菜单选中、hover 样式是否圆角
 const isChildRadius = computed(() => {
-	return settingsStore.menu.menuFillStyle === 'radius' && !settingsStore.menu.collapse
+	return menu.value.menuFillStyle === 'radius' && !menu.value.collapse
 })
 
 const props = withDefaults(defineProps<Props>(), {
@@ -47,37 +47,39 @@ const hasChildren = computed<boolean>(() => {
 </script>
 
 <template>
-	<el-menu-item
-		v-if="!hasChildren"
-		class="group transition-all-300"
-		:rounded="props.isRadius ? 'xl' : 'none'"
-		:index="resolveRoutePath(props.basePath, props.itemData.path)"
-	>
-		<el-icon v-if="props.itemData.meta?.icon" transition-transform-300 group-hover:scale-120>
-			<div :class="[props.itemData.meta?.icon]" />
-		</el-icon>
-		<template #title>
-			<span mx-2.5>{{ props.itemData.meta?.title }}</span>
-		</template>
-	</el-menu-item>
-	<!-- 嵌套路由 -->
-	<el-sub-menu
-		v-else
-		transition-all-300
-		:index="resolveRoutePath(props.basePath, props.itemData.path)"
-	>
-		<template #title>
-			<el-icon v-if="props.itemData.meta?.icon" transition-transform-300>
+	<template v-if="!props.itemData.meta?.hidden">
+		<el-menu-item
+			v-if="!hasChildren"
+			class="group transition-all-300"
+			:rounded="props.isRadius ? 'xl' : 'none'"
+			:index="resolveRoutePath(props.basePath, props.itemData.path)"
+		>
+			<el-icon v-if="props.itemData.meta?.icon" transition-transform-300 group-hover:scale-120>
 				<div :class="[props.itemData.meta?.icon]" />
 			</el-icon>
-			<span mx-2.5>{{ props.itemData.meta?.title }}</span>
-		</template>
+			<template #title>
+				<span mx-2.5>{{ props.itemData.meta?.title }}</span>
+			</template>
+		</el-menu-item>
+		<!-- 嵌套路由 -->
+		<el-sub-menu
+			v-else
+			transition-all-300
+			:index="resolveRoutePath(props.basePath, props.itemData.path)"
+		>
+			<template #title>
+				<el-icon v-if="props.itemData.meta?.icon" transition-transform-300>
+					<div :class="[props.itemData.meta?.icon]" />
+				</el-icon>
+				<span mx-2.5>{{ props.itemData.meta?.title }}</span>
+			</template>
 
-		<!-- 递归循环嵌套路由 -->
-		<template v-for="route in props.itemData.children" :key="route.path">
-			<SideBarItem :itemData="route" :base-path="props.basePath" :isRadius="isChildRadius" />
-		</template>
-	</el-sub-menu>
+			<!-- 递归循环嵌套路由 -->
+			<template v-for="route in props.itemData.children" :key="route.path">
+				<SideBarItem :itemData="route" :base-path="props.basePath" :isRadius="isChildRadius" />
+			</template>
+		</el-sub-menu>
+	</template>
 </template>
 
 <style scoped></style>

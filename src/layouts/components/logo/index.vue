@@ -2,11 +2,11 @@
  * @Description: <logo>
  * @Author: smellycat littlecandyi@163.com
  * @Date: 2023-05-26 00:46:54
- * @LastEditors: menggt littlecandyi@163.com
- * @LastEditTime: 2023-09-07 15:38:02
+ * @LastEditors: smellycat littlecandyi@163.com
+ * @LastEditTime: 2024-02-24 22:26:10
 -->
 <script setup lang="ts">
-import { useSettingsStore } from '@/store/modules/settings-store'
+import appStore from '@/store'
 import logoImg from '@/assets/images/logo.png'
 
 type Props = {
@@ -21,7 +21,7 @@ const props = withDefaults(defineProps<Props>(), {
 	sidebarLogo: false
 })
 
-const settingsStore = useSettingsStore()
+const { home } = storeToRefs(appStore.useSettingsStore)
 
 const title = ref(import.meta.env.VITE_APP_TITLE)
 
@@ -30,7 +30,7 @@ const to = computed<{ name?: string | undefined }>(() => {
 	const rtn: {
 		name?: string
 	} = {}
-	if (settingsStore.home.enable) {
+	if (home.value.enable) {
 		rtn.name = 'Index'
 	}
 	return rtn
@@ -50,7 +50,7 @@ const to = computed<{ name?: string | undefined }>(() => {
 		justify-center
 		bg-inherit
 		text-2xl
-		:class="{ 'cursor-pointer': settingsStore.home.enable }"
+		:class="{ 'cursor-pointer': home.enable }"
 		:title="title"
 	>
 		<img

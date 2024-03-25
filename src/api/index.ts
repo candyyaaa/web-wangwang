@@ -2,8 +2,8 @@
  * @Description: <>
  * @Author: menggt littlecandyi@163.com
  * @Date: 2023-05-23 17:54:43
- * @LastEditors: menggt littlecandyi@163.com
- * @LastEditTime: 2023-09-11 17:16:22
+ * @LastEditors: smellycat littlecandyi@163.com
+ * @LastEditTime: 2024-01-31 22:38:46
  */
 
 import { createAlova } from 'alova'
@@ -11,9 +11,7 @@ import GlobalFetch from 'alova/GlobalFetch'
 import VueHook from 'alova/vue'
 import { storage } from '@/utils/storage'
 
-// const userStore = useUserStoreHook()
-
-export interface ResultData<T = any> {
+export interface ResultData<T = unknown> {
 	code: number
 	data: T
 	message: string

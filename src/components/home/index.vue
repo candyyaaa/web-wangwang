@@ -2,8 +2,8 @@
  * @Description: <>
  * @Author: smellycat littlecandyi@163.com
  * @Date: 2023-05-21 23:05:42
- * @LastEditors: menggt littlecandyi@163.com
- * @LastEditTime: 2023-09-20 10:36:41
+ * @LastEditors: smellycat littlecandyi@163.com
+ * @LastEditTime: 2024-02-26 20:49:08
 -->
 <template>
 	<div>
@@ -46,31 +46,35 @@
 </template>
 
 <script setup lang="ts">
-import { useSettingsStore } from '@/store/modules/settings-store'
+import appStore from '@/store'
 import HelloWorld from '../HelloWorld.vue'
 
+const route = useRoute()
+console.log('router', route.matched[0].components?.default)
+
 const { t } = useI18n()
-const settingsStore = useSettingsStore()
+const { menu } = storeToRefs(appStore.useSettingsStore)
+const { setMenuFillStyle, setMenuCollapse } = appStore.useSettingsStore
 
 const toggleMenuFillStyle = (style: 'default' | 'radius') => {
-	settingsStore.setMenuFillStyle(style)
+	setMenuFillStyle(style)
 }
 
 const toggleMenuCollapse = () => {
-	const isCollapse = !settingsStore.menu.collapse
-	settingsStore.setMenuCollapse(isCollapse)
+	const isCollapse = !menu.value.collapse
+	setMenuCollapse(isCollapse)
 }
 
 const toggleMenuMode = (type: number) => {
 	switch (type) {
 		case 1:
-			settingsStore.menu.menuMode = 'side'
+			menu.value.menuMode = 'side'
 			break
 		case 2:
-			settingsStore.menu.menuMode = 'head'
+			menu.value.menuMode = 'head'
 			break
 		case 3:
-			settingsStore.menu.menuMode = 'single'
+			menu.value.menuMode = 'single'
 			break
 	}
 }

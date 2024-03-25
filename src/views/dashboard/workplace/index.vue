@@ -2,15 +2,18 @@
  * @Description: <工作台>
  * @Author: smellycat littlecandyi@163.com
  * @Date: 2023-08-31 21:51:06
- * @LastEditors: menggt littlecandyi@163.com
- * @LastEditTime: 2023-09-07 15:12:33
+ * @LastEditors: smellycat littlecandyi@163.com
+ * @LastEditTime: 2023-10-07 01:07:24
 -->
 <route>
 {
 	name: "DashboardWorkplace",
 	meta: {
 		layout: "index",
-		title: "工作台"
+		title: "工作台",
+		hidden: true,
+		roles: ["11"],
+		activeMenu: "/dashboard/monitor"
 	}
 }
 </route>

@@ -3,7 +3,7 @@
  * @Author: menggt littlecandyi@163.com
  * @Date: 2023-08-07 11:15:58
  * @LastEditors: smellycat littlecandyi@163.com
- * @LastEditTime: 2023-12-16 01:27:12
+ * @LastEditTime: 2024-02-01 02:52:48
 -->
 <route>
 {
@@ -18,7 +18,7 @@
 </route>
 
 <script setup lang="ts">
-import { useUserStore } from '@/store/modules/user-store'
+import appStore from '@/store'
 import type { FormInstance, FormRules } from 'element-plus'
 
 interface RegisterRuleForm {
@@ -39,7 +39,7 @@ defineOptions({
 
 const router = useRouter()
 const route = useRoute()
-const userStore = useUserStore()
+const { handleLogin } = appStore.useUserStore
 
 // 按钮loading
 const loginBtnLoading = ref(false)
@@ -109,10 +109,9 @@ const onSubmitLogin = async (formEl: FormInstance | undefined) => {
 
 			loginBtnLoading.value = true
 
-			userStore
-				.login(query)
+			handleLogin(query)
 				.then(result => {
-					if (result.token) {
+					if (result.data.token) {
 						router.push(redirect.value)
 					}
 				})

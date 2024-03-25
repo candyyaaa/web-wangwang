@@ -2,8 +2,8 @@
  * @Description: <>
  * @Author: menggt littlecandyi@163.com
  * @Date: 2023-05-25 17:29:39
- * @LastEditors: menggt littlecandyi@163.com
- * @LastEditTime: 2023-09-08 15:09:30
+ * @LastEditors: smellycat littlecandyi@163.com
+ * @LastEditTime: 2023-12-17 02:06:01
 -->
 <script setup lang="ts">
 import Logo from '../logo/index.vue'
@@ -14,7 +14,6 @@ import Tools from '../tools/index.vue'
 	<Transition name="header-nav">
 		<el-header
 			class="shadow-[-1px_0_0_0_var(--el-border-color-lighter),1px_0_0_0_var(--el-border-color-lighter),0_1px_0_0_var(--el-border-color-lighter)] dark:shadow-[-1px_0_0_0_var(--el-bg-color-page),1px_0_0_0_var(--el-bg-color-page),0_1px_0_0_var(--el-bg-color-page)]"
-			height="5rem"
 			bg="#222b45"
 			fixed
 			left-0

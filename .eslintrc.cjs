@@ -2,8 +2,8 @@
  * @Description: <>
  * @Author: smellycat littlecandyi@163.com
  * @Date: 2023-05-21 18:15:35
- * @LastEditors: menggt littlecandyi@163.com
- * @LastEditTime: 2023-05-25 17:33:12
+ * @LastEditors: smellycat littlecandyi@163.com
+ * @LastEditTime: 2024-01-07 01:43:32
  */
 module.exports = {
 	env: {
@@ -32,7 +32,7 @@ module.exports = {
 		'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
 		'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
 		// 添加组件命名忽略规则
-		'vue/multi-word-component-names': 'off',
+		'vue/multi-word-component-names': 'off'
 		// // 配置是否使用.prettierrc文件中的配置
 		// 'prettier/prettier': [
 		// 	'error',
@@ -44,16 +44,16 @@ module.exports = {
 		// 		}
 		// 	}
 		// ],
-		'@typescript-eslint/ban-types': [
-			'error',
-			{
-				extendDefaults: true,
-				types: {
-					'{}': false
-				}
-			}
-		],
-		'@typescript-eslint/no-explicit-any': ['off']
+		// '@typescript-eslint/ban-types': [
+		// 	'error',
+		// 	{
+		// 		extendDefaults: true,
+		// 		types: {
+		// 			'{}': false
+		// 		}
+		// 	}
+		// ]
+		// '@typescript-eslint/no-explicit-any': ['off']
 		// 'arrow-body-style': 'off',
 		// 'prefer-arrow-callback': 'off'
 	}
