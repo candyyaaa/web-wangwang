@@ -2,33 +2,32 @@
  * @Description: <侧边菜单>
  * @Author: candy littlecandyi@163.com
  * @Date: 2023-08-26 22:49:32
- * @LastEditors: menggt littlecandyi@163.com
- * @LastEditTime: 2023-09-14 15:36:03
+ * @LastEditors: smellycat littlecandyi@163.com
+ * @LastEditTime: 2024-02-24 22:26:16
 -->
 <script setup lang="ts">
-import { useSettingsStore } from '@/store/modules/settings-store'
-import { usePermissionStore } from '@/store/modules/permission-store'
+import appStore from '@/store'
 import Logo from '../logo/index.vue'
 import SideBarItem from '../side-bar-item/index.vue'
 
 const route = useRoute()
 
-const settingsStore = useSettingsStore()
-const permissionStore = usePermissionStore()
+const { getSortedMenus } = storeToRefs(appStore.usePermissionStore)
+const { menu } = storeToRefs(appStore.useSettingsStore)
 
 // 菜单选中、hover 样式是否圆角
 const isRadius = computed<boolean>(() => {
-	return settingsStore.menu.menuFillStyle === 'radius' && !settingsStore.menu.collapse
+	return menu.value.menuFillStyle === 'radius' && !menu.value.collapse
 })
 
 // 菜单模式
 const menuMode = computed<string>(() => {
-	return settingsStore.menu.menuMode
+	return menu.value.menuMode
 })
 
 // 是否折叠菜单
 const collapse = computed<boolean>(() => {
-	return settingsStore.menu.collapse
+	return menu.value.collapse
 })
 
 const handleOpen = (key: string, keyPath: string[]) => {
@@ -76,13 +75,14 @@ const handleClose = (key: string, keyPath: string[]) => {
 					class="menu-box w-[inherit] transition-colors-300 b-r-0!"
 					:class="{ 'menu-box__radius': isRadius }"
 					:collapse="collapse"
-					:default-active="permissionStore.getMenus && route.path"
+					:default-active="(route.meta?.activeMenu as string) || route.path"
 					router
 					unique-opened
 					@open="handleOpen"
 					@close="handleClose"
 				>
-					<template v-for="item in permissionStore.getMenus" :key="item.path">
+					<!-- <template v-for="item in permissionStore.getMenus" :key="item.path"> -->
+					<template v-for="item in getSortedMenus" :key="item.path">
 						<SideBarItem :itemData="item" :base-path="item.path" :isRadius="isRadius" />
 					</template>
 				</el-menu>

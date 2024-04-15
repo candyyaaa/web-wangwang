@@ -2,12 +2,12 @@
  * @Description: <一次性注册 自定义指令>
  * @Author: menggt littlecandyi@163.com
  * @Date: 2023-09-11 10:43:07
- * @LastEditors: menggt littlecandyi@163.com
- * @LastEditTime: 2023-09-11 14:27:30
+ * @LastEditors: smellycat littlecandyi@163.com
+ * @LastEditTime: 2024-01-31 20:32:16
  */
 import type { App } from 'vue'
 
-type DirectiveInstall = {
+interface DirectiveInstall {
 	install: (app: App) => void
 }
 

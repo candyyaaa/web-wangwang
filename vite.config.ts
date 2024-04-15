@@ -2,8 +2,8 @@
  * @Description: <vite 项目配置>
  * @Author: smellycat littlecandyi@163.com
  * @Date: 2023-05-21 00:20:17
- * @LastEditors: candy littlecandyi@163.com
- * @LastEditTime: 2023-09-04 23:33:55
+ * @LastEditors: smellycat littlecandyi@163.com
+ * @LastEditTime: 2024-02-01 01:29:50
  */
 import { defineConfig, loadEnv } from 'vite'
 import { pathResolve } from './vite/utils'
@@ -44,6 +44,10 @@ export default ({ mode, command }) => {
 						// 超大静态资源拆分
 						if (id.includes('node_modules')) {
 							return id.toString().split('node_modules/')[1].split('/')[0].toString()
+						}
+						// 将pinia的全局库实例打包进vendor，避免和页面一起打包造成资源重复引入
+						if (id.includes(pathResolve('/src/store/index.ts'))) {
+							return 'vendor'
 						}
 					}
 				}

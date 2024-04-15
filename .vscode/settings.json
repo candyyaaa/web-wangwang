@@ -18,11 +18,15 @@
 		"Attributify",
 		"pako",
 		"smellycat",
-    "menggt"
+    "menggt",
+    "persistedstate",
+    "vuedraggable",
+    "browserify"
 	],
 	"files.eol": "\n",
 	// "unocss.root": "./uno.config.ts",
 	"typescript.tsdk": "node_modules/typescript/lib",
 	"i18n-ally.localesPaths": ["locales", "src/i18n"],
   "css.lint.unknownAtRules": "ignore",
+  "consoleLog.Prefix Logo": "",
 }

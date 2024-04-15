@@ -2,13 +2,13 @@
  * @Description: <pinia状态 类型>
  * @Author: menggt littlecandyi@163.com
  * @Date: 2023-09-04 16:05:29
- * @LastEditors: menggt littlecandyi@163.com
- * @LastEditTime: 2023-09-14 15:09:53
+ * @LastEditors: smellycat littlecandyi@163.com
+ * @LastEditTime: 2024-01-31 21:16:00
  */
 
 /* 用户状态 */
 declare namespace User {
-	export interface State {
+	interface State {
 		id: string
 		name: string
 		token: string
@@ -56,9 +56,15 @@ declare namespace Permission {
 		 * @默认值 `[]`
 		 */
 		keepAliveComponents: string[]
+	}
+}
+
+// 页签栏状态
+declare namespace TagsView {
+	export interface State<T> {
 		/**
-		 * 标签列表
-		 * @默认值 `[]` - 空数组
+		 * 页签 tab栏数据 用户访问过的页面 就是标签栏导航显示的一个个 tag 数组集合
+		 * @默认值 `[]`
 		 */
 		tabList: T[]
 	}

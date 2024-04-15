@@ -2,18 +2,18 @@
  * @Description: <>
  * @Author: smellycat littlecandyi@163.com
  * @Date: 2023-05-21 23:35:18
- * @LastEditors: menggt littlecandyi@163.com
- * @LastEditTime: 2023-09-08 15:14:14
+ * @LastEditors: smellycat littlecandyi@163.com
+ * @LastEditTime: 2024-02-24 22:26:04
 -->
 <template>
 	<section h-full w-full>
 		<Header />
 
-		<section relative h-full w-full pt-20 transition-padding-300>
+		<section relative h-full w-full pt-15 transition-padding-300>
 			<aside
 				class="shadow-[-1px_0_0_0_var(--el-border-color-lighter)] dark:shadow-[-1px_0_0_0_var(--el-bg-color-page)]"
 				fixed
-				:top="20"
+				:top="15"
 				bottom-0
 				z-11
 				:w="collapse ? 16 : 55"
@@ -41,23 +41,24 @@
 </template>
 
 <script setup lang="ts">
-import { useSettingsStore } from '@/store/modules/settings-store'
+import appStore from '@/store'
 import Header from './components/header/index.vue'
 import SideBar from './components/side-bar/index.vue'
 import TagsView from './components/tags-view/index.vue'
 
 // 设置状态
-const settingsStore = useSettingsStore()
+const { menu } = storeToRefs(appStore.useSettingsStore)
 
 // 侧边菜单是否折叠
 const collapse = computed(() => {
-	return settingsStore.menu.collapse
+	return menu.value.collapse
 })
 </script>
 
 <style scoped>
 /* .layout-wrap {
 		height: 100%;
+		3.75rem
 	}
 
 	header {

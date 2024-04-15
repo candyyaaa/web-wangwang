@@ -2,12 +2,11 @@
  * @Description: <>
  * @Author: smellycat littlecandyi@163.com
  * @Date: 2023-05-29 00:31:35
- * @LastEditors: menggt littlecandyi@163.com
- * @LastEditTime: 2023-09-06 13:54:32
+ * @LastEditors: smellycat littlecandyi@163.com
+ * @LastEditTime: 2024-02-24 22:26:45
 -->
 <script setup lang="ts">
-import { useUserStore } from '@/store/modules/user-store'
-import { useSettingsStore } from '@/store/modules/settings-store'
+import appStore from '@/store'
 import { loadLanguageAsync } from '@/i18n'
 
 // 路由
@@ -15,10 +14,11 @@ const router = useRouter()
 const route = useRoute()
 
 // 用户信息状态
-const userStore = useUserStore()
+const { name: username } = storeToRefs(appStore.useUserStore)
 
-// 系统设置状态
-const settingsStore = useSettingsStore()
+// app设置状态
+const { currentLang, home } = storeToRefs(appStore.useSettingsStore)
+const { setLang } = appStore.useSettingsStore
 
 // 全屏hook
 const { isFullscreen, toggle: onFullscreenToggle } = useFullscreen()
@@ -68,7 +68,7 @@ const handleTabClick = (): void => {
  */
 const handleCommand = async (command: string): Promise<void> => {
 	// 更新状态
-	settingsStore.setLang(command)
+	setLang(command)
 
 	// 更新国际化
 	await loadLanguageAsync(command)
@@ -165,7 +165,7 @@ const onUserCommand = (): void => {
 							v-for="item in toggleLangsList"
 							:key="item.key"
 							:command="item.key"
-							:disabled="settingsStore.currentLang === item.key"
+							:disabled="currentLang === item.key"
 						>
 							{{ item.label }}
 						</el-dropdown-item>
@@ -200,14 +200,15 @@ const onUserCommand = (): void => {
 				<el-avatar size="small" mr-2>
 					<div i-carbon-user-filled text-lg></div>
 				</el-avatar>
-				{{ userStore.name }}
+				<!-- {{ userStore.name }} -->
+				{{ username }}
 				<i i-carbon-caret-down ml-1 inline-block text-lg></i>
 			</div>
 
 			<template #dropdown>
 				<el-dropdown-menu class="user-dropdown">
-					<el-dropdown-item v-if="settingsStore.home.enable" command="home">
-						{{ settingsStore.home.title }}
+					<el-dropdown-item v-if="home.enable" command="home">
+						{{ home.title }}
 					</el-dropdown-item>
 					<el-dropdown-item command="setting"> 个人设置 </el-dropdown-item>
 					<el-dropdown-item divided command="logout"> 退出登录 </el-dropdown-item>
