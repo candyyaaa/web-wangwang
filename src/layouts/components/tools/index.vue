@@ -3,10 +3,9 @@
  * @Author: smellycat littlecandyi@163.com
  * @Date: 2023-05-29 00:31:35
  * @LastEditors: smellycat littlecandyi@163.com
- * @LastEditTime: 2024-02-24 22:26:45
+ * @LastEditTime: 2024-05-03 01:11:16
 -->
 <script setup lang="ts">
-import appStore from '@/store'
 import { loadLanguageAsync } from '@/i18n'
 
 // 路由
@@ -99,10 +98,10 @@ const onUserCommand = (): void => {
 			<button icon-btn :title="t('button.search')" @click="onSearch">
 				<div i-carbon-search text-lg></div>
 			</button>
-		</el-space>
+			<!-- </el-space> -->
 
-		<!-- 消息/代办 -->
-		<el-space size="large">
+			<!-- 消息/代办 -->
+			<!-- <el-space size="large"> -->
 			<el-popover
 				trigger="hover"
 				placement="bottom"
@@ -150,10 +149,10 @@ const onUserCommand = (): void => {
 					<el-tab-pane label="代办" name="second">Config</el-tab-pane>
 				</el-tabs>
 			</el-popover>
-		</el-space>
+			<!-- </el-space> -->
 
-		<!-- 语言切换 -->
-		<el-space size="large">
+			<!-- 语言切换 -->
+			<!-- <el-space size="large"> -->
 			<el-dropdown @command="handleCommand" text="[white_!important]">
 				<button icon-btn :title="t('button.toggle_langs')" @click="onSearch">
 					<div i-carbon-language text-lg></div>
@@ -172,48 +171,48 @@ const onUserCommand = (): void => {
 					</el-dropdown-menu>
 				</template>
 			</el-dropdown>
-		</el-space>
+			<!-- </el-space> -->
 
-		<!-- 全屏切换 -->
-		<el-space size="large">
+			<!-- 全屏切换 -->
+			<!-- <el-space size="large"> -->
 			<button icon-btn :title="t('button.toggle_screen')" @click="onFullscreenToggle">
 				<div :i="isFullscreen ? 'carbon-screen' : 'carbon-fit-to-screen'" text-lg></div>
 			</button>
-		</el-space>
+			<!-- </el-space> -->
 
-		<!-- 刷新页面 -->
-		<el-space size="large">
+			<!-- 刷新页面 -->
+			<!-- <el-space size="large"> -->
 			<button icon-btn :title="t('button.refresh')" @click="onRefresh">
 				<div i-carbon-renew text-lg></div>
 			</button>
-		</el-space>
+			<!-- </el-space> -->
 
-		<!-- 浅/深色切换 -->
-		<el-space size="large">
+			<!-- 浅/深色切换 -->
+			<!-- <el-space size="large"> -->
 			<button icon-btn :title="t('button.toggle_dark')" @click="toggleDark()">
 				<div i="carbon-sun dark:carbon-moon" text-lg></div>
 			</button>
+
+			<el-dropdown size="default" @command="onUserCommand" text="[white_!important]">
+				<div flex items-center text-base>
+					<el-avatar size="small" mr-2>
+						<div i-carbon-user-filled text-lg></div>
+					</el-avatar>
+					<!-- {{ userStore.name }} -->
+					{{ username }}
+					<i i-carbon-caret-down ml-1 inline-block text-lg></i>
+				</div>
+
+				<template #dropdown>
+					<el-dropdown-menu class="user-dropdown">
+						<el-dropdown-item v-if="home.enable" command="home">
+							{{ home.title }}
+						</el-dropdown-item>
+						<el-dropdown-item command="setting"> 个人设置 </el-dropdown-item>
+						<el-dropdown-item divided command="logout"> 退出登录 </el-dropdown-item>
+					</el-dropdown-menu>
+				</template>
+			</el-dropdown>
 		</el-space>
-
-		<el-dropdown size="default" @command="onUserCommand" text="[white_!important]">
-			<div flex items-center text-base>
-				<el-avatar size="small" mr-2>
-					<div i-carbon-user-filled text-lg></div>
-				</el-avatar>
-				<!-- {{ userStore.name }} -->
-				{{ username }}
-				<i i-carbon-caret-down ml-1 inline-block text-lg></i>
-			</div>
-
-			<template #dropdown>
-				<el-dropdown-menu class="user-dropdown">
-					<el-dropdown-item v-if="home.enable" command="home">
-						{{ home.title }}
-					</el-dropdown-item>
-					<el-dropdown-item command="setting"> 个人设置 </el-dropdown-item>
-					<el-dropdown-item divided command="logout"> 退出登录 </el-dropdown-item>
-				</el-dropdown-menu>
-			</template>
-		</el-dropdown>
 	</div>
 </template>

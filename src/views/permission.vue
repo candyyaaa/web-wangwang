@@ -2,8 +2,8 @@
  * @Description: <权限验证>
  * @Author: menggt littlecandyi@163.com
  * @Date: 2023-09-01 10:52:05
- * @LastEditors: menggt littlecandyi@163.com
- * @LastEditTime: 2023-09-07 15:08:37
+ * @LastEditors: smellycat littlecandyi@163.com
+ * @LastEditTime: 2024-05-10 20:31:44
 -->
 <route>
 {
@@ -12,14 +12,14 @@
 		layout: "index",
 		title: "权限验证",
 		"icon": "i-carbon-manage-protection",
-		roles: ["1"],
-		ranking: 3
+		roles: ["admin"],
+		sort: 2
 	}
 }
 </route>
 
 <template>
-	<div>
+	<div h-full>
 		<h1>权限验证</h1>
 	</div>
 </template>

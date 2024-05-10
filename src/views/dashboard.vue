@@ -3,7 +3,7 @@
  * @Author: menggt littlecandyi@163.com
  * @Date: 2023-09-01 10:20:02
  * @LastEditors: smellycat littlecandyi@163.com
- * @LastEditTime: 2023-09-19 00:01:16
+ * @LastEditTime: 2024-05-10 19:31:37
 -->
 <route>
 {
@@ -12,9 +12,9 @@
 	meta: {
 		layout: "index",
 		title: "仪表盘",
-		roles: ["1"],
+		roles: ["admin"],
 		icon: "i-carbon-dashboard",
-		ranking: 2
+		sort: 1
 	}
 }
 </route>

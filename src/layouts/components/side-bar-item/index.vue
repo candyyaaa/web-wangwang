@@ -3,10 +3,9 @@
  * @Author: menggt littlecandyi@163.com
  * @Date: 2023-08-31 17:03:15
  * @LastEditors: smellycat littlecandyi@163.com
- * @LastEditTime: 2024-02-24 22:26:23
+ * @LastEditTime: 2024-05-03 01:10:59
 -->
 <script setup lang="ts">
-import appStore from '@/store'
 import { resolveRoutePath } from '@/utils'
 import type { RouteRecordRaw } from 'vue-router'
 

@@ -3,17 +3,17 @@
  * @Author: menggt littlecandyi@163.com
  * @Date: 2023-05-22 11:30:47
  * @LastEditors: smellycat littlecandyi@163.com
- * @LastEditTime: 2023-12-16 00:16:47
+ * @LastEditTime: 2024-05-02 01:18:48
  */
 import {
 	defineConfig,
 	presetAttributify,
 	presetIcons,
-	presetTypography,
 	presetUno,
 	presetWebFonts,
 	transformerDirectives,
-	transformerVariantGroup
+	transformerVariantGroup,
+	transformerAttributifyJsx
 } from 'unocss'
 
 export default defineConfig({
@@ -73,8 +73,6 @@ export default defineConfig({
 		presetAttributify(),
 		// 图标预设
 		presetIcons({ scale: 1.2, warn: true }),
-		// 排版预设
-		presetTypography(),
 		// 字体预设
 		presetWebFonts({
 			fonts: {
@@ -94,9 +92,9 @@ export default defineConfig({
 				]
 			}
 
-			/* 
+			/*
 				web-fonts生成的字体样式
-				
+
 				@import url('https://fonts.googleapis.com/css2?family=Roboto&family=Fira+Code&family=Fira+Mono:wght@400;700&family=Lobster&family=Lato:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
 				.font-lato {
@@ -118,5 +116,5 @@ export default defineConfig({
 			*/
 		})
 	],
-	transformers: [transformerDirectives(), transformerVariantGroup()]
+	transformers: [transformerVariantGroup(), transformerDirectives(), transformerAttributifyJsx()]
 })

@@ -1,15 +1,13 @@
 /*
- * @Description: <>
+ * @Description: vue-router 配置
  * @Author: smellycat littlecandyi@163.com
  * @Date: 2023-05-21 21:18:33
  * @LastEditors: smellycat littlecandyi@163.com
- * @LastEditTime: 2024-02-26 21:49:25
+ * @LastEditTime: 2024-05-04 02:32:20
  */
-import { createRouter, createWebHistory, isNavigationFailure } from 'vue-router'
-import cloneDeep from 'lodash-es/cloneDeep'
-import { ElMessage as message } from 'element-plus'
-import { constantRoutes } from '@/router/routes'
-import appStore from '@/store'
+import { createRouter, createWebHistory, isNavigationFailure } from 'vue-router/auto'
+import { setupLayouts } from 'virtual:generated-layouts'
+import { asyncRoutes } from './routes'
 // 进度条插件
 import { start, done } from '@/utils/nprogress'
 
@@ -18,7 +16,10 @@ const whiteList = ['/login', '/redirect', '/:all(.*)*']
 
 const router = createRouter({
 	history: createWebHistory('/'),
-	routes: constantRoutes
+	extendRoutes: routes => {
+		console.log(setupLayouts(routes.filter(item => item.meta?.constant)))
+		return setupLayouts(routes.filter(item => item.meta?.constant))
+	}
 })
 
 // 路由切换之前触发
@@ -26,11 +27,11 @@ router.beforeEach(async (to, _, next) => {
 	start()
 
 	// 用户信息状态
-	const { token, roles } = storeToRefs(appStore.useUserStore)
-	const { getUserInfo, reset } = appStore.useUserStore
+	const { token } = storeToRefs(appStore.useUserStore)
+	const { getUserInfo } = appStore.useUserStore
 	// 权限状态
-	const { ingenerate, accessRoutes } = storeToRefs(appStore.usePermissionStore)
-	const { generateRoutes, setCurrentRemoveRoutes } = appStore.usePermissionStore
+	const { ingenerate, list } = storeToRefs(appStore.useRouteStore)
+	const { generateRoutes, setRemoveRoutes } = appStore.useRouteStore
 
 	if (token.value) {
 		// 是否已根据权限动态生成并注册路由
@@ -42,34 +43,26 @@ router.beforeEach(async (to, _, next) => {
 			}
 		} else {
 			// 动态生成路由
-			try {
-				//! 请求获取用户信息
-				const result = await getUserInfo()
+			//! 请求获取用户信息
+			await getUserInfo()
 
-				if (result.code === 200) {
-					generateRoutes(cloneDeep(roles.value))
-					const removeRoutes: (() => void)[] = []
+			generateRoutes(asyncRoutes)
+			const removeRoutes: (() => void)[] = []
 
-					accessRoutes.value.forEach(r => {
-						if (!/^(https?:|mailto|tel:)/.test(r.path)) {
-							removeRoutes.push(router.addRoute(r))
-						}
-					})
-
-					setCurrentRemoveRoutes(removeRoutes)
-
-					//* 动态路由生成并注册后，重新进入当前路由
-					next({
-						path: to.path,
-						query: to.query,
-						replace: true
-					})
+			list.value.forEach(r => {
+				if (!/^(https?:|mailto|tel:)/.test(r.path)) {
+					removeRoutes.push(router.addRoute(setupLayouts([r])[0]))
 				}
-			} catch (error) {
-				await reset()
-				message.error(error || 'Has Error')
-				next(`/login?redirect=${to.path}`)
-			}
+			})
+
+			setRemoveRoutes(removeRoutes)
+
+			//* 动态路由生成并注册后，重新进入当前路由
+			next({
+				path: to.path,
+				query: to.query,
+				replace: true
+			})
 		}
 	} else {
 		// 如果没有 token
@@ -127,7 +120,7 @@ router.afterEach((to, _, failure) => {
 })
 
 // meta
-/* 
+/*
 	title: string; 页面标题，通常必选。
 	icon?: string; 图标，一般配合菜单使用。
 	auth?: boolean; 是否需要登录权限。

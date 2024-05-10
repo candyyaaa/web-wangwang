@@ -3,7 +3,7 @@
  * @Author: smellycat littlecandyi@163.com
  * @Date: 2023-05-21 21:19:10
  * @LastEditors: smellycat littlecandyi@163.com
- * @LastEditTime: 2023-09-27 23:00:13
+ * @LastEditTime: 2024-05-10 19:31:31
 -->
 <route>
 {
@@ -11,10 +11,10 @@
 	meta: {
 		layout: "index",
 		title: "主页",
-		roles: ["1"],
+		roles: ["admin"],
 		icon: "i-carbon-home",
 		hidden: false,
-		ranking: 0,
+		sort: 0,
 		affix: true
 	}
 }
@@ -31,6 +31,9 @@
 // const route = useRoute()
 // console.log('router ----------->', router)
 // console.log('route ----------->', route)
+
+import { routes } from 'vue-router/auto-routes'
+console.log('routes', routes)
 
 defineOptions({
 	name: 'Index'

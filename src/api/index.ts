@@ -3,7 +3,7 @@
  * @Author: menggt littlecandyi@163.com
  * @Date: 2023-05-23 17:54:43
  * @LastEditors: smellycat littlecandyi@163.com
- * @LastEditTime: 2024-01-31 22:38:46
+ * @LastEditTime: 2024-05-03 01:14:07
  */
 
 import { createAlova } from 'alova'
@@ -11,15 +11,9 @@ import GlobalFetch from 'alova/GlobalFetch'
 import VueHook from 'alova/vue'
 import { storage } from '@/utils/storage'
 
-export interface ResultData<T = unknown> {
-	code: number
-	data: T
-	message: string
-}
-
 const token = storage.getCache('token')
 
-const alovaInst = createAlova({
+export const alovaInst = createAlova({
 	// 请求的根路径
 	baseURL: '/api',
 	// 它用于确定在 use hook
@@ -62,5 +56,3 @@ const alovaInst = createAlova({
 		}
 	}
 })
-
-export default alovaInst

@@ -3,10 +3,9 @@
  * @Author: menggt littlecandyi@163.com
  * @Date: 2023-09-07 15:24:08
  * @LastEditors: smellycat littlecandyi@163.com
- * @LastEditTime: 2024-02-27 00:33:01
+ * @LastEditTime: 2024-05-10 20:34:07
 -->
 <script setup lang="ts">
-import appStore from '@/store'
 import Draggable from 'vuedraggable'
 import { resolve } from 'path-browserify'
 
@@ -123,11 +122,12 @@ const onTabClose = (item: RouteLocationNormalized) => {
 				? 'w-[calc(100%-4rem)] -translate-x-[calc(-50%+(100%-4rem/2))]'
 				: 'w-[calc(100%-13.75rem)] -translate-x-[calc(-50%+(100%-13.75rem/2))]'
 		]"
-		fixed
 		left="1/2"
+		fixed
 		right-0
 		z-12
 		flex
+		shrink-0
 		flex-col
 		transition-all-300
 	>

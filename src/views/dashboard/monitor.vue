@@ -3,18 +3,18 @@
  * @Author: smellycat littlecandyi@163.com
  * @Date: 2023-08-31 21:49:47
  * @LastEditors: smellycat littlecandyi@163.com
- * @LastEditTime: 2023-09-27 23:39:50
+ * @LastEditTime: 2024-05-04 02:17:42
 -->
 <route>
-{
-	name: "DashboardMonitor",
-	meta: {
-		layout: "index",
-		title: "监控台",
-		roles: ["11"]
+	{
+		name: "DashboardMonitor",
+		meta: {
+			layout: false,
+			title: "监控台",
+			roles: ["admin"]
+		}
 	}
-}
-</route>
+	</route>
 <template>
 	<div>
 		<h1>监控台</h1>

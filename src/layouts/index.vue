@@ -3,7 +3,7 @@
  * @Author: smellycat littlecandyi@163.com
  * @Date: 2023-05-21 23:35:18
  * @LastEditors: smellycat littlecandyi@163.com
- * @LastEditTime: 2024-02-24 22:26:04
+ * @LastEditTime: 2024-05-10 20:33:23
 -->
 <template>
 	<section h-full w-full>
@@ -32,7 +32,7 @@
 			>
 				<TagsView />
 
-				<main relative mt-24 h-full flex-auto overflow-hidden transition-all-300>
+				<main relative mt-24 h-0 flex-1 basis-0 overflow-hidden transition-all-300>
 					<RouterView />
 				</main>
 			</main>
@@ -41,7 +41,6 @@
 </template>
 
 <script setup lang="ts">
-import appStore from '@/store'
 import Header from './components/header/index.vue'
 import SideBar from './components/side-bar/index.vue'
 import TagsView from './components/tags-view/index.vue'
@@ -56,6 +55,10 @@ const collapse = computed(() => {
 </script>
 
 <style scoped>
+.box {
+	flex-basis: 0;
+	flex-shrink: 0;
+}
 /* .layout-wrap {
 		height: 100%;
 		3.75rem

@@ -3,7 +3,7 @@
  * @Author: smellycat littlecandyi@163.com
  * @Date: 2023-05-21 23:05:42
  * @LastEditors: smellycat littlecandyi@163.com
- * @LastEditTime: 2024-02-26 20:49:08
+ * @LastEditTime: 2024-05-05 23:39:45
 -->
 <template>
 	<div>
@@ -16,7 +16,7 @@
 	</div>
 	<HelloWorld msg="Vite + Vue" />
 
-	<el-button type="primary">{{ t('button.cute') }}</el-button>
+	<el-button type="primary" @click="handleCute">{{ t('button.cute') }}</el-button>
 
 	<ul class="text-ul">
 		<li>阿松大</li>
@@ -35,7 +35,7 @@
 	<div class="i-ant-design-down-circle-outlined" text-lg></div>
 
 	<el-table mb-1 :data="[]" />
-	<el-pagination :total="100" />
+	<!-- <el-pagination :total="100" /> -->
 
 	<el-button type="primary" @click="toggleMenuFillStyle('default')">默认</el-button>
 	<el-button type="primary" @click="toggleMenuFillStyle('radius')">圆角</el-button>
@@ -46,7 +46,7 @@
 </template>
 
 <script setup lang="ts">
-import appStore from '@/store'
+import { ElMessage as message } from 'element-plus'
 import HelloWorld from '../HelloWorld.vue'
 
 const route = useRoute()
@@ -77,6 +77,10 @@ const toggleMenuMode = (type: number) => {
 			menu.value.menuMode = 'single'
 			break
 	}
+}
+
+const handleCute = () => {
+	message.warning('sssssss搜索')
 }
 </script>
 

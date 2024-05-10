@@ -1,32 +1,37 @@
 /*
- * @Description: <gzip压缩>
+ * @Description: 构建压缩插件
  * @Author: smellycat littlecandyi@163.com
- * @Date: 2023-05-21 13:31:38
+ * @Date: 2024-04-23 23:24:17
  * @LastEditors: smellycat littlecandyi@163.com
- * @LastEditTime: 2023-05-21 13:31:50
+ * @LastEditTime: 2024-05-02 00:03:34
  */
-import compression from 'vite-plugin-compression'
 
-export default function createCompression(env: Record<string, string>) {
-	const { VITE_BUILD_COMPRESS } = env
-	const compressList = VITE_BUILD_COMPRESS.split(',')
-	const plugin: any[] = []
+import Compression from 'vite-plugin-compression'
+
+import type { PluginOption } from 'vite'
+
+export const compressionPlugin = (compress: string) => {
+	const compressList = compress.split(',')
+
+	const plugins: PluginOption[] = []
+
 	if (compressList.includes('gzip')) {
-		plugin.push(
-			compression({
+		plugins.push(
+			Compression({
 				ext: '.gz',
 				deleteOriginFile: false
 			})
 		)
 	}
+
 	if (compressList.includes('brotli')) {
-		plugin.push(
-			compression({
+		plugins.push(
+			Compression({
 				ext: '.br',
 				algorithm: 'brotliCompress',
 				deleteOriginFile: false
 			})
 		)
 	}
-	return plugin
+	return plugins
 }

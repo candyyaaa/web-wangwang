@@ -1,18 +1,20 @@
 /*
- * @Description: <使用本地svg>
+ * @Description: 用于生成 svg 雪碧图
  * @Author: smellycat littlecandyi@163.com
- * @Date: 2023-05-21 13:25:53
+ * @Date: 2024-04-23 23:45:11
  * @LastEditors: smellycat littlecandyi@163.com
- * @LastEditTime: 2023-05-21 22:25:09
+ * @LastEditTime: 2024-05-02 00:10:40
  */
-import { resolve } from 'path'
-import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 
-export default function createSvgIcons(isBuild: boolean) {
-	return createSvgIconsPlugin({
+import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
+import { resolve } from 'path'
+
+export const svgIconsPlugin = (isBuild: boolean) =>
+	createSvgIconsPlugin({
+		// 指定需要缓存的图标文件夹
 		iconDirs: [resolve(process.cwd(), 'src/assets/icons/')],
+		// 指定symbolId格式
 		symbolId: 'icon-[dir]-[name]',
-		// 用于压缩SVG
+		// 是否压缩 svg
 		svgoOptions: isBuild
 	})
-}

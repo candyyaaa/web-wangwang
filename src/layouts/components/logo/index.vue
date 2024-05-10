@@ -3,10 +3,9 @@
  * @Author: smellycat littlecandyi@163.com
  * @Date: 2023-05-26 00:46:54
  * @LastEditors: smellycat littlecandyi@163.com
- * @LastEditTime: 2024-02-24 22:26:10
+ * @LastEditTime: 2024-05-03 01:10:41
 -->
 <script setup lang="ts">
-import appStore from '@/store'
 import logoImg from '@/assets/images/logo.png'
 
 type Props = {
@@ -68,9 +67,9 @@ const to = computed<{ name?: string | undefined }>(() => {
 			:ml="props.showLogo && '2.5'"
 			block
 			truncate
+			text-inherit
 			font-bold
 			tracking-wide
-			text-inherit
 			>{{ title }}</span
 		>
 	</router-link>

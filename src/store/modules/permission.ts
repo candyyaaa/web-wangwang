@@ -3,10 +3,11 @@
  * @Author: smellycat littlecandyi@163.com
  * @Date: 2024-02-01 02:57:01
  * @LastEditors: smellycat littlecandyi@163.com
- * @LastEditTime: 2024-02-02 01:39:15
+ * @LastEditTime: 2024-05-04 01:12:59
  */
-import cloneDeep from 'lodash-es/cloneDeep'
-import { constantRoutes, asyncRoutes, asyncMenus } from '@/router/routes'
+
+import { clone } from 'radash'
+import { constantRoutes, asyncRoutes } from '@/router/routes'
 import { hasPermission } from '@/utils'
 
 import type { RouteRecordRaw } from 'vue-router'
@@ -21,7 +22,7 @@ const filterAsyncRoutes = (routes: RouteRecordRaw[], roles: string[]): RouteReco
 	const arr: RouteRecordRaw[] = []
 	routes.forEach(route => {
 		if (hasPermission(roles, route)) {
-			const tmpRoute = cloneDeep(route)
+			const tmpRoute = clone(route)
 			if (tmpRoute.children) {
 				tmpRoute.children = filterAsyncRoutes(tmpRoute.children, roles)
 				tmpRoute.children.length && arr.push(tmpRoute)
@@ -70,7 +71,7 @@ export const usePermissionStore = defineStore('permission', () => {
 
 	// 获取排序后的菜单
 	const getSortedMenus = computed<RouteRecordRaw[]>(() => {
-		const tmpMenus = cloneDeep(menus.value)
+		const tmpMenus = clone(menus.value)
 
 		return sortTreeByRanking(tmpMenus)
 	})
@@ -82,7 +83,7 @@ export const usePermissionStore = defineStore('permission', () => {
 	const generateRoutes = (roles: string[]): void => {
 		// 动态权限路由
 		const permissionRoutes = filterAsyncRoutes(asyncRoutes, roles)
-		const permissionMenus = filterAsyncRoutes(asyncMenus, roles)
+		const permissionMenus = filterAsyncRoutes(asyncRoutes, roles)
 		// 可访问路由
 		routes.value = constantRoutes.concat(permissionRoutes)
 		// 有权限路由

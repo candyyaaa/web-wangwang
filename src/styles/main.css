@@ -1,56 +1,16 @@
 /*
- * @Description: <>
+ * @Description: 全局 css
  * @Author: menggt littlecandyi@163.com
  * @Date: 2023-05-22 11:06:50
  * @LastEditors: smellycat littlecandyi@163.com
- * @LastEditTime: 2024-01-28 03:58:56
+ * @LastEditTime: 2024-05-06 00:43:22
  */
-/* @font-face {
-	font-display: auto;
-	font-family: PingFangSC-Regular;
-	src: url('/fonts/PingFangSC-Regular.woff2') format('woff2');
-} */
 
 html,
 body,
 #app {
-	height: 100%;
-	margin: 0;
-	padding: 0;
+	@apply w-screen h-screen;
 }
-
-/*
-	TODO: font-pingfang-sc 苹方字体npm包名
-	! 缺点: 不管有没有用到会把所有的字体都打包 高达 35M
-	苹方-简 常规体: PingFangSC-Regular
-	苹方-简 极细体: PingFangSC-Ultralight
-	苹方-简 细 体: PingFangSC-Light
-	苹方-简 纤细体: PingFangSC-Thin
-	苹方-简 中黑体: PingFangSC-Medium
-	苹方-简 中粗体: PingFangSC-Semibold
-*/
-/* html {
-	font-family:
-		PingFangSC-Regular,
-		ui-sans-serif,
-		system-ui,
-		-apple-system,
-		BlinkMacSystemFont,
-		'Segoe UI',
-		Roboto,
-		'Helvetica Neue',
-		Arial,
-		'Noto Sans',
-		sans-serif,
-		'Apple Color Emoji',
-		'Segoe UI Emoji',
-		'Segoe UI Symbol',
-		'Noto Color Emoji';
-} */
-
-/* body {
-	line-height: initial;
-} */
 
 /* 去除蓝色边框 */
 :focus {

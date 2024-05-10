@@ -3,16 +3,15 @@
  * @Author: smellycat littlecandyi@163.com
  * @Date: 2024-02-01 00:34:10
  * @LastEditors: smellycat littlecandyi@163.com
- * @LastEditTime: 2024-02-02 19:30:33
+ * @LastEditTime: 2024-05-04 01:36:29
  */
 import { useRequest } from 'alova'
 import { ElMessage as message } from 'element-plus'
-import cloneDeep from 'lodash-es/cloneDeep'
+import { clone } from 'radash'
 import { login, getUserInfoData } from '@/api/user'
 import { storage } from '@/utils/storage'
 
 import type { LoginParams, LoginResult, UserInfoResult } from '@/api/user/type'
-import type { ResultData } from '@/api'
 
 console.log(storage.getCache<{ token: string }>('user'))
 export const useUserStore = defineStore(
@@ -33,7 +32,7 @@ export const useUserStore = defineStore(
 		 * @param {LoginParams} param 登录参数
 		 * @returns {Promise} 异步操作登录接口返回
 		 */
-		const handleLogin = (param: LoginParams): Promise<ResultData<LoginResult>> => {
+		const handleLogin = (param: LoginParams): Promise<Result<LoginResult>> => {
 			const { send, onSuccess, onError } = useRequest(login(param), { initialData: {} })
 
 			onSuccess(event => {
@@ -67,13 +66,13 @@ export const useUserStore = defineStore(
 		 * 请求获取用户信息
 		 * @returns {Promise} 返回异步操作
 		 */
-		const getUserInfo = (): Promise<ResultData<UserInfoResult>> => {
+		const getUserInfo = (): Promise<Result<UserInfoResult>> => {
 			const { send, onSuccess, onError } = useRequest(getUserInfoData(), { initialData: {} })
 
 			// 请求成功
 			onSuccess(event => {
 				if (event.data.code === 200) {
-					setRoles(cloneDeep(event.data.data.roles))
+					setRoles(clone(event.data.data.roles))
 				} else {
 					message.warning(event.data.message)
 				}

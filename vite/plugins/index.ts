@@ -2,53 +2,79 @@
  * @Description: <vite 插件>
  * @Author: smellycat littlecandyi@163.com
  * @Date: 2023-05-21 12:01:17
- * @LastEditors: menggt littlecandyi@163.com
- * @LastEditTime: 2023-08-22 10:55:13
+ * @LastEditors: smellycat littlecandyi@163.com
+ * @LastEditTime: 2024-05-02 01:48:07
  */
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
-import type { PluginOption } from 'vite'
+import unoCSS from 'unocss/vite'
+import vueDevTools from 'vite-plugin-vue-devtools'
 
-import createAutoImport from './auto-import'
-import createCompression from './compression'
-import createEnhanceLog from './enhance-log'
-import createIcons from './icons'
-import createImagemin from './imagemin'
-import createLayouts from './layouts'
-import createPages from './pages'
-import createProgress from './progress'
-import createSvgIcons from './svg-icon'
-import createUnoCSS from './unocss'
-import createComponents from './vue-components'
-import createVueDevTools from './vue-devtools'
-import createVueI18n from './vue-i18n'
+import { autoImportApi } from './auto-import-api'
+import { autoImportStylePlugins } from './auto-import-style'
+import { autoImportComponentsPlugins } from './auto-import-com'
+import { compressionPlugin } from './compression'
+import { imageminPlugin } from './imagemin'
+import { layoutsPlugin } from './layouts'
+import { progressPlugin } from './progress'
+import { svgIconsPlugin } from './svg-icon'
+import { turboConsolePlugin } from './turbo-console'
+import { vueI18nPlugin } from './vue-i18n'
+import { vueRouterPlugin } from './vue-router'
+
+import type { PluginOption } from 'vite'
 
 export default function createVitePlugins(viteEnv: Record<string, string>, isBuild = false) {
 	const vitePlugins: (PluginOption | PluginOption[])[] = [
-		vue({
-			reactivityTransform: true
-		}),
-		vueJsx()
+		// unplugin-vue-router
+		vueRouterPlugin(),
+		// @vitejs/plugin-vue
+		vue(),
+		// @vitejs/plugin-vue-jsx
+		vueJsx(),
+		// unocss/vite
+		unoCSS(),
+		// vite-plugin-vue-devtools
+		vueDevTools()
 	]
 
-	const { VITE_USE_IMAGEMIN } = viteEnv
+	// 环境变量
+	const { VITE_USE_IMAGEMIN, VITE_BUILD_COMPRESS } = viteEnv
 
-	const viteUseImagemin =
-		typeof VITE_USE_IMAGEMIN === 'boolean' ? VITE_USE_IMAGEMIN : Boolean(VITE_USE_IMAGEMIN)
+	// 是否压缩图片资源
+	const viteUseImagemin = VITE_USE_IMAGEMIN === 'true'
 
-	vitePlugins.push(createAutoImport())
-	isBuild && vitePlugins.push(createCompression(viteEnv))
-	vitePlugins.push(createEnhanceLog())
-	vitePlugins.push(createIcons())
-	isBuild && viteUseImagemin && vitePlugins.push(createImagemin())
-	vitePlugins.push(createLayouts())
-	vitePlugins.push(createPages())
-	vitePlugins.push(createProgress())
-	vitePlugins.push(createSvgIcons(isBuild))
-	vitePlugins.push(createUnoCSS())
-	vitePlugins.push(createComponents())
-	vitePlugins.push(createVueDevTools())
-	vitePlugins.push(createVueI18n())
+	// unplugin-auto-import
+	vitePlugins.push(autoImportApi())
+
+	// vite-plugin-style-import
+	vitePlugins.push(autoImportStylePlugins())
+
+	// unplugin-vue-components
+	vitePlugins.push(autoImportComponentsPlugins())
+
+	// vite-plugin-vue-layouts
+	vitePlugins.push(layoutsPlugin())
+
+	// vite-plugin-svg-icons
+	vitePlugins.push(svgIconsPlugin(isBuild))
+
+	// unplugin-turbo-console
+	vitePlugins.push(turboConsolePlugin())
+
+	// @intlify/unplugin-vue-i18n/vite
+	vitePlugins.push(vueI18nPlugin())
+
+	if (isBuild) {
+		// vite-plugin-compression
+		vitePlugins.push(...compressionPlugin(VITE_BUILD_COMPRESS))
+
+		// vite-plugin-imagemin
+		viteUseImagemin && vitePlugins.push(imageminPlugin())
+
+		// vite-plugin-progress
+		vitePlugins.push(progressPlugin())
+	}
 
 	return vitePlugins
 }

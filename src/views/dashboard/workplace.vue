@@ -3,20 +3,20 @@
  * @Author: smellycat littlecandyi@163.com
  * @Date: 2023-08-31 21:51:06
  * @LastEditors: smellycat littlecandyi@163.com
- * @LastEditTime: 2023-10-07 01:07:24
+ * @LastEditTime: 2024-05-04 02:17:46
 -->
 <route>
-{
-	name: "DashboardWorkplace",
-	meta: {
-		layout: "index",
-		title: "工作台",
-		hidden: true,
-		roles: ["11"],
-		activeMenu: "/dashboard/monitor"
+	{
+		name: "DashboardWorkplace",
+		meta: {
+			layout: false,
+			title: "工作台",
+			hidden: true,
+			roles: ["admin"],
+			activeMenu: "/dashboard/monitor"
+		}
 	}
-}
-</route>
+	</route>
 
 <template>
 	<div>

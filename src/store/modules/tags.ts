@@ -3,9 +3,10 @@
  * @Author: smellycat littlecandyi@163.com
  * @Date: 2024-02-24 22:41:13
  * @LastEditors: smellycat littlecandyi@163.com
- * @LastEditTime: 2024-02-26 21:55:12
+ * @LastEditTime: 2024-05-02 01:08:43
  */
-import cloneDeep from 'lodash-es/cloneDeep'
+
+import { clone } from 'radash'
 
 import type { RouteLocationNormalized } from 'vue-router'
 
@@ -32,9 +33,9 @@ export const useTagsStore = defineStore('tags', () => {
 
 			if (!findTag) {
 				if (leaveIndex.value >= 0) {
-					list.value.splice(leaveIndex.value + 1, 0, cloneDeep(route))
+					list.value.splice(leaveIndex.value + 1, 0, clone(route))
 				} else {
-					list.value.push(cloneDeep(route))
+					list.value.push(clone(route))
 				}
 			}
 		}

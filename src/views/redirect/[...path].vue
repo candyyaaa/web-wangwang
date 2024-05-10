@@ -2,12 +2,12 @@
  * @Description: <>
  * @Author: menggt littlecandyi@163.com
  * @Date: 2023-09-06 14:07:18
- * @LastEditors: menggt littlecandyi@163.com
- * @LastEditTime: 2023-09-07 15:10:33
+ * @LastEditors: smellycat littlecandyi@163.com
+ * @LastEditTime: 2024-05-03 00:42:34
 -->
 <route>
 {
-	"name": "Redirect",
+	"name": "RedirectPath",
 	"meta": {
 		"layout": "index",
 		"title": "重定向",
@@ -18,7 +18,7 @@
 </route>
 
 <script setup lang="ts">
-import isArray from 'lodash-es/isArray'
+import { isArray } from 'radash'
 
 defineOptions({
 	name: 'Redirect'

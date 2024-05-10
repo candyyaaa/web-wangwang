@@ -3,16 +3,15 @@
  * @Author: candy littlecandyi@163.com
  * @Date: 2023-08-26 22:49:32
  * @LastEditors: smellycat littlecandyi@163.com
- * @LastEditTime: 2024-02-24 22:26:16
+ * @LastEditTime: 2024-05-04 02:16:33
 -->
 <script setup lang="ts">
-import appStore from '@/store'
 import Logo from '../logo/index.vue'
 import SideBarItem from '../side-bar-item/index.vue'
 
 const route = useRoute()
 
-const { getSortedMenus } = storeToRefs(appStore.usePermissionStore)
+const { getSortedMenus } = storeToRefs(appStore.useMenuStore)
 const { menu } = storeToRefs(appStore.useSettingsStore)
 
 // 菜单选中、hover 样式是否圆角

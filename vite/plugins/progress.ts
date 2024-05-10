@@ -1,18 +1,18 @@
 /*
- * @Description: <build 进度条插件>
+ * @Description: 构建打包进度条插件
  * @Author: smellycat littlecandyi@163.com
- * @Date: 2023-05-21 13:30:35
+ * @Date: 2024-04-23 23:37:34
  * @LastEditors: smellycat littlecandyi@163.com
- * @LastEditTime: 2023-05-21 13:30:41
+ * @LastEditTime: 2024-05-02 00:08:58
  */
-import progress from 'vite-plugin-progress'
-import colors from 'picocolors'
 
-export default function createProgress() {
-	return progress({
-		format: `${colors.green(colors.bold('Building'))} ${colors.cyan(
+import Progress from 'vite-plugin-progress'
+import picocolors from 'picocolors'
+
+export const progressPlugin = () =>
+	Progress({
+		format: `${picocolors.green(picocolors.bold('Building'))} ${picocolors.cyan(
 			'[:bar]'
 		)} :percent | Time: :elapseds`,
 		width: 100
 	})
-}

@@ -3,22 +3,21 @@
  * @Author: menggt littlecandyi@163.com
  * @Date: 2023-08-07 11:15:58
  * @LastEditors: smellycat littlecandyi@163.com
- * @LastEditTime: 2024-02-01 02:52:48
+ * @LastEditTime: 2024-05-06 00:06:11
 -->
 <route>
-{
-	name: "Login",
-	meta: {
-		layout: false,
-		title: "登录",
-		constant: true,
-		hidden: true
+	{
+		name: "Login",
+		meta: {
+			constant: true,
+			hidden: true,
+			layout: false,
+			title: "登录",
+		}
 	}
-}
-</route>
+	</route>
 
 <script setup lang="ts">
-import appStore from '@/store'
 import type { FormInstance, FormRules } from 'element-plus'
 
 interface RegisterRuleForm {
@@ -143,11 +142,11 @@ const onSubmitRegister = async (formEl: FormInstance | undefined) => {
 }
 
 const handleSwitch = (): void => {
-	if (!registerFormRef) {
+	if (!registerFormRef.value) {
 		return
 	}
 
-	if (!loginFormRef) {
+	if (!loginFormRef.value) {
 		return
 	}
 
@@ -317,7 +316,6 @@ const clearFormDate = (): void => {
 										<SvgIcon name="user" />
 									</template>
 								</el-input>
-								<!-- <label class="placeholder">用户名</label> -->
 							</el-form-item>
 						</el-col>
 					</el-row>

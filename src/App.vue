@@ -3,11 +3,10 @@
  * @Author: smellycat littlecandyi@163.com
  * @Date: 2023-05-21 00:20:17
  * @LastEditors: smellycat littlecandyi@163.com
- * @LastEditTime: 2024-02-24 22:25:49
+ * @LastEditTime: 2024-05-03 01:10:05
 -->
 <script setup lang="ts">
 import { buttonConfig, sizeConfig, zIndexConfig } from '@/config/element-config'
-import appStore from '@/store'
 
 const { currentEpLang } = storeToRefs(appStore.useSettingsStore)
 </script>
