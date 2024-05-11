@@ -80,6 +80,7 @@
 		console.log('3333', nodesMap)
 		nodesData = d3.values(nodesMap)
 		let linkMap = genLinkMap(tempEdges)
+		console.log('linkMap', linkMap)
 		// 构建 links（source 属性必须从 0 开始）
 		edges = genLinks(tempEdges)
 		console.log('123123', edges, nodesData)

@@ -2,8 +2,8 @@
  * @Description: 知识图谱演示
  * @Author: smellycat littlecandyi@163.com
  * @Date: 2024-05-10 19:41:17
- * @LastEditors: smellycat littlecandyi@163.com
- * @LastEditTime: 2024-05-10 20:29:26
+ * @LastEditors: Smellycat littlecandyi@163.com
+ * @LastEditTime: 2024-05-11 09:49:48
 -->
 <route>
 {
@@ -39,6 +39,6 @@ onMounted(() => {
 
 <template>
 	<div h-full>
-		<svg ref="svgRef"></svg>
+		<svg ref="svgRef" h-full w-full></svg>
 	</div>
 </template>
