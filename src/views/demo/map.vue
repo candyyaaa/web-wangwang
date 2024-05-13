@@ -3,7 +3,7 @@
  * @Author: smellycat littlecandyi@163.com
  * @Date: 2024-05-10 19:41:17
  * @LastEditors: Smellycat littlecandyi@163.com
- * @LastEditTime: 2024-05-11 09:49:48
+ * @LastEditTime: 2024-05-13 11:19:22
 -->
 <route>
 {
@@ -38,7 +38,17 @@ onMounted(() => {
 </script>
 
 <template>
-	<div h-full>
+	<div class="map-wrap" h-full>
 		<svg ref="svgRef" h-full w-full></svg>
 	</div>
 </template>
+
+<style scoped>
+.map-wrap {
+	:deep(.nodes-group) circle {
+		/* stroke: #4c4d4f; */
+		stroke: #dcdfe6;
+		stroke-width: 2px;
+	}
+}
+</style>

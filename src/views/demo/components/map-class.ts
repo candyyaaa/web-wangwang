@@ -4,7 +4,7 @@
  * @Author: Smellycat littlecandyi@163.com
  * @Date: 2024-05-10 17:36:23
  * @LastEditors: Smellycat littlecandyi@163.com
- * @LastEditTime: 2024-05-11 17:53:29
+ * @LastEditTime: 2024-05-13 16:10:30
  */
 
 import * as d3 from 'd3'
@@ -135,143 +135,149 @@ export class RenderMap {
 			.selectAll('text')
 			.data(this.links)
 			.join('text')
+			.attr('class', 'linkText')
 			.style('text-anchor', 'middle')
 			.style('fill', '#333')
 			.style('font-size', '12px')
 			.text(d => d.label)
 
-		// 添加所有的点
-		// selectAll("circle")选中所有的圆并绑定数据,圆的直径为d.size
-		// 再定义圆的填充色,同样数据驱动样式,圆没有描边,圆的名字为d.id
-		// call()函数：拖动函数,当拖动开始绑定 dragstarted 函数，拖动进行和拖动结束也绑定函数
-		const node = svg
+		// 添加节点分组
+		const nodeGroup = svg
 			.append('g')
-			.attr('class', 'nodes')
-			.selectAll('circle')
-			.data(this.nodes)
-			.join('circle')
-			.attr('r', d => {
-				// 每次访问nodes的一项数据
-				return d.group === 1 ? 32 : 28
-			})
-			.attr('fill', (d: any) => this.colors[d.group])
-			.attr('stroke', 'none')
-			.attr('name', (d: any) => d?.label ?? '')
-			.attr('id', (d: any) => d.id)
-			.call(this.drag(simulation) as any)
-			.on('click', handleNodeClick)
-			// 右键菜单事件
-			.on('contextmenu', (event: any) => {
-				event.preventDefault()
-				// console.log('event contextmenu----------->', event)
-			})
-			// 鼠标移入事件
-			.on('mouseenter', function () {
-				// console.log('event ----------->', event)
-				// console.dir(this)
-				const node = d3.select(this)
-				// node.attr("class", "fixed")
-				// node.classed("fixed", true)
-				// console.log(node)
-				//获取被选中元素的名字
-				const name = node.attr('name')
-				const id = node.attr('id')
-				const color = node.attr('fill')
-				// console.log(name, id, color)
-				//设置#info h4样式的颜色为该节点的颜色，文本为该节点name
-				// _this.$set(_this.selectNodeData, 'id', id)
-				// _this.$set(_this.selectNodeData, 'name', name)
-				// _this.$set(_this.selectNodeData, 'color', color)
-				_this.selectNodeData.id = id
-				_this.selectNodeData.name = name
-				_this.selectNodeData.color = color
-
-				//遍历查找id对应的属性
-				for (const item of _this.nodes) {
-					if (`${item.id}` == id) {
-						// for(var key in item.properties)
-						// _this.$set(_this.selectNodeData, 'properties', item.properties)
-						_this.selectNodeData = item
-					}
-				}
-				// console.log('_this.selectNodeData ----------->', _this.selectNodeData)
-				// 遍历节点，并调整图的样式
-				_this.changeGraphStyle(name, svg)
-			})
-			.on('mouseleave', () => {
-				// console.log('event ----------->', event)
-				// console.log(this.isNodeClicked)
-
-				if (!this.isNodeClicked) {
-					this.clearGraphStyle()
-				}
-			})
-
-		// 显示所有的文本
-		// 设置大小、填充颜色、名字、text()设置文本
-		// 使用 attr("text-anchor", "middle")设置文本居中
-		const text = svg
-			.append('g')
-			.attr('class', 'texts')
-			.selectAll('text')
+			.attr('class', 'group')
+			.selectAll('.nodes-group')
 			.data(this.nodes)
 			.enter()
+			.append('g')
+			.attr('class', 'nodes-group')
+			.attr('id', d => d.id)
+			.style('cursor', 'pointer')
+			.attr('transform', (d: any) => `translate(${d.x},${d.y})`)
+			.call(this.drag(simulation) as any)
+			// .on('click', handleNodeClick)
+			.on('contextmenu', (event: any) => {
+				event.preventDefault()
+				console.log('event contextmenu----------->', event)
+			})
+			.on('mouseenter', (_, d) => {
+				this.toggleLineText(d, true)
+				this.toggleLine(d, true)
+				this.toggleNode(d, true)
+			})
+			.on('mouseleave', (_, d) => {
+				this.toggleLineText(d, false)
+				this.toggleLine(d, false)
+				this.toggleNode(d, false)
+			})
+
+		// 绘制节点
+		nodeGroup
+			.append('circle')
+			.attr('class', 'nodes')
+			.attr('r', d => (d.group === 1 ? 35 : 28))
+			.attr('id', d => `circle-${d.id}`)
+			.attr('fill', d => this.colors[d.group])
+
+		// 文字
+		nodeGroup
 			.append('text')
 			.attr('font-size', () => 12)
 			.attr('fill', () => '#fff')
-			.attr('name', (d: any) => d?.label ?? '')
+			.attr('name', d => d.label)
+			// 使用 attr("text-anchor", "middle")设置文本水平居中
 			.attr('text-anchor', 'middle')
 			.attr('x', function ({ label }) {
 				return textBreaking(d3.select(this), label) as any
 			})
-			.call(this.drag(simulation) as any)
-			.on('click', handleNodeClick)
-			.on('mouseenter', function () {
-				// console.log('event ----------->', event)
-				// console.dir(this)
-				const text = d3.select(this)
-				// console.log(text)
-				// 获取被选中元素的名字
-				const name = text.attr('name')
-				// _this.$set(_this.selectNodeData, 'name', name)
-				_this.selectNodeData.name = name
+		// 添加所有的点
+		// selectAll("circle")选中所有的圆并绑定数据,圆的直径为d.size
+		// 再定义圆的填充色,同样数据驱动样式,圆没有描边,圆的名字为d.id
+		// call()函数：拖动函数,当拖动开始绑定 dragstarted 函数，拖动进行和拖动结束也绑定函数
+		// const node = svg
+		// 	.append('g')
+		// 	.attr('class', 'nodes')
+		// 	.selectAll('circle')
+		// 	.data(this.nodes)
+		// 	.join('circle')
+		// 	.attr('r', d => {
+		// 		// 每次访问nodes的一项数据
+		// 		return d.group === 1 ? 32 : 28
+		// 	})
+		// 	.attr('fill', d => this.colors[d.group])
+		// 	.attr('name', d => d.label)
+		// 	.attr('id', d => d.id)
+		// 	.call(this.drag(simulation) as any)
+		// 	.on('click', handleNodeClick)
+		// 	// 右键菜单事件
+		// 	.on('contextmenu', (event: any) => {
+		// 		event.preventDefault()
+		// 		// console.log('event contextmenu----------->', event)
+		// 	})
+		// 	// 鼠标移入事件
+		// 	.on('mouseenter', function (_, d) {
+		// 		console.log('鼠标移入事件 mouseenter', d)
+		// 		_this.toggleLineText(d, true)
+		// 		// console.log('event ----------->', event)
+		// 		// console.dir(this)
+		// 		const node = d3.select(this)
+		// 		// node.attr("class", "fixed")
+		// 		// node.classed("fixed", true)
+		// 		// console.log(node)
+		// 		//获取被选中元素的名字
+		// 		const name = node.attr('name')
+		// 		const id = node.attr('id')
+		// 		const color = node.attr('fill')
+		// 		// console.log(name, id, color)
+		// 		//设置#info h4样式的颜色为该节点的颜色，文本为该节点name
+		// 		// _this.$set(_this.selectNodeData, 'id', id)
+		// 		// _this.$set(_this.selectNodeData, 'name', name)
+		// 		// _this.$set(_this.selectNodeData, 'color', color)
+		// 		_this.selectNodeData.id = id
+		// 		_this.selectNodeData.name = name
+		// 		_this.selectNodeData.color = color
 
-				// 根据文本名称获取节点的id
-				for (const item of _this.nodes) {
-					if ((item?.label ?? '') == name) {
-						// 设置节点id和标签属性
-						// _this.$set(_this.selectNodeData, 'id', item.id)
-						// _this.$set(_this.selectNodeData, 'properties', item.properties)
-						_this.selectNodeData.id = item.id
-						_this.selectNodeData.properties = item
-						// 根据节点类型label获取节点颜色
-						let index = 0
-						switch (item.group) {
-							case 1:
-								break
-							case 2:
-								index = 1
-								break
-							case 3:
-								index = 2
-								break
-							default:
-								index = 3
-								break
-						}
-						_this.selectNodeData.color = _this.colors[index]
-					}
-				}
-				_this.changeGraphStyle(name, svg)
-			})
-			.on('mouseleave', () => {
-				if (!this.isNodeClicked) {
-					this.clearGraphStyle()
-				}
-			})
+		// 		//遍历查找id对应的属性
+		// 		for (const item of _this.nodes) {
+		// 			if (`${item.id}` == id) {
+		// 				// for(var key in item.properties)
+		// 				// _this.$set(_this.selectNodeData, 'properties', item.properties)
+		// 				_this.selectNodeData = item
+		// 			}
+		// 		}
+		// 		// console.log('_this.selectNodeData ----------->', _this.selectNodeData)
+		// 		// 遍历节点，并调整图的样式
+		// 		_this.changeGraphStyle(name, svg)
+		// 	})
+		// 	.on('mouseleave', (_, d) => {
+		// 		// console.log('event ----------->', event)
+		// 		// console.log(this.isNodeClicked)
+		// 		_this.toggleLineText(d, false)
+
+		// 		if (!this.isNodeClicked) {
+		// 			this.clearGraphStyle()
+		// 		}
+		// 	})
+
+		// 显示所有的文本
+		// 设置大小、填充颜色、名字、text()设置文本
+		// 使用 attr("text-anchor", "middle")设置文本居中
+		// const text = node
+		// 	// .append('g')
+		// 	// .attr('class', 'texts')
+		// 	// .selectAll('text')
+		// 	// .data(this.nodes)
+		// 	// .enter()
+		// 	.append('text')
+		// 	.attr('font-size', () => 12)
+		// 	.attr('fill', () => '#fff')
+		// 	.attr('name', d => d.label)
+		// 	.attr('text-anchor', 'middle')
+		// 	.attr('x', function ({ label }) {
+		// 		return textBreaking(d3.select(this), label) as any
+		// 	})
 
 		// 圆增加title
-		node.append('title').text(d => d.label)
+		nodeGroup.append('title').text(d => d.label)
 
 		// simulation中ticked数据初始化并生成图形
 		simulation.on('tick', ticked)
@@ -347,26 +353,27 @@ export class RenderMap {
 				return 'translate(' + x + ',' + y + ')' + 'rotate(' + angle + ')'
 			})
 
-			node.attr('cx', (d: any) => d.x).attr('cy', (d: any) => d.y)
+			// nodeGroup.attr('cx', (d: any) => d.x).attr('cy', (d: any) => d.y)
+			nodeGroup.attr('transform', (d: any) => `translate(${d.x},${d.y})`)
 
-			text.attr('transform', function (d: any) {
-				let size = 15
-				switch (d.group) {
-					case 1:
-						break
-					case 2:
-						size = 14
-						break
-					case 3:
-						size = 13
-						break
-					default:
-						size = 12
-						break
-				}
-				size -= 5
-				return 'translate(' + (d.x - size / 2 + 3) + ',' + (d.y + size / 2) + ')'
-			})
+			// nodeText.attr('transform', function (d: any) {
+			// 	let size = 15
+			// 	switch (d.group) {
+			// 		case 1:
+			// 			break
+			// 		case 2:
+			// 			size = 14
+			// 			break
+			// 		case 3:
+			// 			size = 13
+			// 			break
+			// 		default:
+			// 			size = 12
+			// 			break
+			// 	}
+			// 	size -= 5
+			// 	return 'translate(' + (d.x - size / 2 + 3) + ',' + (d.y + size / 2) + ')'
+			// })
 		}
 
 		/**
@@ -378,16 +385,19 @@ export class RenderMap {
 		 */
 		function textBreaking(d3text: any, text: string): void {
 			const len = text.length
+			console.log('len', d3text, len)
 
 			if (len <= 3) {
-				d3text.append('tspan').attr('x', 0).attr('y', 2).text(text)
+				d3text.append('tspan').attr('x', 0).attr('y', 4).text(text)
 			} else {
 				const topText = text.substring(0, 3)
 				const midText = text.substring(3, 7)
 				let botText = text.substring(7, len)
-				let topY = -16
-				let midY = 0
-				const botY = 16
+
+				let topY = -10
+				let midY = 5
+				const botY = 20
+
 				if (len <= 7) {
 					topY += 10
 					midY += 10
@@ -467,10 +477,10 @@ export class RenderMap {
 			.attr('markerUnits', 'strokeWidth')
 			.attr('markerUnits', 'userSpaceOnUse')
 			.attr('viewBox', '0 -5 10 10')
-			.attr('refX', 31)
+			.attr('refX', 39)
 			.attr('refY', 0)
-			.attr('markerWidth', 12)
-			.attr('markerHeight', 12)
+			.attr('markerWidth', 10)
+			.attr('markerHeight', 10)
 			.append('path')
 			.attr('d', 'M 0 -5 L 10 0 L 0 5')
 			.attr('fill', '#797979')
@@ -484,10 +494,10 @@ export class RenderMap {
 			.attr('markerUnits', 'strokeWidth')
 			.attr('markerUnits', 'userSpaceOnUse')
 			.attr('viewBox', '0 -5 10 10')
-			.attr('refX', 31)
+			.attr('refX', 39)
 			.attr('refY', 0)
-			.attr('markerWidth', 12)
-			.attr('markerHeight', 12)
+			.attr('markerWidth', 10)
+			.attr('markerHeight', 10)
 			.append('path')
 			.attr('d', 'M 0 -5 L 10 0 L 0 5')
 			.attr('fill', '#f00')
@@ -601,6 +611,89 @@ export class RenderMap {
 					return this.isNodeClicked ? 'inactive' : ''
 				}
 			})
+	}
+
+	/**
+	 * 切换线上文字
+	 */
+	toggleLineText(currentNode: any, isHover: boolean) {
+		const linkText = this.svg.select('.linkTexts').selectAll('text')
+
+		if (isHover) {
+			linkText
+				.style('opacity', 0.1)
+				.filter(link => this.isLinkLine(currentNode, link))
+				.style('opacity', 1)
+				.classed('link-active', true)
+		} else {
+			linkText.style('opacity', 1).classed('link-active', false)
+		}
+	}
+
+	/**
+	 * 切换线
+	 */
+	toggleLine(currentNode: any, isHover: boolean) {
+		const links = this.svg.select('.links').selectAll('line')
+
+		if (isHover) {
+			// 加重连线样式
+			links
+				.style('opacity', 0.1)
+				.filter(link => this.isLinkLine(currentNode, link))
+				.style('opacity', 1)
+				.classed('link-active', true)
+		} else {
+			links.style('opacity', 1).classed('link-active', false)
+		}
+	}
+
+	/**
+	 * 切换节点
+	 */
+	toggleNode(currentNode: any, isHover: boolean) {
+		const nodeCircle = this.svg.select('.group').selectAll('.nodes-group')
+
+		if (isHover) {
+			nodeCircle
+				.style('opacity', 0.1)
+				.filter(node => this.isLinkNode(currentNode, node))
+				.style('opacity', 1)
+		} else {
+			nodeCircle.style('opacity', 1)
+		}
+	}
+
+	/**
+	 * 判断是否是当前连接的连线
+	 */
+	isLinkLine(node: any, link: any) {
+		return link.source.id === node.id
+	}
+
+	/**
+	 * 判断是否是当前连接的节点
+	 */
+	isLinkNode(currentNode: any, node: any) {
+		const linkMap = this.genLinkMap(this.links)
+
+		if (currentNode.id === node.id) {
+			return true
+		}
+
+		return linkMap[`${currentNode.id}-${node.id}`] || linkMap[`${node.id}-${currentNode.id}`]
+	}
+
+	/**
+	 * 生成关系图谱
+	 */
+	genLinkMap(relations: any) {
+		return relations.reduce((hash: any, { source, target, label }: any) => {
+			const key = `${source.id}-${target.id}`
+			hash[key] = (hash[key] || 0) + 1
+			hash[`${key}-label`] = hash[`${key}-label`] ? `${hash[`${key}-label`]}、${label}` : label
+			return hash
+		}, {})
 	}
 
 	/**

@@ -2,14 +2,14 @@
  * @Description: <>
  * @Author: menggt littlecandyi@163.com
  * @Date: 2023-09-07 15:24:08
- * @LastEditors: smellycat littlecandyi@163.com
- * @LastEditTime: 2024-05-10 20:34:07
+ * @LastEditors: Smellycat littlecandyi@163.com
+ * @LastEditTime: 2024-05-13 17:52:42
 -->
 <script setup lang="ts">
 import Draggable from 'vuedraggable'
 import { resolve } from 'path-browserify'
 
-import type { RouteLocationNormalized, RouteRecordRaw } from 'vue-router'
+import type { RouteLocationNormalized, RouteRecordRaw } from 'vue-router/auto'
 
 const router = useRouter()
 const route = useRoute()
@@ -157,6 +157,7 @@ const onTabClose = (item: RouteLocationNormalized) => {
 							<li
 								ref="tagRef"
 								class="group v-bottom"
+								:class="element.path === menusDefaultActive ? 'active' : ''"
 								mr="-2.5 last:0"
 								pointer-events-none
 								relative
@@ -187,12 +188,8 @@ const onTabClose = (item: RouteLocationNormalized) => {
 
 								<!-- 标签背景 20px-->
 								<div
+									class="group-[.active]:bg-[var(--el-bg-color)]"
 									:rounded-t="tabBarStyle === 'fashion' ? 2.5 : 0"
-									:bg="
-										element.path === menusDefaultActive
-											? '[var(--el-bg-color)]'
-											: '[var(--el-fill-color-lighter)]'
-									"
 									pointer-events-none
 									absolute
 									left-0
@@ -204,7 +201,7 @@ const onTabClose = (item: RouteLocationNormalized) => {
 									:opacity="element.path === menusDefaultActive ? 100 : 0"
 									transition-all-300
 									group-hover:opacity-100
-									:content="tabBarStyle === 'card' ? '' : 'after:empty before:empty'"
+									:content="tabBarStyle === 'fashion' ? 'after:empty before:empty' : ''"
 									before:empty="tab-corner -left-5 clip-left"
 									after:empty="tab-corner -right-5 clip-right"
 									:before:empty-shadow="
@@ -246,7 +243,7 @@ const onTabClose = (item: RouteLocationNormalized) => {
 										title-mask
 									>
 										<div class="i-carbon-manage-protection" mr-1.5 inline-block select-none />
-										<span>{{ element.meta.title }}</span>
+										<span>{{ element.meta.title }} - {{ element.path }}</span>
 									</div>
 
 									<div

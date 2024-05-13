@@ -172,6 +172,7 @@
 			})
 		// 鼠标交互
 		gs.on('mouseover', function (d, i) {
+			console.log('mouseover', d)
 			// 显示连接线上的文字
 			toggleLineText(d, true)
 			toggleLine(links, d, true)
@@ -212,14 +213,17 @@
 		)
 		forceSimulation.on('tick', ticked)
 		function toggleLineText(currNode, isHover) {
+			console.log('toggleLineText', currNode)
 			if (isHover) {
 				linksText.style('fill-opacity', function (edge) {
+					console.log('edge', edge)
 					if (edge.source === currNode) {
 						return 1
 					}
 				})
 			} else {
 				linksText.style('fill-opacity', function (edge) {
+					console.log('edge', edge)
 					if (edge.source === currNode || edge.target === currNode) {
 						return 0
 					}
@@ -688,7 +692,7 @@
 			.attr('fill', function (d, i) {
 				return 'orange'
 			})
-			.attr('stroke', 'grey')
+			.attr('stroke', 'red')
 			.attr('stroke-width', 3)
 		// 文字
 		var nodeText = gs
