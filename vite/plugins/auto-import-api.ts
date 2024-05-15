@@ -3,7 +3,7 @@
  * @Author: smellycat littlecandyi@163.com
  * @Date: 2023-05-21 12:27:00
  * @LastEditors: smellycat littlecandyi@163.com
- * @LastEditTime: 2024-05-02 02:17:54
+ * @LastEditTime: 2024-05-15 00:24:18
  */
 import AutoImport from 'unplugin-auto-import/vite'
 import { VueRouterAutoImports } from 'unplugin-vue-router'
@@ -15,7 +15,7 @@ export const autoImportApi = () =>
 			// 默认 `false` 默认false, 需要生成,修改文件的时候改为 true, 没有文件, 自动按需引入 eslint 会报错
 			enabled: true,
 			// 默认 `./.eslintrc-auto-import.json`
-			filepath: './.eslintrc-auto-import.json'
+			filepath: './.eslintrc-auto-import.mjs'
 		},
 		// 可以选择auto-import.d.ts生成的位置，使用ts建议设置为'src/auto-import.d.ts'
 		dts: './types/auto-import.d.ts',

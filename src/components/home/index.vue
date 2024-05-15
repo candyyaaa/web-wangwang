@@ -3,7 +3,7 @@
  * @Author: smellycat littlecandyi@163.com
  * @Date: 2023-05-21 23:05:42
  * @LastEditors: smellycat littlecandyi@163.com
- * @LastEditTime: 2024-05-05 23:39:45
+ * @LastEditTime: 2024-05-14 23:43:37
 -->
 <template>
 	<div>
@@ -31,8 +31,6 @@
 	<MatchLoading />
 
 	<CubeLoading />
-
-	<div class="i-ant-design-down-circle-outlined" text-lg></div>
 
 	<el-table mb-1 :data="[]" />
 	<!-- <el-pagination :total="100" /> -->

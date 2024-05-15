@@ -22,7 +22,8 @@
 		"vuedraggable",
 		"browserify",
 		"imengyu",
-		"radash"
+		"radash",
+    "tseslint"
 	],
 	"files.eol": "\n",
 	"typescript.tsdk": "node_modules/typescript/lib",

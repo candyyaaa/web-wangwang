@@ -3,21 +3,19 @@
  * @Author: smellycat littlecandyi@163.com
  * @Date: 2023-05-21 21:19:10
  * @LastEditors: smellycat littlecandyi@163.com
- * @LastEditTime: 2024-05-10 19:31:31
+ * @LastEditTime: 2024-05-15 00:23:12
 -->
-<route>
-{
-	name: "Index",
-	meta: {
-		layout: "index",
-		title: "主页",
-		roles: ["admin"],
-		icon: "i-carbon-home",
-		hidden: false,
-		sort: 0,
-		affix: true
-	}
-}
+<route lang="yaml">
+name: Index
+meta:
+  layout: index
+  title: 主页
+  roles:
+    - admin
+  icon: i-carbon-home
+  hidden: false
+  sort: 0
+  affix: true
 </route>
 
 <template>
@@ -27,7 +25,7 @@
 </template>
 
 <script setup lang="ts">
-// const router = useRouter()
+const router = useRouter()
 // const route = useRoute()
 // console.log('router ----------->', router)
 // console.log('route ----------->', route)
